@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-red: #E9384D;
+  --brand-navy: #0F2B5B;
+  --brand-teal: #00B4CC;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  color: #1e293b;
+  background: #ffffff;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ─── GSAP initial states ────────────────────────────────── */
+.gsap-reveal        { opacity: 0; transform: translateY(32px); will-change: transform, opacity; }
+.gsap-reveal-x      { opacity: 0; transform: translateX(40px);  will-change: transform, opacity; }
+.gsap-reveal-xl     { opacity: 0; transform: translateX(-40px); will-change: transform, opacity; }
+.gsap-scale-in      { opacity: 0; transform: scale(0.9);         will-change: transform, opacity; }
+.gsap-fade          { opacity: 0;                                 will-change: opacity; }
+.parallax-layer     { will-change: transform; }
+
+/* ─── Premium interaction classes ───────────────────────── */
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+}
+.btn-magnetic:hover { box-shadow: 0 8px 30px rgba(233,56,77,0.35); }
+
+.card-hover { transition: box-shadow 0.3s ease; will-change: transform; }
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal, .gsap-reveal-x, .gsap-reveal-xl, .gsap-scale-in, .gsap-fade {
+    opacity: 1 !important; transform: none !important;
+  }
+  .parallax-layer { will-change: auto; transform: none !important; }
+  .btn-magnetic, .card-hover { transition: none !important; will-change: auto; }
+}
+
+@layer utilities {
+  .section-padding { @apply py-16 md:py-24; }
+  .container-xl    { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+}

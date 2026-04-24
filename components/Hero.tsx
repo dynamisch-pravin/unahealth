@@ -110,7 +110,7 @@ export default function Hero() {
   const SlideIcon = slide.icon
 
   return (
-    <section className="relative w-full min-h-[680px] lg:min-h-[760px] xl:max-h-[900px] flex overflow-hidden bg-white">
+    <section className="relative w-full overflow-hidden bg-white">
 
       {/* ── Right-side tinted background panel ── */}
       <div className="absolute top-0 right-0 bottom-0 w-[52%] bg-slate-50 pointer-events-none" style={{ zIndex: 0 }} />
@@ -128,7 +128,7 @@ export default function Hero() {
       <div className="absolute right-[5%] top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full blur-[80px] pointer-events-none transition-colors duration-700"
         style={{ zIndex: 0, backgroundColor: slide.accent + '18' }} />
 
-      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center pt-28 pb-12 lg:pt-32 lg:pb-16" style={{ zIndex: 1 }}>
+      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-28 pb-16 lg:pt-32 lg:pb-20" style={{ zIndex: 1 }}>
         <div className="w-full grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-12 items-center">
 
           {/* ══ LEFT: Content ══ */}

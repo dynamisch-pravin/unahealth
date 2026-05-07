@@ -22,10 +22,10 @@ const team = [
   },
   {
     name: 'Leslie Jeffries, MSN BSN RN',
-    title: 'Chief Nursing Officer',
+    title: 'Senior VP of Operations',
     initials: 'LJ',
     photo: '/team/leslie.jpg',
-    bio: 'Leslie is a seasoned nursing leader with extensive experience in clinical operations, staff development, and healthcare quality improvement. Her background spans acute care nursing, nurse management, and executive leadership across major healthcare systems. Leslie brings a deep understanding of the clinician experience to UNA, ensuring the platform meets the real-world needs of healthcare professionals and the organizations that depend on them.',
+    bio: 'Leslie is a registered nurse with clinical background in ICU, Telemetry, and nursing management. Her executive experience is multi-faceted, including VMS operations in healthcare staffing, pre-employment testing at Prophecy Healthcare, assessment-driven learning for physicians and nurses, consulting for healthcare staffing companies working towards Joint Commission certification and operations at UNA Health. Outside of UNA, she volunteers as a basketball coach, pianist, and several boards of directors for various non-profit organizations.',
     social: {
       phone: 'tel:3365444829',
       calendar: undefined,

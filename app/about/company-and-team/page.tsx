@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Phone, CalendarDays, Mail, Linkedin } from 'lucide-react'
+import { Phone, CalendarDays, Mail, Linkedin, Feather, Rocket } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import ContactSection from '@/components/ContactSection'
 
@@ -176,9 +176,56 @@ export default function CompanyAndTeamPage() {
         </div>
       </section>
 
+      {/* History of success */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+            <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center">
+              <Feather size={36} className="text-slate-500" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our history of success</h2>
+              <p className="text-slate-500 leading-relaxed">
+                The UNA Team has deep roots in the healthcare staffing and acute care delivery systems. Our strategy and entrepreneurial spirit are driven by a desire to elevate the process for both talented clinicians and exemplary organizations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision for the future */}
+      <section className="py-16 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start gap-8">
+            <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center">
+              <Rocket size={36} className="text-slate-500" />
+            </div>
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our vision for the future</h2>
+              <p className="text-slate-500 leading-relaxed mb-4">
+                UNA&apos;s vision is simple — create technology that does two things:
+              </p>
+              <ol className="space-y-3 mb-4">
+                <li className="flex gap-3 text-slate-500 text-sm leading-relaxed">
+                  <span className="font-bold text-brand-navy flex-shrink-0">1)</span>
+                  Improve on-boarding, productivity, and talent retention for hospitals and healthcare staffing companies.
+                </li>
+                <li className="flex gap-3 text-slate-500 text-sm leading-relaxed">
+                  <span className="font-bold text-brand-navy flex-shrink-0">2)</span>
+                  Empower healthcare professionals to take control of their careers by optimizing credentialling, recruitment, and accessibility.
+                </li>
+              </ol>
+              <p className="text-slate-500 leading-relaxed text-sm">
+                We understand that talent drives the market — UNA is positioned to embrace that change.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Leadership */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">Our People</span>
             <h2 className="mt-3 text-3xl font-bold text-brand-navy">Leadership Team</h2>

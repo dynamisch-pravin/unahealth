@@ -20,6 +20,19 @@ const team = [
       linkedin: 'https://www.linkedin.com/in/gonzonurse/',
     },
   },
+  {
+    name: 'Leslie Jeffries, MSN BSN RN',
+    title: 'Chief Nursing Officer',
+    initials: 'LJ',
+    photo: '/team/leslie.jpg',
+    bio: 'Leslie is a seasoned nursing leader with extensive experience in clinical operations, staff development, and healthcare quality improvement. Her background spans acute care nursing, nurse management, and executive leadership across major healthcare systems. Leslie brings a deep understanding of the clinician experience to UNA, ensuring the platform meets the real-world needs of healthcare professionals and the organizations that depend on them.',
+    social: {
+      phone: 'tel:3365444829',
+      calendar: undefined,
+      email: 'mailto:hello@unahealth.com',
+      linkedin: 'https://www.linkedin.com/company/una-health',
+    },
+  },
 ]
 
 const sisco = [
@@ -80,7 +93,7 @@ function LeaderCard({ member }: { member: typeof team[0] }) {
               { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
               { href: member.social.email,    Icon: Mail,         label: 'Email' },
               { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
-            ].map(({ href, Icon, label }) => (
+            ].filter(({ href }) => !!href).map(({ href, Icon, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
                 className="group/icon w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shadow-sm hover:bg-brand-red hover:border-brand-red hover:text-white transition-all duration-200">
                 <Icon size={15} />

@@ -181,7 +181,7 @@ export default function ExpertValidationPage() {
                 alt="Risk meter showing Safe, Caution, and Risky zones for testing validation"
                 width={500}
                 height={340}
-                className="w-full max-w-[500px] h-auto"
+                className="w-full max-w-[500px] h-auto rounded-2xl shadow-xl"
               />
             </div>
             <div className="order-1 lg:order-2">

@@ -148,7 +148,7 @@ export default function StaffingAgenciesPage() {
                 alt="Expert-validated clinical content"
                 width={520}
                 height={370}
-                className="w-full max-w-[520px] h-auto"
+                className="w-full max-w-[520px] h-auto rounded-2xl shadow-2xl object-cover"
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function StaffingAgenciesPage() {
                 alt="High completion rates with UNA Test"
                 width={520}
                 height={370}
-                className="w-full max-w-[520px] h-auto"
+                className="w-full max-w-[520px] h-auto rounded-2xl shadow-2xl object-cover"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -243,7 +243,7 @@ export default function StaffingAgenciesPage() {
                 alt="End the paperwork and tech complexity"
                 width={520}
                 height={370}
-                className="w-full max-w-[520px] h-auto"
+                className="w-full max-w-[520px] h-auto rounded-2xl shadow-2xl object-cover"
               />
             </div>
           </div>
@@ -261,7 +261,7 @@ export default function StaffingAgenciesPage() {
                 alt="UNA OpenAPI sync across all your platforms"
                 width={500}
                 height={370}
-                className="w-full max-w-[500px] h-auto"
+                className="w-full max-w-[500px] h-auto rounded-2xl shadow-2xl object-cover"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -358,7 +358,7 @@ export default function StaffingAgenciesPage() {
                 alt="UNA — all-in-one platform"
                 width={500}
                 height={380}
-                className="w-full max-w-[500px] h-auto"
+                className="w-full max-w-[500px] h-auto rounded-3xl drop-shadow-xl"
               />
             </div>
             <div className="order-1 lg:order-2">

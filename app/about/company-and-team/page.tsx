@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import PageHero from '@/components/PageHero'
 import ContactSection from '@/components/ContactSection'
@@ -39,10 +42,11 @@ const sisco = [
 ]
 
 function Avatar({ photo, initials, color, name }: { photo?: string; initials: string; color: string; name: string }) {
-  if (photo) {
+  const [failed, setFailed] = useState(false)
+  if (photo && !failed) {
     return (
       <div className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0">
-        <Image src={photo} alt={name} width={64} height={64} className="object-cover w-full h-full" />
+        <Image src={photo} alt={name} width={64} height={64} className="object-cover w-full h-full" onError={() => setFailed(true)} />
       </div>
     )
   }
@@ -51,6 +55,24 @@ function Avatar({ photo, initials, color, name }: { photo?: string; initials: st
       {initials}
     </div>
   )
+}
+
+function SiscoMemberPhoto({ photo, name }: { photo: string; name: string }) {
+  const [failed, setFailed] = useState(false)
+  if (failed) return null
+  return (
+    <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
+      <Image src={photo} alt={name} width={56} height={56} className="object-cover w-full h-full" onError={() => setFailed(true)} />
+    </div>
+  )
+}
+
+function SiscoLogo() {
+  const [failed, setFailed] = useState(false)
+  if (failed) {
+    return <p className="text-2xl font-extrabold text-brand-navy tracking-tight mb-6">⚡ SISCo <span className="text-brand-blue font-medium text-base">Powered by UNA</span></p>
+  }
+  return <Image src="/team/sisco-logo.png" alt="SISCo – Powered by UNA" width={220} height={80} className="mx-auto mb-6 h-16 w-auto" onError={() => setFailed(true)} />
 }
 
 export default function CompanyAndTeamPage() {
@@ -100,17 +122,13 @@ export default function CompanyAndTeamPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-brand-navy">Strategic Innovation Steering Committee</h2>
-            <p className="mt-3 text-slate-500 max-w-xl mx-auto">SISCo — Our expert advisory board guiding UNA&apos;s clinical and technological direction.</p>
+            <SiscoLogo />
+            <p className="mt-3 text-slate-500 max-w-xl mx-auto">Our expert advisory board guiding UNA&apos;s clinical and technological direction.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {sisco.map(s => (
               <div key={s.name} className={`${s.bg} rounded-2xl p-7 border border-slate-100 flex items-start gap-4`}>
-                {s.photo && (
-                  <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0">
-                    <Image src={s.photo} alt={s.name} width={56} height={56} className="object-cover w-full h-full" />
-                  </div>
-                )}
+                <SiscoMemberPhoto photo={s.photo} name={s.name} />
                 <div>
                   <h3 className="text-base font-bold text-brand-navy mb-1">{s.name}</h3>
                   <p className="text-xs font-semibold text-brand-blue mb-3">{s.role}</p>

@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
 import { ArrowRight, Calendar, Tag, LayoutGrid, Code2, Newspaper } from 'lucide-react'
+import { gsap } from '@/lib/gsap'
 
 type Category = 'All' | 'Developer Notes' | 'Press Releases'
 
@@ -35,19 +36,49 @@ const posts = [
 ]
 
 const tabs: { label: string; value: Category; Icon: React.ElementType }[] = [
-  { label: 'All Blog Posts',    value: 'All',              Icon: LayoutGrid },
-  { label: 'Developer Notes',   value: 'Developer Notes',  Icon: Code2      },
-  { label: 'Press Releases',    value: 'Press Releases',   Icon: Newspaper  },
+  { label: 'All Blog Posts',  value: 'All',             Icon: LayoutGrid },
+  { label: 'Developer Notes', value: 'Developer Notes', Icon: Code2      },
+  { label: 'Press Releases',  value: 'Press Releases',  Icon: Newspaper  },
 ]
 
 const categoryColor: Record<Category, { text: string; border: string; bg: string }> = {
-  'All':             { text: '#E9384D', border: 'rgba(233,56,77,0.25)', bg: 'rgba(233,56,77,0.05)' },
+  'All':             { text: '#E9384D', border: 'rgba(233,56,77,0.25)',  bg: 'rgba(233,56,77,0.05)'  },
   'Developer Notes': { text: '#0B72B5', border: 'rgba(11,114,181,0.25)', bg: 'rgba(11,114,181,0.05)' },
-  'Press Releases':  { text: '#E9384D', border: 'rgba(233,56,77,0.25)', bg: 'rgba(233,56,77,0.05)' },
+  'Press Releases':  { text: '#E9384D', border: 'rgba(233,56,77,0.25)',  bg: 'rgba(233,56,77,0.05)'  },
 }
 
 export default function BlogPage() {
   const [active, setActive] = useState<Category>('All')
+
+  const tabButtonRefs   = useRef<(HTMLButtonElement | null)[]>([])
+  const pillRef         = useRef<HTMLDivElement>(null)
+  const pillInitialized = useRef(false)
+  const listRef         = useRef<HTMLDivElement>(null)
+  const firstRender     = useRef(true)
+
+  // Slide pill to active tab
+  useEffect(() => {
+    const idx  = tabs.findIndex(t => t.value === active)
+    const btn  = tabButtonRefs.current[idx]
+    const pill = pillRef.current
+    if (!btn || !pill) return
+    if (!pillInitialized.current) {
+      gsap.set(pill, { x: btn.offsetLeft, width: btn.offsetWidth })
+      pillInitialized.current = true
+      return
+    }
+    gsap.to(pill, { x: btn.offsetLeft, width: btn.offsetWidth, duration: 0.35, ease: 'power3.inOut' })
+  }, [active])
+
+  // Fade posts on tab change
+  useEffect(() => {
+    if (firstRender.current) { firstRender.current = false; return }
+    if (!listRef.current) return
+    gsap.timeline()
+      .to(listRef.current,  { opacity: 0, y: 8,  filter: 'blur(3px)', duration: 0.18, ease: 'power2.in' })
+      .set(listRef.current, { y: -8 })
+      .to(listRef.current,  { opacity: 1, y: 0,  filter: 'blur(0px)', duration: 0.32, ease: 'power3.out' })
+  }, [active])
 
   const filtered = active === 'All' ? posts : posts.filter(p => p.category === active)
 
@@ -78,30 +109,41 @@ export default function BlogPage() {
       <section className="py-16 bg-slate-50 min-h-[400px]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Filter tabs */}
-          <div className="inline-flex items-center gap-1 bg-slate-100 rounded-2xl p-1.5 mb-10">
-            {tabs.map(({ label, value, Icon }) => {
-              const isActive = active === value
-              return (
-                <button
-                  key={value}
-                  onClick={() => setActive(value)}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-                  style={
-                    isActive
-                      ? { backgroundColor: '#fff', color: '#0F2B5B', boxShadow: '0 1px 4px rgba(0,0,0,0.08)', border: '1px solid #E2E8F0' }
-                      : { backgroundColor: 'transparent', color: '#94A3B8', border: '1px solid transparent' }
-                  }
-                >
-                  <Icon size={14} style={{ color: isActive ? '#E9384D' : '#94A3B8' }} />
-                  {label}
-                </button>
-              )
-            })}
+          {/* Sliding pill tabs */}
+          <div className="flex mb-10">
+            <div className="relative inline-flex bg-slate-100 rounded-2xl p-1.5 shadow-inner">
+
+              {/* Sliding white pill */}
+              <div
+                ref={pillRef}
+                className="absolute top-1.5 h-[calc(100%-12px)] bg-white rounded-xl shadow-md shadow-slate-200/70 pointer-events-none"
+                style={{ width: 0, willChange: 'transform, width' }}
+              />
+
+              {tabs.map(({ label, value, Icon }, i) => {
+                const isActive = active === value
+                return (
+                  <button
+                    key={value}
+                    ref={el => { tabButtonRefs.current[i] = el }}
+                    onClick={() => setActive(value)}
+                    className={`relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors duration-200 ${
+                      isActive ? 'text-brand-navy' : 'text-slate-500 hover:text-slate-700'
+                    }`}
+                  >
+                    <Icon
+                      size={14}
+                      className={`transition-colors duration-200 ${isActive ? 'text-brand-red' : 'text-slate-400'}`}
+                    />
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           {/* Post cards */}
-          <div className="space-y-6">
+          <div ref={listRef} className="space-y-6">
             {filtered.map((post, i) => {
               const c = categoryColor[post.category]
               return (
@@ -109,7 +151,6 @@ export default function BlogPage() {
                   key={`${post.slug}-${i}`}
                   className="bg-white rounded-2xl border border-slate-100 p-8 hover:shadow-md hover:border-red-100 transition-all"
                 >
-                  {/* Meta */}
                   <div className="flex flex-wrap items-center gap-3 mb-4">
                     <span className="flex items-center gap-1.5 text-xs text-slate-400">
                       <Calendar size={12} />
@@ -124,15 +165,12 @@ export default function BlogPage() {
                     </span>
                   </div>
 
-                  {/* Title */}
                   <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-3 leading-snug">
                     {post.title}
                   </h2>
 
-                  {/* Excerpt */}
                   <p className="text-sm text-slate-500 leading-relaxed mb-6">{post.excerpt}</p>
 
-                  {/* Read more */}
                   <Link
                     href={`/resources/blog/${post.slug}`}
                     className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"

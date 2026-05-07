@@ -21,20 +21,6 @@ const team = [
       linkedin: 'https://www.linkedin.com/in/gonzonurse/',
     },
   },
-  {
-    name: 'Leslie Jeffries MSN, BSN, RN',
-    title: 'Senior VP of Operations',
-    initials: 'LJ',
-    accent: '#E9384D',
-    photo: '/team/leslie.jpg',
-    bio: 'Leslie is a registered nurse with clinical background in ICU, Telemetry, and nursing management. Her executive experience is multi-faceted, including VMS operations in healthcare staffing, pre-employment testing at Prophecy Healthcare, assessment-driven learning for physicians and nurses, consulting for healthcare staffing companies working towards Joint Commission certification, and operations of UNA Health. Outside of UNA, she volunteers as a basketball coach, pianist, and several boards of directors for various non-profit organizations.',
-    social: {
-      phone: 'tel:3365444829',
-      calendar: 'https://calendly.com/una-leslie',
-      email: 'mailto:leslie@unahealth.com',
-      linkedin: 'https://www.linkedin.com/in/leslie-jeffries-0290581/',
-    },
-  },
 ]
 
 const sisco = [

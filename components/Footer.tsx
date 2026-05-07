@@ -24,7 +24,6 @@ const howWeHelp = [
 const products = [
   { label: 'UNA Test',                       href: '/resources/una-test' },
   { label: 'UNA Wallet',                     href: '/resources/una-wallet' },
-  { label: 'UNA Fast CEUs',                  href: '/resources/una-fast-ceus' },
   { label: 'UNA Air',                        href: '/resources/una-air' },
   { label: 'myUNA Candidate Portal',         href: '/resources/my-una' },
   { label: 'UNA Team Behavioral Assessments',href: '/resources/una-team' },

@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { ArrowRight, FlaskConical, Wallet, BookOpen, Wind, User, Users } from 'lucide-react'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { ArrowRight, FlaskConical, Wallet, Wind, User, Users } from 'lucide-react'
+import { gsap } from '@/lib/gsap'
 
 const products = [
   {
@@ -27,18 +27,6 @@ const products = [
     description:
       'A secure, portable digital wallet for storing, managing, and sharing credentials, certifications, and competency records—accessible anytime, anywhere.',
     features: ['Centralized credential storage', 'One-click employer sharing', 'Expiration alerts & tracking', 'HIPAA-compliant security'],
-    badge: null,
-    href: '#',
-  },
-  {
-    icon: BookOpen,
-    iconBg: 'bg-green-50',
-    iconColor: 'text-green-600',
-    name: 'UNA Fast CEUs',
-    tagline: 'Continuing Education — Fast',
-    description:
-      'Complete mandatory continuing education courses in 15 minutes or less. Over 1 million courses completed. Fully accredited, mobile-friendly, and built for busy nurses.',
-    features: ['1M+ courses completed', 'Accredited CE content', 'Mobile-optimized learning', '15-minute course modules'],
     badge: null,
     href: '#',
   },

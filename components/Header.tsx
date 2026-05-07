@@ -21,7 +21,6 @@ const howUnaHelpsYou = [
 const resourcesProducts = [
   { label: 'UNA Test',     href: '/resources/una-test',      desc: 'Competency & checklists',  color: '#E9384D' },
   { label: 'UNA Wallet',   href: '/resources/una-wallet',    desc: 'Credential management',    color: '#0A9396' },
-  { label: 'UNA Fast CEUs',href: '/resources/una-fast-ceus', desc: 'Continuing education',     color: '#7B2D8B' },
   { label: 'UNA Air',      href: '/resources/una-air',       desc: 'Automated remediation',    color: '#E9384D', badge: 'New' },
   { label: 'myUNA Portal', href: '/resources/my-una',        desc: 'Candidate portal',         color: '#0F2B5B', badge: 'Soon' },
   { label: 'UNA Team',     href: '/resources/una-team',      desc: 'Behavioral assessments',   color: '#EC4899', badge: 'Soon' },

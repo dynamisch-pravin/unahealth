@@ -38,21 +38,6 @@ const products = [
     dot: '#0D9488',
   },
   {
-    name: 'UNA Fast CEUs',
-    tagline: 'Continuing Education Units',
-    bullets: [
-      { label: 'ANCC accredited', desc: 'Courses accepted in all states' },
-      { label: 'Powered by Colibri', desc: 'Industry-leading CE content' },
-      { label: 'Fast & focused', desc: 'Complete on any device, anywhere' },
-    ],
-    link: 'More on UNA Fast',
-    href: '/resources/una-fast-ceus',
-    badge: null,
-    image: '/una-fast/mockup-ceus.png',
-    accent: '#F3EEFF',
-    dot: '#7C3AED',
-  },
-  {
     name: 'UNA Air',
     tagline: 'Automated instant remediation',
     bullets: [

@@ -26,12 +26,6 @@ const sisco = [
     detail: 'Background at Amazon, Sandia National Labs, and the U.S. Navy, specializing in advanced technology, statistics, and high-stakes testing.',
   },
   {
-    name: 'Dr. Kevin Kapov',
-    role: 'Former FBI Chief Medical Officer',
-    bg: 'bg-red-50',
-    detail: 'Primary care and medical prototype design entrepreneurship experience.',
-  },
-  {
     name: 'T.J. Waggoner',
     role: 'Psychology & Organizational Behavior',
     bg: 'bg-orange-50',

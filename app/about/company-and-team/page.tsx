@@ -29,14 +29,14 @@ const sisco = [
     role: 'Ph.D. Industrial-Organizational Psychology',
     photo: '/team/rob.jpg',
     initials: 'RK',
-    detail: 'Extensive background with Amazon, Sandia National Labs, and the U.S. Navy. Expertise in advanced technology, statistics, and high-stakes testing.',
+    detail: 'With a Ph.D. in Industrial-Organizational Psychology, Dr. Kittinger has an extensive background in organizations such as Amazon, Sandia National Labs, and the U.S. Navy. His work primarily involves advanced technology, statistics, and high-stakes testing.',
   },
   {
     name: 'T.J. Waggoner',
     role: 'Psychology & Organizational Behavior',
     photo: '/team/tj.jpg',
     initials: 'TW',
-    detail: 'CEO and co-founder of Waggoner Diagnostics, focusing on occupational health improvements and federal agency consulting.',
+    detail: 'Educated in psychology and organizational behavior, T.J. is the CEO and co-founder of Waggoner Diagnostics. He has played an instrumental role in improving color vision in occupational health and consults extensively with federal agencies.',
   },
 ]
 

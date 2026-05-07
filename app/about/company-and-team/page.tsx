@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { Phone, CalendarDays, Mail, Linkedin } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import ContactSection from '@/components/ContactSection'
 
@@ -10,9 +11,15 @@ const team = [
     name: 'Ron Gonzalez, MS BSN',
     title: 'Founder / CEO',
     initials: 'RG',
-    accent: '#0B72B5',
+    accent: '#E9384D',
     photo: '/team/ron.jpg',
     bio: 'Ron is a nurse entrepreneur who started his career as a Med-Surg RN on Long Island, NY. He became a nurse manager soon thereafter, leaving the systems and operations of Healthcare Staffing. In 2004, Ron founded and launched NurseTesting.com, which later became Prophecy Healthcare. He successfully sold Prophecy to APS/Relias in 2015. Ron Co-Founded JobRobotix in 2016 (with a successful exit in 2022), and subsequently launched UNA Health in 2020. Ron has almost 20 years experience building & scaling innovative, next-generation technology for healthcare markets.',
+    social: {
+      phone: 'tel:3365444829',
+      calendar: 'https://calendly.com/una-ron',
+      email: 'mailto:ron@unahealth.com',
+      linkedin: 'https://www.linkedin.com/in/gonzonurse/',
+    },
   },
   {
     name: 'Leslie Jeffries MSN, BSN, RN',
@@ -21,6 +28,12 @@ const team = [
     accent: '#E9384D',
     photo: '/team/leslie.jpg',
     bio: 'Leslie is a registered nurse with clinical background in ICU, Telemetry, and nursing management. Her executive experience is multi-faceted, including VMS operations in healthcare staffing, pre-employment testing at Prophecy Healthcare, assessment-driven learning for physicians and nurses, consulting for healthcare staffing companies working towards Joint Commission certification, and operations of UNA Health. Outside of UNA, she volunteers as a basketball coach, pianist, and several boards of directors for various non-profit organizations.',
+    social: {
+      phone: 'tel:3365444829',
+      calendar: 'https://calendly.com/una-leslie',
+      email: 'mailto:leslie@unahealth.com',
+      linkedin: 'https://www.linkedin.com/in/leslie-jeffries-0290581/',
+    },
   },
 ]
 
@@ -44,44 +57,52 @@ const sisco = [
 function LeaderCard({ member }: { member: typeof team[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="group relative bg-white rounded-3xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300">
-      {/* Top accent bar */}
-      <div className="h-1.5 w-full" style={{ backgroundColor: member.accent }} />
+    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 p-8 flex gap-7">
 
-      <div className="p-8">
-        {/* Photo + name row */}
-        <div className="flex items-center gap-5 mb-6">
-          <div className="relative flex-shrink-0">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden ring-4 ring-white shadow-lg"
-              style={{ boxShadow: `0 8px 24px ${member.accent}30` }}>
-              {!failed ? (
-                <Image
-                  src={member.photo}
-                  alt={member.name}
-                  width={96}
-                  height={96}
-                  className="object-cover object-top w-full h-full"
-                  onError={() => setFailed(true)}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold"
-                  style={{ backgroundColor: member.accent }}>
-                  {member.initials}
-                </div>
-              )}
+      {/* Left: circular photo */}
+      <div className="flex-shrink-0">
+        <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg"
+          style={{ boxShadow: `0 0 0 4px ${member.accent}, 0 8px 24px ${member.accent}30` }}>
+          {!failed ? (
+            <Image
+              src={member.photo}
+              alt={member.name}
+              width={128}
+              height={128}
+              className="object-cover object-top w-full h-full"
+              onError={() => setFailed(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold"
+              style={{ backgroundColor: member.accent }}>
+              {member.initials}
             </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-brand-navy leading-tight">{member.name}</h3>
-            <span className="inline-block mt-1.5 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
-              style={{ color: member.accent, backgroundColor: member.accent + '15' }}>
-              {member.title}
-            </span>
-          </div>
+          )}
         </div>
+      </div>
 
-        {/* Bio */}
-        <p className="text-slate-500 leading-relaxed text-sm">{member.bio}</p>
+      {/* Right: name, title, bio, icons */}
+      <div className="flex flex-col flex-1">
+        <h3 className="text-xl font-bold text-brand-navy leading-tight">{member.name}</h3>
+        <p className="text-xs font-bold uppercase tracking-widest mt-1 mb-4" style={{ color: member.accent }}>
+          {member.title}
+        </p>
+        <p className="text-slate-500 leading-relaxed text-sm flex-1">{member.bio}</p>
+
+        {/* Social icons */}
+        <div className="flex items-center gap-3 mt-5">
+          {[
+            { href: member.social.phone,    Icon: Phone,       label: 'Phone' },
+            { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
+            { href: member.social.email,    Icon: Mail,        label: 'Email' },
+            { href: member.social.linkedin, Icon: Linkedin,    label: 'LinkedIn' },
+          ].map(({ href, Icon, label }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 border border-slate-200 hover:border-brand-blue hover:text-brand-blue transition-colors">
+              <Icon size={15} />
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -175,7 +196,7 @@ export default function CompanyAndTeamPage() {
 
       {/* SISCo */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Commitment intro — logo left, text right */}
           <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-16 bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100">

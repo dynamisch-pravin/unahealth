@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Phone, CalendarDays, Mail, Linkedin, Feather, Rocket } from 'lucide-react'
+import { Phone, CalendarDays, Mail, Linkedin, TrendingUp, Lightbulb, CheckCircle2 } from 'lucide-react'
 import PageHero from '@/components/PageHero'
 import ContactSection from '@/components/ContactSection'
 
@@ -11,7 +11,6 @@ const team = [
     name: 'Ron Gonzalez, MS BSN',
     title: 'Founder / CEO',
     initials: 'RG',
-    accent: '#E9384D',
     photo: '/team/ron.jpg',
     bio: 'Ron is a nurse entrepreneur who started his career as a Med-Surg RN on Long Island, NY. He became a nurse manager soon thereafter, leaving the systems and operations of Healthcare Staffing. In 2004, Ron founded and launched NurseTesting.com, which later became Prophecy Healthcare. He successfully sold Prophecy to APS/Relias in 2015. Ron Co-Founded JobRobotix in 2016 (with a successful exit in 2022), and subsequently launched UNA Health in 2020. Ron has almost 20 years experience building & scaling innovative, next-generation technology for healthcare markets.',
     social: {
@@ -40,63 +39,63 @@ const sisco = [
   },
 ]
 
+const siscoObjectives = [
+  'Develop cutting-edge tools that redefine and standardize clinical hiring.',
+  'Elevate standards for candidate engagement and compliance.',
+  'Set foundational clinical competencies for roles spanning Nursing, Allied Health, and Providers.',
+]
+
 function LeaderCard({ member }: { member: typeof team[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row">
+    <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100">
+      {/* Red top stripe */}
+      <div className="h-2 w-full bg-gradient-to-r from-brand-red to-rose-400" />
 
-      {/* Left: photo panel */}
-      <div className="relative md:w-72 flex-shrink-0 flex items-center justify-center p-10"
-        style={{ background: `linear-gradient(135deg, ${member.accent}18 0%, ${member.accent}08 100%)` }}>
-        <div className="relative">
-          <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl"
-            style={{ boxShadow: `0 0 0 5px white, 0 0 0 8px ${member.accent}40, 0 20px 40px ${member.accent}30` }}>
-            {!failed ? (
-              <Image
-                src={member.photo}
-                alt={member.name}
-                width={192}
-                height={192}
-                className="object-cover object-top w-full h-full"
-                onError={() => setFailed(true)}
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-white text-4xl font-bold"
-                style={{ backgroundColor: member.accent }}>
-                {member.initials}
-              </div>
-            )}
+      <div className="flex flex-col lg:flex-row">
+        {/* Photo panel */}
+        <div className="lg:w-80 flex-shrink-0 relative flex flex-col items-center justify-center gap-6 p-10 bg-gradient-to-br from-slate-50 to-white">
+          {/* Decorative circles */}
+          <div className="absolute top-6 right-6 w-20 h-20 rounded-full bg-brand-red/5" />
+          <div className="absolute bottom-10 left-4 w-12 h-12 rounded-full bg-brand-blue/5" />
+
+          <div className="relative z-10">
+            <div className="w-52 h-52 rounded-full overflow-hidden"
+              style={{ boxShadow: '0 0 0 5px white, 0 0 0 9px #E9384D30, 0 24px 48px rgba(233,56,77,0.2)' }}>
+              {!failed ? (
+                <Image src={member.photo} alt={member.name} width={208} height={208}
+                  className="object-cover object-top w-full h-full" onError={() => setFailed(true)} />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-brand-red text-white text-5xl font-bold">
+                  {member.initials}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Social links */}
+          <div className="relative z-10 flex items-center gap-2">
+            {[
+              { href: member.social.phone,    Icon: Phone,        label: 'Phone' },
+              { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
+              { href: member.social.email,    Icon: Mail,         label: 'Email' },
+              { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
+            ].map(({ href, Icon, label }) => (
+              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+                className="group/icon w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shadow-sm hover:bg-brand-red hover:border-brand-red hover:text-white transition-all duration-200">
+                <Icon size={15} />
+              </a>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Right: content */}
-      <div className="flex-1 p-10 flex flex-col justify-center">
-        {/* Accent bar */}
-        <div className="w-10 h-1 rounded-full mb-5" style={{ backgroundColor: member.accent }} />
-
-        <h3 className="text-2xl font-bold text-brand-navy leading-tight mb-1">{member.name}</h3>
-        <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: member.accent }}>
-          {member.title}
-        </p>
-        <p className="text-slate-500 leading-relaxed text-sm mb-7">{member.bio}</p>
-
-        {/* Social icons */}
-        <div className="flex items-center gap-3">
-          {[
-            { href: member.social.phone,    Icon: Phone,        label: 'Phone' },
-            { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
-            { href: member.social.email,    Icon: Mail,         label: 'Email' },
-            { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
-          ].map(({ href, Icon, label }) => (
-            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-              className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 border border-slate-200 hover:text-white transition-all duration-200"
-              style={{ ['--hover-bg' as string]: member.accent }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = member.accent; (e.currentTarget as HTMLElement).style.borderColor = member.accent }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = ''; (e.currentTarget as HTMLElement).style.borderColor = '' }}>
-              <Icon size={16} />
-            </a>
-          ))}
+        {/* Content */}
+        <div className="flex-1 p-10 lg:p-12 flex flex-col justify-center">
+          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1.5 rounded-full w-fit mb-4">
+            {member.title}
+          </span>
+          <h3 className="text-3xl font-extrabold text-brand-navy leading-tight mb-5">{member.name}</h3>
+          <p className="text-slate-500 leading-relaxed text-[15px]">{member.bio}</p>
         </div>
       </div>
     </div>
@@ -106,32 +105,24 @@ function LeaderCard({ member }: { member: typeof team[0] }) {
 function AdvisorCard({ advisor }: { advisor: typeof sisco[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 flex gap-6 p-7 items-start">
-      {/* Portrait photo */}
+    <div className="group relative bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 p-7 flex gap-6 items-start hover:bg-white/15 transition-all duration-300">
       <div className="flex-shrink-0">
-        <div className="w-28 h-36 rounded-2xl overflow-hidden shadow-md bg-slate-100">
+        <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/30 shadow-lg bg-white/20">
           {!failed ? (
-            <Image
-              src={advisor.photo}
-              alt={advisor.name}
-              width={112}
-              height={144}
-              className="object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
-              onError={() => setFailed(true)}
-            />
+            <Image src={advisor.photo} alt={advisor.name} width={80} height={80}
+              className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500"
+              onError={() => setFailed(true)} />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-brand-blue">
-              <span className="text-white text-3xl font-bold">{advisor.initials}</span>
+            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+              {advisor.initials}
             </div>
           )}
         </div>
       </div>
-
-      {/* Content */}
-      <div className="pt-1">
-        <h3 className="text-lg font-bold text-brand-navy mb-1 leading-tight">{advisor.name}</h3>
-        <p className="text-xs font-bold text-brand-blue mb-3 uppercase tracking-widest">{advisor.role}</p>
-        <p className="text-sm text-slate-500 leading-relaxed">{advisor.detail}</p>
+      <div>
+        <h3 className="text-lg font-bold text-white mb-0.5 leading-tight">{advisor.name}</h3>
+        <p className="text-xs font-semibold text-blue-300 mb-3 uppercase tracking-widest">{advisor.role}</p>
+        <p className="text-sm text-slate-300 leading-relaxed">{advisor.detail}</p>
       </div>
     </div>
   )
@@ -139,19 +130,8 @@ function AdvisorCard({ advisor }: { advisor: typeof sisco[0] }) {
 
 function SiscoLogo() {
   const [failed, setFailed] = useState(false)
-  if (failed) {
-    return <p className="text-3xl font-extrabold text-brand-navy tracking-tight">SISCo <span className="text-brand-blue font-medium text-lg">Powered by UNA</span></p>
-  }
-  return (
-    <Image
-      src="/team/sisco-logo.png"
-      alt="SISCo – Powered by UNA"
-      width={260}
-      height={90}
-      className="mx-auto h-20 w-auto"
-      onError={() => setFailed(true)}
-    />
-  )
+  if (failed) return <p className="text-3xl font-extrabold text-white">SISCo <span className="text-blue-300 font-medium text-lg">Powered by UNA</span></p>
+  return <Image src="/team/sisco-logo.png" alt="SISCo" width={220} height={80} className="h-16 w-auto brightness-0 invert" onError={() => setFailed(true)} />
 }
 
 export default function CompanyAndTeamPage() {
@@ -163,72 +143,80 @@ export default function CompanyAndTeamPage() {
         subheadline="UNA was established by professionals with decades of healthcare staffing experience who understand the challenges clinicians face and the operational needs of healthcare organizations."
       />
 
-      {/* Mission */}
+      {/* Mission + Stats */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">Our Mission</span>
-          <h2 className="mt-3 text-3xl font-bold text-brand-navy mb-6">What is UNA?</h2>
-          <p className="text-lg text-slate-500 leading-relaxed">
-            UNA is a suite of comprehensive mobile-first solutions for hospital networks, staffing agencies, and healthcare professionals.
-            Better connect with candidates, improve applicant engagement, optimize compliance workflows, and set a new higher standard for
-            your career or the clinicians in your organization.
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-brand-blue uppercase tracking-widest">Our Mission</span>
+            <h2 className="mt-2 text-3xl font-bold text-brand-navy">What is UNA?</h2>
+          </div>
+          <p className="text-lg text-slate-500 leading-relaxed text-center max-w-3xl mx-auto mb-14">
+            UNA is a suite of comprehensive mobile-first solutions for hospital networks, staffing agencies, and healthcare professionals. Better connect with candidates, improve applicant engagement, optimize compliance workflows, and set a new higher standard for your career or the clinicians in your organization.
           </p>
-        </div>
-      </section>
-
-      {/* History of success */}
-      <section className="py-16 bg-white border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8">
-            <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center">
-              <Feather size={36} className="text-slate-500" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our history of success</h2>
-              <p className="text-slate-500 leading-relaxed">
-                The UNA Team has deep roots in the healthcare staffing and acute care delivery systems. Our strategy and entrepreneurial spirit are driven by a desire to elevate the process for both talented clinicians and exemplary organizations.
-              </p>
-            </div>
+          {/* Stat strip */}
+          <div className="grid grid-cols-3 divide-x divide-slate-100 bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+            {[
+              { value: '2,000+', label: 'Hospital Networks' },
+              { value: '50k+',   label: 'Clinicians Served' },
+              { value: '20 yrs', label: 'Industry Experience' },
+            ].map(s => (
+              <div key={s.label} className="py-8 text-center">
+                <p className="text-3xl font-extrabold text-brand-navy">{s.value}</p>
+                <p className="text-xs text-slate-500 font-medium mt-1 uppercase tracking-widest">{s.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Vision for the future */}
-      <section className="py-16 bg-slate-50 border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row-reverse items-center sm:items-start gap-8">
-            <div className="flex-shrink-0 w-24 h-24 rounded-full bg-slate-100 flex items-center justify-center">
-              <Rocket size={36} className="text-slate-500" />
+      {/* History + Vision — two-column cards */}
+      <section className="py-16 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
+
+          {/* History */}
+          <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center mb-5">
+              <TrendingUp size={22} className="text-brand-blue" />
             </div>
-            <div className="flex-1">
-              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our vision for the future</h2>
-              <p className="text-slate-500 leading-relaxed mb-4">
-                UNA&apos;s vision is simple — create technology that does two things:
-              </p>
-              <ol className="space-y-3 mb-4">
-                <li className="flex gap-3 text-slate-500 text-sm leading-relaxed">
-                  <span className="font-bold text-brand-navy flex-shrink-0">1)</span>
-                  Improve on-boarding, productivity, and talent retention for hospitals and healthcare staffing companies.
-                </li>
-                <li className="flex gap-3 text-slate-500 text-sm leading-relaxed">
-                  <span className="font-bold text-brand-navy flex-shrink-0">2)</span>
-                  Empower healthcare professionals to take control of their careers by optimizing credentialling, recruitment, and accessibility.
-                </li>
-              </ol>
-              <p className="text-slate-500 leading-relaxed text-sm">
-                We understand that talent drives the market — UNA is positioned to embrace that change.
-              </p>
+            <h3 className="text-xl font-bold text-brand-navy mb-3">Our history of success</h3>
+            <p className="text-slate-500 leading-relaxed text-sm">
+              The UNA Team has deep roots in the healthcare staffing and acute care delivery systems. Our strategy and entrepreneurial spirit are driven by a desire to elevate the process for both talented clinicians and exemplary organizations.
+            </p>
+          </div>
+
+          {/* Vision */}
+          <div className="bg-brand-navy rounded-3xl p-8 border border-brand-navy shadow-sm">
+            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-5">
+              <Lightbulb size={22} className="text-yellow-300" />
             </div>
+            <h3 className="text-xl font-bold text-white mb-3">Our vision for the future</h3>
+            <p className="text-slate-300 leading-relaxed text-sm mb-4">
+              UNA&apos;s vision is simple — create technology that does two things:
+            </p>
+            <ol className="space-y-3">
+              {[
+                'Improve on-boarding, productivity, and talent retention for hospitals and healthcare staffing companies.',
+                'Empower healthcare professionals to take control of their careers by optimizing credentialling, recruitment, and accessibility.',
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3 text-sm text-slate-300 leading-relaxed">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-red text-white text-[10px] font-bold flex items-center justify-center mt-0.5">{i + 1}</span>
+                  {item}
+                </li>
+              ))}
+            </ol>
+            <p className="text-slate-400 text-xs mt-4 leading-relaxed">
+              We understand that talent drives the market — UNA is positioned to embrace that change.
+            </p>
           </div>
         </div>
       </section>
 
       {/* Leadership */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">Our People</span>
-            <h2 className="mt-3 text-3xl font-bold text-brand-navy">Leadership Team</h2>
+      <section className="py-20 bg-white">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold text-brand-blue uppercase tracking-widest">Our People</span>
+            <h2 className="mt-2 text-3xl font-bold text-brand-navy">Leadership Team</h2>
           </div>
           <div className="flex flex-col gap-8">
             {team.map(m => <LeaderCard key={m.name} member={m} />)}
@@ -236,29 +224,29 @@ export default function CompanyAndTeamPage() {
         </div>
       </section>
 
-      {/* SISCo */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* SISCo — dark panel */}
+      <section className="py-20 bg-brand-navy relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-brand-red/10 blur-3xl pointer-events-none" />
 
-          {/* Commitment intro — logo left, text right */}
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-16 bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100">
-            <div className="flex-shrink-0 flex items-center justify-center md:justify-start">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* SISCo intro */}
+          <div className="flex flex-col md:flex-row items-start gap-10 mb-14 pb-14 border-b border-white/10">
+            <div className="flex-shrink-0">
               <SiscoLogo />
             </div>
-            <div>
-              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our commitment to excellence</h2>
-              <p className="text-slate-500 mb-4 leading-relaxed">
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-white mb-3">Our commitment to excellence</h2>
+              <p className="text-slate-300 leading-relaxed mb-5">
                 UNA formed the Strategic and Innovation Steering Committee (SISCo) with a mission to spearhead innovations in clinical recruitment.
               </p>
-              <p className="text-slate-600 font-medium mb-3">It is SISCo&apos;s core objective to:</p>
-              <ul className="space-y-2">
-                {[
-                  'Develop cutting-edge tools that redefine and standardize clinical hiring.',
-                  'Elevate standards for candidate engagement and compliance.',
-                  'Set foundational clinical competencies for roles spanning Nursing, Allied Health, and Providers.',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-500">
-                    <span className="mt-1.5 w-2 h-2 rounded-full bg-brand-blue flex-shrink-0" />
+              <p className="text-sm font-semibold text-slate-200 mb-3">It is SISCo&apos;s core objective to:</p>
+              <ul className="space-y-2.5">
+                {siscoObjectives.map(item => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                    <CheckCircle2 size={16} className="text-brand-red flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
@@ -266,11 +254,11 @@ export default function CompanyAndTeamPage() {
             </div>
           </div>
 
-          {/* Advisor cards */}
-          <p className="text-slate-500 text-center mb-8">
+          {/* Advisors */}
+          <p className="text-slate-400 text-center text-sm mb-8">
             In addition to the core UNA leadership, SISCo is proud to include these distinguished members.
           </p>
-          <div className="grid sm:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-5">
             {sisco.map(s => <AdvisorCard key={s.name} advisor={s} />)}
           </div>
         </div>

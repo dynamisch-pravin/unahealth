@@ -124,7 +124,7 @@ export default function UnaWalletPage() {
                   alt="UNA Wallet credentials dashboard on iPad"
                   width={460}
                   height={460}
-                  className="w-full max-w-[460px] h-auto drop-shadow-xl"
+                  className="w-full max-w-[460px] h-auto drop-shadow-xl rounded-3xl"
                 />
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3">
                   <p className="text-xl font-extrabold text-brand-blue">50k+</p>
@@ -228,7 +228,7 @@ export default function UnaWalletPage() {
                   alt="Adding work experience and vaccination in UNA Wallet"
                   width={440}
                   height={440}
-                  className="w-full max-w-[440px] h-auto drop-shadow-xl"
+                  className="w-full max-w-[440px] h-auto drop-shadow-xl rounded-3xl"
                 />
                 <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3 flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-xl bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
@@ -259,7 +259,7 @@ export default function UnaWalletPage() {
                   alt="UNA Wallet – Luis Martinez full profile"
                   width={440}
                   height={440}
-                  className="w-full max-w-[440px] h-auto drop-shadow-xl"
+                  className="w-full max-w-[440px] h-auto drop-shadow-xl rounded-3xl"
                 />
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3 flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-xl bg-green-50 flex items-center justify-center flex-shrink-0">

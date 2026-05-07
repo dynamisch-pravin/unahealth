@@ -119,7 +119,7 @@ export default function HealthcareProfessionalsPage() {
                 alt="UNA Wallet dashboard on iPad"
                 width={520}
                 height={420}
-                className="w-full max-w-[520px] h-auto drop-shadow-2xl"
+                className="w-full max-w-[520px] h-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
           </div>
@@ -209,7 +209,7 @@ export default function HealthcareProfessionalsPage() {
                 alt="Sharing credentials packet — step by step"
                 width={460}
                 height={460}
-                className="w-full max-w-[460px] h-auto drop-shadow-2xl"
+                className="w-full max-w-[460px] h-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
           </div>
@@ -310,7 +310,7 @@ export default function HealthcareProfessionalsPage() {
                 alt="myUNA — Luis Martinez wallet and vaccination"
                 width={480}
                 height={480}
-                className="w-full max-w-[480px] h-auto drop-shadow-2xl"
+                className="w-full max-w-[480px] h-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
           </div>

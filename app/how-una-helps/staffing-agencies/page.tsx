@@ -341,7 +341,7 @@ export default function StaffingAgenciesPage() {
                 alt="Candidate UNA Wallet experience"
                 width={460}
                 height={460}
-                className="w-full max-w-[460px] h-auto drop-shadow-2xl"
+                className="w-full max-w-[460px] h-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
           </div>

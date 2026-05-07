@@ -145,7 +145,7 @@ export default function UnaTestPage() {
                   alt="UNA Test exam question on mobile"
                   width={300}
                   height={520}
-                  className="w-full max-w-[300px] h-auto drop-shadow-xl"
+                  className="w-full max-w-[300px] h-auto drop-shadow-xl rounded-3xl"
                 />
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3">
                   <p className="text-xl font-extrabold text-brand-blue">170k+</p>

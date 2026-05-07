@@ -180,7 +180,7 @@ export default function UnaTeamPage() {
                 alt="UNA Team behavioral assessment dashboard"
                 width={500}
                 height={500}
-                className="w-full max-w-[500px] h-auto drop-shadow-2xl"
+                className="w-full max-w-[500px] h-auto drop-shadow-2xl rounded-3xl"
               />
             </div>
           </div>

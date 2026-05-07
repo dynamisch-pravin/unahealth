@@ -130,7 +130,7 @@ export default function HospitalNetworksPage() {
                   alt="Finding the right healthcare talent"
                   width={520}
                   height={370}
-                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl"
+                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl rounded-3xl"
                 />
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function HospitalNetworksPage() {
                   alt="Eliminating compliance paperwork headaches"
                   width={520}
                   height={370}
-                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl"
+                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl rounded-3xl"
                 />
               </div>
             </div>
@@ -241,7 +241,7 @@ export default function HospitalNetworksPage() {
                   alt="Find talent that stays and grows"
                   width={520}
                   height={370}
-                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl"
+                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl rounded-3xl"
                 />
               </div>
             </div>
@@ -422,7 +422,7 @@ export default function HospitalNetworksPage() {
                   alt="Expert clinical content validation"
                   width={520}
                   height={370}
-                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl"
+                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl rounded-3xl"
                 />
               </div>
             </div>
@@ -443,7 +443,7 @@ export default function HospitalNetworksPage() {
                   alt="UNA testing designed for high completion rates"
                   width={520}
                   height={370}
-                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl"
+                  className="relative w-full max-w-[520px] h-auto drop-shadow-xl rounded-3xl"
                 />
               </div>
             </div>

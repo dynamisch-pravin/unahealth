@@ -228,7 +228,7 @@ export default function Hero() {
               style={{ borderColor: slide.accent + '25' }} />
 
             {/* Image card */}
-            <div className="relative w-full max-w-[520px] aspect-[4/5] rounded-[28px] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.12)]">
+            <div className="relative w-full max-w-[520px] aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.12)]">
               {slides.map((s, i) => (
                 <div
                   key={i}

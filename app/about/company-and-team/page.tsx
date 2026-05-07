@@ -90,29 +90,31 @@ function LeaderCard({ member }: { member: typeof team[0] }) {
 function AdvisorCard({ advisor }: { advisor: typeof sisco[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300">
-      {/* Photo banner */}
-      <div className="relative h-52 bg-slate-100 overflow-hidden">
-        {!failed ? (
-          <Image
-            src={advisor.photo}
-            alt={advisor.name}
-            fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-            onError={() => setFailed(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-brand-blue">
-            <span className="text-white text-4xl font-bold">{advisor.initials}</span>
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+    <div className="group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 flex gap-6 p-7 items-start">
+      {/* Portrait photo */}
+      <div className="flex-shrink-0">
+        <div className="w-28 h-36 rounded-2xl overflow-hidden shadow-md bg-slate-100">
+          {!failed ? (
+            <Image
+              src={advisor.photo}
+              alt={advisor.name}
+              width={112}
+              height={144}
+              className="object-cover object-center w-full h-full group-hover:scale-105 transition-transform duration-500"
+              onError={() => setFailed(true)}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-brand-blue">
+              <span className="text-white text-3xl font-bold">{advisor.initials}</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-brand-navy mb-1">{advisor.name}</h3>
-        <p className="text-xs font-semibold text-brand-blue mb-3 uppercase tracking-wide">{advisor.role}</p>
+      <div className="pt-1">
+        <h3 className="text-lg font-bold text-brand-navy mb-1 leading-tight">{advisor.name}</h3>
+        <p className="text-xs font-bold text-brand-blue mb-3 uppercase tracking-widest">{advisor.role}</p>
         <p className="text-sm text-slate-500 leading-relaxed">{advisor.detail}</p>
       </div>
     </div>

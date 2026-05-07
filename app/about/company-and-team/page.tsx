@@ -171,7 +171,7 @@ export default function CompanyAndTeamPage() {
 
       {/* History + Vision — two-column cards */}
       <section className="py-16 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-6">
 
           {/* History */}
           <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
@@ -213,7 +213,7 @@ export default function CompanyAndTeamPage() {
 
       {/* Leadership */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-xs font-bold text-brand-blue uppercase tracking-widest">Our People</span>
             <h2 className="mt-2 text-3xl font-bold text-brand-navy">Leadership Team</h2>
@@ -226,7 +226,7 @@ export default function CompanyAndTeamPage() {
 
       {/* SISCo — light panel */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* SISCo intro */}
           <div className="flex flex-col md:flex-row items-start gap-10 mb-14 pb-14 border-b border-slate-200">

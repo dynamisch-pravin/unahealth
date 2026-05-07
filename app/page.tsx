@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero'
 import Stats from '@/components/Stats'
+import VideoSection from '@/components/VideoSection'
 import WhatIsUna from '@/components/WhatIsUna'
 import UseCases from '@/components/UseCases'
 import Partners from '@/components/Partners'
@@ -11,6 +12,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Stats />
+      <VideoSection />
       <WhatIsUna />
       <UseCases />
       <Partners />

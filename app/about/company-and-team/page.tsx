@@ -162,7 +162,7 @@ export default function CompanyAndTeamPage() {
 
       {/* Leadership */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">Our People</span>
             <h2 className="mt-3 text-3xl font-bold text-brand-navy">Leadership Team</h2>
@@ -176,12 +176,34 @@ export default function CompanyAndTeamPage() {
       {/* SISCo */}
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <SiscoLogo />
-            <p className="mt-4 text-slate-500 max-w-xl mx-auto text-base">
-              Our expert advisory board guiding UNA&apos;s clinical and technological direction.
-            </p>
+
+          {/* Commitment intro — logo left, text right */}
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-16 bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-100">
+            <div className="flex-shrink-0 flex items-center justify-center md:justify-start">
+              <SiscoLogo />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our commitment to excellence</h2>
+              <p className="text-slate-500 mb-4 leading-relaxed">
+                UNA formed the Strategic and Innovation Steering Committee (SISCo) with a mission to spearhead innovations in clinical recruitment.
+              </p>
+              <p className="text-slate-600 font-medium mb-3">It is SISCo&apos;s core objective to:</p>
+              <ul className="space-y-2">
+                {[
+                  'Develop cutting-edge tools that redefine and standardize clinical hiring.',
+                  'Elevate standards for candidate engagement and compliance.',
+                  'Set foundational clinical competencies for roles spanning Nursing, Allied Health, and Providers.',
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-slate-500">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-brand-blue flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+
+          {/* Advisor cards */}
           <div className="grid sm:grid-cols-2 gap-8">
             {sisco.map(s => <AdvisorCard key={s.name} advisor={s} />)}
           </div>

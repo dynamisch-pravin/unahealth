@@ -267,6 +267,9 @@ export default function CompanyAndTeamPage() {
           </div>
 
           {/* Advisor cards */}
+          <p className="text-slate-500 text-center mb-8">
+            In addition to the core UNA leadership, SISCo is proud to include these distinguished members.
+          </p>
           <div className="grid sm:grid-cols-2 gap-8">
             {sisco.map(s => <AdvisorCard key={s.name} advisor={s} />)}
           </div>

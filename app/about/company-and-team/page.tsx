@@ -43,49 +43,58 @@ const sisco = [
 function LeaderCard({ member }: { member: typeof team[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 transition-all duration-300 p-8 flex gap-7">
+    <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden flex flex-col md:flex-row">
 
-      {/* Left: circular photo */}
-      <div className="flex-shrink-0">
-        <div className="w-32 h-32 rounded-full overflow-hidden shadow-lg"
-          style={{ boxShadow: `0 0 0 4px ${member.accent}, 0 8px 24px ${member.accent}30` }}>
-          {!failed ? (
-            <Image
-              src={member.photo}
-              alt={member.name}
-              width={128}
-              height={128}
-              className="object-cover object-top w-full h-full"
-              onError={() => setFailed(true)}
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold"
-              style={{ backgroundColor: member.accent }}>
-              {member.initials}
-            </div>
-          )}
+      {/* Left: photo panel */}
+      <div className="relative md:w-72 flex-shrink-0 flex items-center justify-center p-10"
+        style={{ background: `linear-gradient(135deg, ${member.accent}18 0%, ${member.accent}08 100%)` }}>
+        <div className="relative">
+          <div className="w-48 h-48 rounded-full overflow-hidden shadow-2xl"
+            style={{ boxShadow: `0 0 0 5px white, 0 0 0 8px ${member.accent}40, 0 20px 40px ${member.accent}30` }}>
+            {!failed ? (
+              <Image
+                src={member.photo}
+                alt={member.name}
+                width={192}
+                height={192}
+                className="object-cover object-top w-full h-full"
+                onError={() => setFailed(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-white text-4xl font-bold"
+                style={{ backgroundColor: member.accent }}>
+                {member.initials}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Right: name, title, bio, icons */}
-      <div className="flex flex-col flex-1">
-        <h3 className="text-xl font-bold text-brand-navy leading-tight">{member.name}</h3>
-        <p className="text-xs font-bold uppercase tracking-widest mt-1 mb-4" style={{ color: member.accent }}>
+      {/* Right: content */}
+      <div className="flex-1 p-10 flex flex-col justify-center">
+        {/* Accent bar */}
+        <div className="w-10 h-1 rounded-full mb-5" style={{ backgroundColor: member.accent }} />
+
+        <h3 className="text-2xl font-bold text-brand-navy leading-tight mb-1">{member.name}</h3>
+        <p className="text-sm font-bold uppercase tracking-widest mb-5" style={{ color: member.accent }}>
           {member.title}
         </p>
-        <p className="text-slate-500 leading-relaxed text-sm flex-1">{member.bio}</p>
+        <p className="text-slate-500 leading-relaxed text-sm mb-7">{member.bio}</p>
 
         {/* Social icons */}
-        <div className="flex items-center gap-3 mt-5">
+        <div className="flex items-center gap-3">
           {[
-            { href: member.social.phone,    Icon: Phone,       label: 'Phone' },
+            { href: member.social.phone,    Icon: Phone,        label: 'Phone' },
             { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
-            { href: member.social.email,    Icon: Mail,        label: 'Email' },
-            { href: member.social.linkedin, Icon: Linkedin,    label: 'LinkedIn' },
+            { href: member.social.email,    Icon: Mail,         label: 'Email' },
+            { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
           ].map(({ href, Icon, label }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-              className="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 border border-slate-200 hover:border-brand-blue hover:text-brand-blue transition-colors">
-              <Icon size={15} />
+              className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 border border-slate-200 hover:text-white transition-all duration-200"
+              style={{ ['--hover-bg' as string]: member.accent }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.backgroundColor = member.accent; (e.currentTarget as HTMLElement).style.borderColor = member.accent }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.backgroundColor = ''; (e.currentTarget as HTMLElement).style.borderColor = '' }}>
+              <Icon size={16} />
             </a>
           ))}
         </div>
@@ -169,12 +178,12 @@ export default function CompanyAndTeamPage() {
 
       {/* Leadership */}
       <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">Our People</span>
             <h2 className="mt-3 text-3xl font-bold text-brand-navy">Leadership Team</h2>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="flex flex-col gap-8">
             {team.map(m => <LeaderCard key={m.name} member={m} />)}
           </div>
         </div>

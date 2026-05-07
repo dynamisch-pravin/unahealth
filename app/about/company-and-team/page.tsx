@@ -7,14 +7,14 @@ const team = [
     title: 'Founder / CEO',
     initials: 'RG',
     color: 'bg-brand-blue',
-    bio: 'A nurse entrepreneur with ~20 years building healthcare technology. Ron launched NurseTesting.com (2004), sold Prophecy Healthcare to APS/Relias (2015), co-founded JobRobotix (2016, exited 2022), and established UNA Health (2020). Clinical background includes Med-Surg nursing on Long Island, NY, followed by healthcare staffing recruitment roles.',
+    bio: 'Ron is a nurse entrepreneur who started his career as a Med-Surg RN on Long Island, NY. He became a nurse manager soon thereafter, leaving the systems and operations of Healthcare Staffing. In 2004, Ron founded and launched NurseTesting.com, which later became Prophecy Healthcare. He successfully sold Prophecy to APS/Relias in 2015. Ron Co-Founded JobRobotix in 2016 (with a successful exit in 2022), and subsequently launched UNA Health in 2020. Ron has almost 20 years experience building & scaling innovative, next-generation technology for healthcare markets.',
   },
   {
     name: 'Leslie Jeffries MSN, BSN, RN',
     title: 'Senior VP of Operations',
     initials: 'LJ',
     color: 'bg-rose-500',
-    bio: 'Registered nurse with ICU, Telemetry, and management experience. Her executive background spans VMS operations, pre-employment testing at Prophecy Healthcare, physician/nurse assessment learning, healthcare staffing consulting for Joint Commission certification, and UNA operations.',
+    bio: 'Leslie is a registered nurse with clinical background in ICU, Telemetry, and nursing management. Her executive experience is multi-faceted, including VMS operations in healthcare staffing, pre-employment testing at Prophecy Healthcare, assessment-driven learning for physicians and nurses, consulting for healthcare staffing companies working towards Joint Commission certification, and operations of UNA Health. Outside of UNA, she volunteers as a basketball coach, pianist, and several boards of directors for various non-profit organizations.',
   },
 ]
 
@@ -23,13 +23,19 @@ const sisco = [
     name: 'Dr. Rob Kittinger',
     role: 'Ph.D. Industrial-Organizational Psychology',
     bg: 'bg-slate-50',
-    detail: 'Background at Amazon, Sandia National Labs, and the U.S. Navy, specializing in advanced technology, statistics, and high-stakes testing.',
+    detail: 'Extensive background with Amazon, Sandia National Labs, and the U.S. Navy. Expertise in advanced technology, statistics, and high-stakes testing.',
+  },
+  {
+    name: 'Dr. Kevin Kapov',
+    role: 'Former FBI Chief Medical Officer',
+    bg: 'bg-red-50',
+    detail: 'Experience spanning primary care to entrepreneurship in prototype design and medical innovations.',
   },
   {
     name: 'T.J. Waggoner',
     role: 'Psychology & Organizational Behavior',
     bg: 'bg-orange-50',
-    detail: 'CEO and co-founder of Waggoner Diagnostics, focusing on occupational health color vision improvements and federal agency consulting.',
+    detail: 'CEO and co-founder of Waggoner Diagnostics, focusing on occupational health improvements and federal agency consulting.',
   },
 ]
 

@@ -105,24 +105,24 @@ function LeaderCard({ member }: { member: typeof team[0] }) {
 function AdvisorCard({ advisor }: { advisor: typeof sisco[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="group relative bg-white/10 backdrop-blur-sm rounded-3xl border border-white/20 p-7 flex gap-6 items-start hover:bg-white/15 transition-all duration-300">
+    <div className="group bg-white rounded-3xl border border-slate-100 shadow-sm p-7 flex gap-6 items-start hover:shadow-lg transition-all duration-300">
       <div className="flex-shrink-0">
-        <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-white/30 shadow-lg bg-white/20">
+        <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-md bg-slate-100">
           {!failed ? (
             <Image src={advisor.photo} alt={advisor.name} width={80} height={80}
               className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500"
               onError={() => setFailed(true)} />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-white text-2xl font-bold">
+            <div className="w-full h-full flex items-center justify-center bg-brand-blue text-white text-2xl font-bold">
               {advisor.initials}
             </div>
           )}
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-bold text-white mb-0.5 leading-tight">{advisor.name}</h3>
-        <p className="text-xs font-semibold text-blue-300 mb-3 uppercase tracking-widest">{advisor.role}</p>
-        <p className="text-sm text-slate-300 leading-relaxed">{advisor.detail}</p>
+        <h3 className="text-lg font-bold text-brand-navy mb-0.5 leading-tight">{advisor.name}</h3>
+        <p className="text-xs font-semibold text-brand-blue mb-3 uppercase tracking-widest">{advisor.role}</p>
+        <p className="text-sm text-slate-500 leading-relaxed">{advisor.detail}</p>
       </div>
     </div>
   )
@@ -130,8 +130,8 @@ function AdvisorCard({ advisor }: { advisor: typeof sisco[0] }) {
 
 function SiscoLogo() {
   const [failed, setFailed] = useState(false)
-  if (failed) return <p className="text-3xl font-extrabold text-white">SISCo <span className="text-blue-300 font-medium text-lg">Powered by UNA</span></p>
-  return <Image src="/team/sisco-logo.png" alt="SISCo" width={220} height={80} className="h-16 w-auto brightness-0 invert" onError={() => setFailed(true)} />
+  if (failed) return <p className="text-3xl font-extrabold text-brand-navy">SISCo <span className="text-brand-blue font-medium text-lg">Powered by UNA</span></p>
+  return <Image src="/team/sisco-logo.png" alt="SISCo" width={220} height={80} className="h-16 w-auto" onError={() => setFailed(true)} />
 }
 
 export default function CompanyAndTeamPage() {
@@ -224,28 +224,24 @@ export default function CompanyAndTeamPage() {
         </div>
       </section>
 
-      {/* SISCo — dark panel */}
-      <section className="py-20 bg-brand-navy relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-blue/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-brand-red/10 blur-3xl pointer-events-none" />
-
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* SISCo — light panel */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* SISCo intro */}
-          <div className="flex flex-col md:flex-row items-start gap-10 mb-14 pb-14 border-b border-white/10">
+          <div className="flex flex-col md:flex-row items-start gap-10 mb-14 pb-14 border-b border-slate-200">
             <div className="flex-shrink-0">
               <SiscoLogo />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl font-bold text-white mb-3">Our commitment to excellence</h2>
-              <p className="text-slate-300 leading-relaxed mb-5">
+              <h2 className="text-2xl font-bold text-brand-navy mb-3">Our commitment to excellence</h2>
+              <p className="text-slate-500 leading-relaxed mb-5">
                 UNA formed the Strategic and Innovation Steering Committee (SISCo) with a mission to spearhead innovations in clinical recruitment.
               </p>
-              <p className="text-sm font-semibold text-slate-200 mb-3">It is SISCo&apos;s core objective to:</p>
+              <p className="text-sm font-semibold text-slate-700 mb-3">It is SISCo&apos;s core objective to:</p>
               <ul className="space-y-2.5">
                 {siscoObjectives.map(item => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-slate-300 leading-relaxed">
+                  <li key={item} className="flex items-start gap-3 text-sm text-slate-500 leading-relaxed">
                     <CheckCircle2 size={16} className="text-brand-red flex-shrink-0 mt-0.5" />
                     {item}
                   </li>
@@ -255,7 +251,7 @@ export default function CompanyAndTeamPage() {
           </div>
 
           {/* Advisors */}
-          <p className="text-slate-400 text-center text-sm mb-8">
+          <p className="text-slate-500 text-center text-sm mb-8">
             In addition to the core UNA leadership, SISCo is proud to include these distinguished members.
           </p>
           <div className="grid sm:grid-cols-2 gap-5">

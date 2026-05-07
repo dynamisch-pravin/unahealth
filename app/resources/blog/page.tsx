@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
-import { ArrowRight, Calendar, Tag } from 'lucide-react'
+import { ArrowRight, Calendar, Tag, LayoutGrid, Code2, Newspaper } from 'lucide-react'
 
 type Category = 'All' | 'Developer Notes' | 'Press Releases'
 
@@ -34,7 +34,11 @@ const posts = [
   },
 ]
 
-const tabs: Category[] = ['All', 'Developer Notes', 'Press Releases']
+const tabs: { label: string; value: Category; Icon: React.ElementType }[] = [
+  { label: 'All Blog Posts',    value: 'All',              Icon: LayoutGrid },
+  { label: 'Developer Notes',   value: 'Developer Notes',  Icon: Code2      },
+  { label: 'Press Releases',    value: 'Press Releases',   Icon: Newspaper  },
+]
 
 const categoryColor: Record<Category, { text: string; border: string; bg: string }> = {
   'All':             { text: '#E9384D', border: 'rgba(233,56,77,0.25)', bg: 'rgba(233,56,77,0.05)' },
@@ -75,21 +79,25 @@ export default function BlogPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-10">
-            {tabs.map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActive(tab)}
-                className="px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200"
-                style={
-                  active === tab
-                    ? { backgroundColor: '#E9384D', borderColor: '#E9384D', color: '#fff' }
-                    : { backgroundColor: '#fff', borderColor: '#E2E8F0', color: '#475569' }
-                }
-              >
-                {tab === 'All' ? 'All Blog Posts' : tab}
-              </button>
-            ))}
+          <div className="inline-flex items-center gap-1 bg-slate-100 rounded-2xl p-1.5 mb-10">
+            {tabs.map(({ label, value, Icon }) => {
+              const isActive = active === value
+              return (
+                <button
+                  key={value}
+                  onClick={() => setActive(value)}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
+                  style={
+                    isActive
+                      ? { backgroundColor: '#fff', color: '#0F2B5B', boxShadow: '0 1px 4px rgba(0,0,0,0.08)', border: '1px solid #E2E8F0' }
+                      : { backgroundColor: 'transparent', color: '#94A3B8', border: '1px solid transparent' }
+                  }
+                >
+                  <Icon size={14} style={{ color: isActive ? '#E9384D' : '#94A3B8' }} />
+                  {label}
+                </button>
+              )
+            })}
           </div>
 
           {/* Post cards */}

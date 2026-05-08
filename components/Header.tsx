@@ -92,8 +92,8 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-0.5">
 
             {/* How UNA Helps */}
-            <div className="relative" onMouseEnter={() => openDropdown('helps')} onMouseLeave={closeDropdown}>
-              <button className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-all duration-200 ${
+            <div className="relative cursor-pointer" onMouseEnter={() => openDropdown('helps')} onMouseLeave={closeDropdown}>
+              <button style={{ cursor: 'pointer' }} className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-colors duration-200 cursor-pointer ${
                 dropdown === 'helps' || isActive('/how-una-helps')
                   ? 'text-brand-navy font-semibold'
                   : 'text-slate-500 hover:text-slate-900'
@@ -149,8 +149,8 @@ export default function Header() {
             </div>
 
             {/* Resources */}
-            <div className="relative" onMouseEnter={() => openDropdown('resources')} onMouseLeave={closeDropdown}>
-              <button className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-all duration-200 ${
+            <div className="relative cursor-pointer" onMouseEnter={() => openDropdown('resources')} onMouseLeave={closeDropdown}>
+              <button style={{ cursor: 'pointer' }} className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-colors duration-200 cursor-pointer ${
                 dropdown === 'resources' || isActive('/resources')
                   ? 'text-brand-navy font-semibold'
                   : 'text-slate-500 hover:text-slate-900'
@@ -163,7 +163,7 @@ export default function Header() {
               <div className={`absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-[560px] bg-white rounded-2xl shadow-xl border border-slate-100 z-50 transition-all duration-200 origin-top ${
                 dropdown === 'resources' ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
               }`} onMouseEnter={keepOpen} onMouseLeave={closeDropdown}>
-                <div className="p-4 grid grid-cols-[1fr_auto_155px] gap-4">
+                <div className="p-4 grid grid-cols-[1fr_auto_165px] gap-4">
                   <div>
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pb-2">Products & Services</p>
                     <div className="space-y-0.5">
@@ -220,8 +220,8 @@ export default function Header() {
             </div>
 
             {/* About */}
-            <div className="relative" onMouseEnter={() => openDropdown('about')} onMouseLeave={closeDropdown}>
-              <button className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-all duration-200 ${
+            <div className="relative cursor-pointer" onMouseEnter={() => openDropdown('about')} onMouseLeave={closeDropdown}>
+              <button style={{ cursor: 'pointer' }} className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-colors duration-200 cursor-pointer ${
                 dropdown === 'about' || isActive('/about')
                   ? 'text-brand-navy font-semibold'
                   : 'text-slate-500 hover:text-slate-900'
@@ -264,7 +264,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button onClick={() => setMobileOpen(o => !o)}
-            className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors"
+            className="lg:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
             aria-label="Toggle menu">
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -278,7 +278,7 @@ export default function Header() {
 
             {/* How UNA Helps */}
             <button onClick={() => setMobileSection(s => s === 'helps' ? null : 'helps')}
-              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors">
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer">
               How UNA Helps
               <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'helps' ? 'rotate-180' : ''}`} />
             </button>
@@ -320,7 +320,7 @@ export default function Header() {
 
             {/* Resources */}
             <button onClick={() => setMobileSection(s => s === 'resources' ? null : 'resources')}
-              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors">
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer">
               Resources
               <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'resources' ? 'rotate-180' : ''}`} />
             </button>
@@ -372,7 +372,7 @@ export default function Header() {
 
             {/* About */}
             <button onClick={() => setMobileSection(s => s === 'about' ? null : 'about')}
-              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors">
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer">
               About
               <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'about' ? 'rotate-180' : ''}`} />
             </button>

@@ -10,6 +10,8 @@
 
 html { scroll-behavior: smooth; }
 
+header nav button, header nav a, header button { cursor: pointer !important; }
+
 body {
   color: #1e293b;
   background: #ffffff;

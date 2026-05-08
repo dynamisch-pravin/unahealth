@@ -327,7 +327,7 @@ export default function HealthcareProfessionalsPage() {
                 alt="Private where it matters most — HIPAA security"
                 width={480}
                 height={380}
-                className="w-full max-w-[480px] h-auto"
+                className="w-full max-w-[580px] h-auto rounded-2xl shadow-2xl object-cover"
               />
             </div>
             <div className="order-1 lg:order-2">

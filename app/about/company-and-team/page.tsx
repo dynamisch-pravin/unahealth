@@ -28,9 +28,36 @@ const team = [
     bio: 'Leslie is a registered nurse with clinical background in ICU, Telemetry, and nursing management. Her executive experience is multi-faceted, including VMS operations in healthcare staffing, pre-employment testing at Prophecy Healthcare, assessment-driven learning for physicians and nurses, consulting for healthcare staffing companies working towards Joint Commission certification and operations at UNA Health. Outside of UNA, she volunteers as a basketball coach, pianist, and several boards of directors for various non-profit organizations.',
     social: {
       phone: 'tel:3365444829',
+      calendar: 'https://calendly.com/una-leslie',
+      email: 'mailto:leslie@unahealth.com',
+      linkedin: 'https://www.linkedin.com/in/leslie-jeffries-0290581/',
+    },
+  },
+
+  {
+    name: 'Parag Tribhuwankar',
+    title: 'CEO & Founder, Dynamisch',
+    initials: 'PT',
+    photo: '/team/parag.png',
+    bio: 'Parag is the Founder & CEO of Dynamisch, with over 15 years in IT and software. He orchestrates success through strategic foresight, consistent dedication, and meticulous execution — guiding the company to serve clients in Healthcare, Banking & Finance, ISVs, and Product-based companies. Known for flawless operations and deep technical acumen, he fosters a culture of innovation that positions Dynamisch at the forefront of the IT service industry.',
+    social: {
+      phone: undefined,
       calendar: undefined,
-      email: 'mailto:hello@unahealth.com',
-      linkedin: 'https://www.linkedin.com/company/una-health',
+      email: undefined,
+      linkedin: 'https://www.linkedin.com/in/paragtribhuwankar/',
+    },
+  },
+    {
+    name: 'Hiten Ahirrao',
+    title: 'Chief Technology Officer',
+    initials: 'HA',
+    photo: '/team/hiten.png',
+    bio: 'Hiten is the Chief Technology Officer of Dynamisch with over 14 years of experience, architecting scalable IT infrastructures that adapt to dynamic business expansion. A trailblazer in AI, machine learning, and cloud computing, he champions robust security implementations including advanced firewalls and intrusion detection systems. His collaborative leadership cultivates top talent and inspires teams to transform organizational vision into technological reality.',
+    social: {
+      phone: undefined,
+      calendar: undefined,
+      email: undefined,
+      linkedin: 'https://www.linkedin.com/in/hiten-ahirrao/',
     },
   },
 ]
@@ -61,55 +88,48 @@ const siscoObjectives = [
 function LeaderCard({ member }: { member: typeof team[0] }) {
   const [failed, setFailed] = useState(false)
   return (
-    <div className="relative bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100">
-      {/* Red top stripe */}
-      <div className="h-2 w-full bg-gradient-to-r from-brand-red to-rose-400" />
-
-      <div className="flex flex-col lg:flex-row">
-        {/* Photo panel */}
-        <div className="lg:w-80 flex-shrink-0 relative flex flex-col items-center justify-center gap-6 p-10 bg-gradient-to-br from-slate-50 to-white">
-          {/* Decorative circles */}
-          <div className="absolute top-6 right-6 w-20 h-20 rounded-full bg-brand-red/5" />
-          <div className="absolute bottom-10 left-4 w-12 h-12 rounded-full bg-brand-blue/5" />
-
-          <div className="relative z-10">
-            <div className="w-52 h-52 rounded-full overflow-hidden"
-              style={{ boxShadow: '0 0 0 5px white, 0 0 0 9px #E9384D30, 0 24px 48px rgba(233,56,77,0.2)' }}>
-              {!failed ? (
-                <Image src={member.photo} alt={member.name} width={208} height={208}
-                  className="object-cover object-top w-full h-full" onError={() => setFailed(true)} />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-brand-red text-white text-5xl font-bold">
-                  {member.initials}
-                </div>
-              )}
+    <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 flex flex-col">
+      {/* Photo + identity */}
+      <div className="flex flex-col items-center pt-10 px-8 pb-8">
+        {/* Photo */}
+        <div className="w-28 h-28 rounded-full overflow-hidden mb-4 flex-shrink-0"
+          style={{ boxShadow: '0 0 0 4px white, 0 0 0 7px #E9384D35, 0 12px 32px rgba(0,0,0,0.18)' }}>
+          {!failed ? (
+            <Image src={member.photo} alt={member.name} width={112} height={112}
+              className="object-cover object-top w-full h-full" onError={() => setFailed(true)} />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-brand-red text-white text-3xl font-bold">
+              {member.initials}
             </div>
-          </div>
-
-          {/* Social links */}
-          <div className="relative z-10 flex items-center gap-2">
-            {[
-              { href: member.social.phone,    Icon: Phone,        label: 'Phone' },
-              { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
-              { href: member.social.email,    Icon: Mail,         label: 'Email' },
-              { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
-            ].filter(({ href }) => !!href).map(({ href, Icon, label }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                className="group/icon w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 shadow-sm hover:bg-brand-red hover:border-brand-red hover:text-white transition-all duration-200">
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
+          )}
         </div>
 
-        {/* Content */}
-        <div className="flex-1 p-10 lg:p-12 flex flex-col justify-center">
-          <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1.5 rounded-full w-fit mb-4">
-            {member.title}
-          </span>
-          <h3 className="text-3xl font-extrabold text-brand-navy leading-tight mb-5">{member.name}</h3>
-          <p className="text-slate-500 leading-relaxed text-[15px]">{member.bio}</p>
+        {/* Name + title */}
+        <h3 className="text-xl font-extrabold text-brand-navy text-center leading-tight mb-2">{member.name}</h3>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-red bg-red-50 border border-red-100 px-3 py-1 rounded-full mb-4">
+          {member.title}
+        </span>
+
+        {/* Social icons */}
+        <div className="flex items-center gap-2 mb-6">
+          {[
+            { href: member.social.phone,    Icon: Phone,        label: 'Phone' },
+            { href: member.social.calendar, Icon: CalendarDays, label: 'Schedule' },
+            { href: member.social.email,    Icon: Mail,         label: 'Email' },
+            { href: member.social.linkedin, Icon: Linkedin,     label: 'LinkedIn' },
+          ].filter(({ href }) => !!href).map(({ href, Icon, label }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+              className="w-9 h-9 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-brand-red hover:border-brand-red hover:text-white transition-all duration-200 shadow-sm">
+              <Icon size={14} />
+            </a>
+          ))}
         </div>
+
+        {/* Divider */}
+        <div className="w-full h-px bg-slate-100 mb-6" />
+
+        {/* Bio */}
+        <p className="text-sm text-slate-500 leading-relaxed">{member.bio}</p>
       </div>
     </div>
   )
@@ -231,7 +251,7 @@ export default function CompanyAndTeamPage() {
             <span className="text-xs font-bold text-brand-blue uppercase tracking-widest">Our People</span>
             <h2 className="mt-2 text-3xl font-bold text-brand-navy">Leadership Team</h2>
           </div>
-          <div className="flex flex-col gap-8">
+          <div className="grid sm:grid-cols-2 gap-6">
             {team.map(m => <LeaderCard key={m.name} member={m} />)}
           </div>
         </div>

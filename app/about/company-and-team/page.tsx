@@ -36,7 +36,7 @@ const team = [
 
   {
     name: 'Parag Tribhuwankar',
-    title: 'CEO & Founder, Dynamisch',
+    title: 'Chief Information Officer',
     initials: 'PT',
     photo: '/team/parag.png',
     bio: 'Parag is the Founder & CEO of Dynamisch, with over 15 years in IT and software. He orchestrates success through strategic foresight, consistent dedication, and meticulous execution — guiding the company to serve clients in Healthcare, Banking & Finance, ISVs, and Product-based companies. Known for flawless operations and deep technical acumen, he fosters a culture of innovation that positions Dynamisch at the forefront of the IT service industry.',

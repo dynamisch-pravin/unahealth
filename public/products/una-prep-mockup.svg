@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" fill="none">
+  <!-- Background -->
+  <rect width="800" height="560" fill="#EEF9FD"/>
+
+  <!-- Background circles — fully inside viewBox, no cropping -->
+  <!-- Top-left light blue circle -->
+  <circle cx="92" cy="90" r="78" fill="#CBE9F7" opacity="0.7"/>
+
+  <!-- Bottom-left coral/blush circle -->
+  <circle cx="128" cy="448" r="104" fill="#FFE4EC" opacity="0.75"/>
+
+  <!-- Top-right teal circle -->
+  <circle cx="694" cy="122" r="114" fill="#3BBDE8" opacity="0.13"/>
+
+  <!-- ── iPad frame ── -->
+  <rect x="108" y="52" width="432" height="432" rx="28" fill="white" stroke="#D1D5DB" stroke-width="2.5"/>
+  <rect x="248" y="59" width="132" height="8" rx="4" fill="#E5E7EB"/>
+  <!-- Screen -->
+  <rect x="122" y="76" width="404" height="394" rx="6" fill="#F8FAFC"/>
+
+  <!-- iPad screen content -->
+  <!-- Nav bar -->
+  <rect x="122" y="76" width="404" height="38" rx="6" fill="#3BBDE8"/>
+  <rect x="136" y="88" width="60" height="14" rx="5" fill="white" opacity="0.28"/>
+  <rect x="204" y="91" width="44" height="8" rx="3" fill="white" opacity="0.18"/>
+  <circle cx="494" cy="95" r="4" fill="white" opacity="0.35"/>
+  <circle cx="508" cy="95" r="4" fill="white" opacity="0.35"/>
+  <circle cx="522" cy="95" r="4" fill="white" opacity="0.35"/>
+
+  <!-- Label chip -->
+  <rect x="136" y="128" width="90" height="11" rx="5" fill="#3BBDE8" opacity="0.2"/>
+
+  <!-- Headline -->
+  <rect x="136" y="148" width="236" height="14" rx="4" fill="#1E3A5F" opacity="0.72"/>
+  <rect x="136" y="168" width="184" height="14" rx="4" fill="#1E3A5F" opacity="0.45"/>
+
+  <!-- Sub text -->
+  <rect x="136" y="194" width="202" height="7" rx="3" fill="#94A3B8"/>
+  <rect x="136" y="206" width="162" height="7" rx="3" fill="#94A3B8"/>
+
+  <!-- Clinical scenario card -->
+  <rect x="136" y="226" width="370" height="112" rx="12" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="136" y="226" width="370" height="32" rx="12" fill="#FEF3DC"/>
+  <rect x="136" y="246" width="370" height="12" fill="#FEF3DC"/>
+  <rect x="150" y="234" width="72" height="10" rx="4" fill="#D48806" opacity="0.5"/>
+  <rect x="230" y="236" width="48" height="7" rx="3" fill="#D48806" opacity="0.28"/>
+  <!-- Findings -->
+  <circle cx="152" cy="276" r="5" fill="#E8604A"/>
+  <rect x="164" y="272" width="124" height="7" rx="3" fill="#475569" opacity="0.7"/>
+  <circle cx="152" cy="296" r="5" fill="#F5A623"/>
+  <rect x="164" y="292" width="98" height="7" rx="3" fill="#475569" opacity="0.6"/>
+  <circle cx="152" cy="316" r="5" fill="#F5A623"/>
+  <rect x="164" y="312" width="142" height="7" rx="3" fill="#475569" opacity="0.6"/>
+
+  <!-- Question strip -->
+  <rect x="136" y="352" width="370" height="38" rx="10" fill="#EBF9FD" stroke="#3BBDE8" stroke-width="1" stroke-dasharray="4 2"/>
+  <circle cx="156" cy="371" r="9" fill="#3BBDE8" opacity="0.18"/>
+  <rect x="172" y="366" width="202" height="7" rx="3" fill="#1E3A5F" opacity="0.58"/>
+  <rect x="172" y="377" width="152" height="5" rx="2" fill="#94A3B8"/>
+
+  <!-- Answer strip — green -->
+  <rect x="136" y="402" width="370" height="38" rx="10" fill="#D4F5E9" stroke="#86DFB8" stroke-width="1.5"/>
+  <circle cx="158" cy="421" r="9" fill="#22C07A"/>
+  <rect x="173" y="416" width="188" height="7" rx="3" fill="#0A5C36" opacity="0.7"/>
+  <rect x="173" y="427" width="128" height="5" rx="2" fill="#0A5C36" opacity="0.38"/>
+
+  <!-- iPad home indicator -->
+  <rect x="292" y="470" width="64" height="5" rx="3" fill="#CBD5E1"/>
+
+  <!-- ── iPhone frame ── -->
+  <rect x="494" y="248" width="218" height="296" rx="30" fill="white" stroke="#D1D5DB" stroke-width="2.5"/>
+  <!-- Notch -->
+  <rect x="558" y="255" width="90" height="12" rx="6" fill="#E5E7EB"/>
+  <!-- Screen -->
+  <rect x="506" y="274" width="194" height="260" rx="6" fill="#F8FAFC"/>
+
+  <!-- iPhone screen content -->
+  <!-- Top bar -->
+  <rect x="506" y="274" width="194" height="38" rx="6" fill="#1E3A5F"/>
+  <rect x="520" y="284" width="82" height="8" rx="3" fill="white" opacity="0.38"/>
+  <circle cx="674" cy="293" r="5" fill="white" opacity="0.22"/>
+
+  <!-- Cheat sheet card -->
+  <rect x="516" y="322" width="174" height="84" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="516" y="322" width="174" height="26" rx="10" fill="#D5F1FB"/>
+  <rect x="516" y="336" width="174" height="12" fill="#D5F1FB"/>
+  <rect x="528" y="329" width="62" height="7" rx="3" fill="#1A6FB5" opacity="0.48"/>
+  <rect x="528" y="342" width="104" height="7" rx="3" fill="#1E3A5F" opacity="0.65"/>
+  <rect x="528" y="358" width="92" height="5" rx="2" fill="#94A3B8"/>
+  <rect x="528" y="368" width="114" height="5" rx="2" fill="#94A3B8"/>
+  <rect x="528" y="378" width="72" height="5" rx="2" fill="#94A3B8"/>
+  <rect x="528" y="392" width="52" height="10" rx="5" fill="#3BBDE8" opacity="0.18"/>
+  <rect x="586" y="394" width="42" height="6" rx="3" fill="#3BBDE8" opacity="0.28"/>
+
+  <!-- Progress strip -->
+  <rect x="516" y="418" width="174" height="30" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <rect x="526" y="427" width="112" height="6" rx="3" fill="#E2E8F0"/>
+  <rect x="526" y="427" width="74" height="6" rx="3" fill="#22C07A"/>
+  <rect x="644" y="426" width="30" height="8" rx="4" fill="#D4F5E9"/>
+
+  <!-- Mini MCQ row -->
+  <rect x="516" y="458" width="174" height="28" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <circle cx="530" cy="472" r="6" fill="#3BBDE8" opacity="0.18"/>
+  <rect x="542" y="467" width="92" height="6" rx="3" fill="#1E3A5F" opacity="0.48"/>
+  <rect x="542" y="477" width="62" height="4" rx="2" fill="#94A3B8"/>
+
+  <!-- Skill tags -->
+  <rect x="516" y="496" width="78" height="18" rx="9" fill="#D5F1FB"/>
+  <rect x="528" y="502" width="54" height="6" rx="3" fill="#1A6FB5" opacity="0.48"/>
+  <rect x="602" y="496" width="54" height="18" rx="9" fill="#FEF3DC"/>
+  <rect x="612" y="502" width="34" height="6" rx="3" fill="#D48806" opacity="0.48"/>
+
+  <!-- iPhone home bar -->
+  <rect x="567" y="522" width="70" height="5" rx="3" fill="#CBD5E1"/>
+
+  <!-- Floating badge — "10 min" — fully inside canvas -->
+  <rect x="74" y="294" width="90" height="46" rx="14" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <circle cx="96" cy="317" r="11" fill="#D5F1FB"/>
+  <rect x="90" y="313" width="12" height="8" rx="2" fill="#3BBDE8" opacity="0.55"/>
+  <rect x="113" y="310" width="40" height="8" rx="3" fill="#1E3A5F" opacity="0.68"/>
+  <rect x="113" y="322" width="28" height="5" rx="2" fill="#94A3B8"/>
+
+  <!-- Floating badge — "NCLEX Ready" -->
+  <rect x="556" y="212" width="118" height="34" rx="10" fill="white" stroke="#E2E8F0" stroke-width="1.5"/>
+  <circle cx="576" cy="229" r="9" fill="#D4F5E9"/>
+  <rect x="570" y="225" width="12" height="8" rx="2" fill="#22C07A" opacity="0.65"/>
+  <rect x="592" y="222" width="70" height="7" rx="3" fill="#1E3A5F" opacity="0.62"/>
+  <rect x="592" y="233" width="48" height="5" rx="2" fill="#94A3B8"/>
+</svg>

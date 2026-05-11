@@ -82,6 +82,21 @@ const products = [
     accent: '#FFF0F3',
     dot: '#EC4899',
   },
+  {
+    name: 'UNA Prep',
+    tagline: 'Learn like a real nurse',
+    bullets: [
+      { label: 'Clinical scenarios', desc: 'Real patient-based NCLEX-style learning' },
+      { label: 'Microlearning', desc: '10-minute lessons for nurses on the go' },
+      { label: 'Videos, podcasts & cheat sheets', desc: 'Learn in any format, anywhere' },
+    ],
+    link: 'More on UNA Prep',
+    href: '/resources/una-prep',
+    badge: 'New',
+    image: '/products/una-prep-mockup.svg',
+    accent: '#EEF9FD',
+    dot: '#3BBDE8',
+  },
 ]
 
 export default function WhatIsUna() {

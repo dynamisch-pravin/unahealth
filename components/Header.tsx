@@ -24,6 +24,7 @@ const resourcesProducts = [
   { label: 'UNA Air',      href: '/resources/una-air',       desc: 'Automated remediation',    color: '#E9384D', badge: 'New' },
   { label: 'myUNA Portal', href: '/resources/my-una',        desc: 'Candidate portal',         color: '#0F2B5B', badge: 'Soon' },
   { label: 'UNA Team',     href: '/resources/una-team',      desc: 'Behavioral assessments',   color: '#EC4899', badge: 'Soon' },
+  { label: 'UNA Prep',     href: '/resources/una-prep',      desc: 'Learn like a real nurse',  color: '#3BBDE8', badge: 'New' },
 ]
 const resourcesOther: { label: string; href: string; children?: { label: string; href: string }[] }[] = [
   { label: 'UNADash',              href: '/resources/unadash' },

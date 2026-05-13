@@ -1,4 +1,11 @@
+import type { Metadata } from 'next'
 import Hero from '@/components/Hero'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+}
 import Stats from '@/components/Stats'
 import VideoSection from '@/components/VideoSection'
 import WhatIsUna from '@/components/WhatIsUna'

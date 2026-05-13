@@ -245,7 +245,7 @@ export default function UseCases() {
             </div>
 
             {/* Stat card */}
-            <div className="rounded-2xl p-7 bg-white border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
+            {/* <div className="rounded-2xl p-7 bg-white border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
               <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">Key Metric</p>
               <p className="text-5xl font-extrabold text-brand-blue leading-none mb-2">{c.stat}</p>
               <p className="text-sm text-slate-500">{c.statSub}</p>
@@ -258,7 +258,7 @@ export default function UseCases() {
                 </div>
                 <p className="text-[10px] text-slate-400 mt-1.5">Performance vs. legacy tools</p>
               </div>
-            </div>
+            </div> */}
 
             {/* CTA */}
             <Link href={c.href}

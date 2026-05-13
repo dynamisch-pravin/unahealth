@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: true,
   images: {
-    domains: [],
+    domains: ['img.youtube.com'],
     unoptimized: false,
   },
 }

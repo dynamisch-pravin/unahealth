@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     shortcut: '/icon.svg',
     apple: '/icon.svg',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': 'https://unahealth.com/feed.xml',
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

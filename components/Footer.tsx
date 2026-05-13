@@ -25,6 +25,7 @@ const products = [
   { label: 'UNA Test',                       href: '/resources/una-test' },
   { label: 'UNA Wallet',                     href: '/resources/una-wallet' },
   { label: 'UNA Air',                        href: '/resources/una-air' },
+  { label: 'UNA Prep',                       href: '/resources/una-prep' },
   { label: 'myUNA Candidate Portal',         href: '/resources/my-una' },
   { label: 'UNA Team Behavioral Assessments',href: '/resources/una-team' },
 ]
@@ -105,7 +106,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-bold text-white">Ready to transform clinical credentialing?</h3>
-              <p className="text-slate-300 text-sm mt-1">Join over 298k clinicians and 3.5k recruiters using UNA.</p>
+              <p className="text-slate-300 text-sm mt-1">Join over 750k clinicians and 6k recruiters using UNA.</p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <Link href="/about/contact"

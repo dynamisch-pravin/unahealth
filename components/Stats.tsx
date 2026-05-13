@@ -6,11 +6,11 @@ import { gsap, ScrollTrigger } from '@/lib/gsap'
 import ParallaxSection from '@/components/ParallaxSection'
 
 const stats = [
-  { icon: Users,         numericValue: 298, suffix: 'k+', decimals: 0, label: 'Clinicians',                        description: 'Healthcare professionals in the UNA network',   iconBg: 'bg-red-100',    iconColor: 'text-brand-blue' },
-  { icon: UserCheck,     numericValue: 3.5, suffix: 'k+', decimals: 1, label: 'Recruiters & Compliance Pros',      description: 'Trusting UNA to streamline their workflow',      iconBg: 'bg-rose-100',   iconColor: 'text-rose-500' },
-  { icon: ClipboardList, numericValue: 170, suffix: 'k+', decimals: 0, label: 'Skills Checklists Completed',       description: 'Verified clinical skills assessments',           iconBg: 'bg-orange-100', iconColor: 'text-orange-500' },
-  { icon: GraduationCap, numericValue: 200, suffix: 'k+', decimals: 0, label: 'Competency Exams Completed',        description: 'Validated exam results employers trust',         iconBg: 'bg-pink-100',   iconColor: 'text-pink-500' },
-  { icon: BookOpen,      numericValue: 1,   suffix: 'M+',  decimals: 0, label: 'Mandatory Courses Completed',      description: 'CEU completions across all specialties',         iconBg: 'bg-purple-100', iconColor: 'text-purple-500' },
+  { icon: Users,         numericValue: 750, suffix: 'k+', decimals: 0, label: 'Clinicians',                        description: 'Healthcare professionals in the UNA network',   iconBg: 'bg-red-100',    iconColor: 'text-brand-blue' },
+  { icon: UserCheck,     numericValue: 6,   suffix: 'k+', decimals: 0, label: 'Recruiters & Compliance Pros',      description: 'Trusting UNA to streamline their workflow',      iconBg: 'bg-rose-100',   iconColor: 'text-rose-500' },
+  { icon: ClipboardList, numericValue: 400, suffix: 'k+', decimals: 0, label: 'Skills Checklists Completed',       description: 'Verified clinical skills assessments',           iconBg: 'bg-orange-100', iconColor: 'text-orange-500' },
+  { icon: GraduationCap, numericValue: 500, suffix: 'k+', decimals: 0, label: 'Competency Exams Completed',        description: 'Validated exam results employers trust',         iconBg: 'bg-pink-100',   iconColor: 'text-pink-500' },
+  { icon: BookOpen,      numericValue: 1.5, suffix: 'M+',  decimals: 1, label: 'Mandatory Courses Completed',      description: 'CEU completions across all specialties',         iconBg: 'bg-purple-100', iconColor: 'text-purple-500' },
 ]
 
 export default function Stats() {
@@ -61,7 +61,7 @@ export default function Stats() {
         <div ref={headingRef} className="text-center mb-14">
           <span className="text-xs font-semibold text-brand-blue uppercase tracking-widest">By the Numbers</span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Join over <span className="text-brand-blue">298k clinicians</span> and <span className="text-brand-blue">3.5k recruiters</span>
+            Join over <span className="text-brand-blue">750k clinicians</span> and <span className="text-brand-blue">6k recruiters</span>
           </h2>
           <p className="mt-3 text-slate-300 text-lg max-w-xl mx-auto">who get more done with UNA!</p>
         </div>

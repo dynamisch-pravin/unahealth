@@ -1,4 +1,18 @@
 User-agent: *
+Crawl-delay: 10
 Allow: /
+
+# Next.js internals
+Disallow: /_next/
+
+# API & server routes
+Disallow: /api/
+
+# Sensitive files & directories
+Disallow: /admin/
+Disallow: /config/
+Disallow: /logs/
+Disallow: /backup/
+Disallow: /.env
 
 Sitemap: https://unahealth.com/sitemap.xml

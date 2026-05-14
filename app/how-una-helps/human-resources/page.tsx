@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -43,6 +44,12 @@ const features = [
     bullets: ['Centralized cloud credential storage', 'Audit-ready reporting dashboard', 'Automated expiration tracking & alerts'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Human Resources | Streamline Clinical Onboarding & Retention',
+  "UNA helps healthcare HR teams accelerate onboarding, automate compliance tracking, and reduce turnover with the industry's leading credentialing platform.",
+  '/how-una-helps/human-resources',
+)
 
 export default function HumanResourcesPage() {
   return (

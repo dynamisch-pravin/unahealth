@@ -1,6 +1,9 @@
+import { createMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
-import { ArrowRight, Calendar, Tag, ExternalLink, ChevronRight } from 'lucide-react'
+import BlogCategoryHeader from '@/components/BlogCategoryHeader'
+import PostMeta from '@/components/PostMeta'
+import { ArrowRight, ExternalLink } from 'lucide-react'
 
 const posts = [
   {
@@ -29,23 +32,19 @@ const posts = [
   },
 ]
 
+export const metadata = createMetadata(
+  'Press Releases | UNA Health',
+  'Official press releases and news announcements from UNA Health.',
+  '/resources/blog/press-releases',
+)
+
 export default function PressReleasesPage() {
   return (
     <>
-      {/* ── Page header ── */}
-      <section className="pt-36 pb-16" style={{ backgroundColor: '#0F2B5B' }}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2 text-xs mb-4" style={{ color: 'rgba(255,255,255,0.40)' }}>
-            <Link href="/resources/blog" className="hover:text-white transition-colors">Resources</Link>
-            <ChevronRight size={12} />
-            <span style={{ color: 'rgba(255,255,255,0.70)' }}>Press Releases</span>
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Press Releases</h1>
-          <p className="text-lg" style={{ color: 'rgba(255,255,255,0.60)' }}>
-            Archive of all press releases made by UNA Health, Inc.
-          </p>
-        </div>
-      </section>
+      <BlogCategoryHeader
+        title="Press Releases"
+        description="Archive of all press releases made by UNA Health, Inc."
+      />
 
       {/* ── Posts list ── */}
       <section className="py-16 bg-slate-50 min-h-[400px]">
@@ -55,45 +54,26 @@ export default function PressReleasesPage() {
               <article key={i}
                 className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-md hover:border-red-100 transition-all">
                 <div className="p-8 sm:p-10">
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <span className="flex items-center gap-1.5 text-xs text-slate-400">
-                      <Calendar size={12} />
-                      {post.date}
-                    </span>
-                    {post.categories.map(cat => (
-                      <span key={cat} className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border"
-                        style={{ color: '#E9384D', borderColor: 'rgba(233,56,77,0.25)', background: 'rgba(233,56,77,0.05)' }}>
-                        <Tag size={10} />
-                        {cat}
-                      </span>
-                    ))}
-                  </div>
+                  <PostMeta date={post.date} categories={post.categories} />
 
-                  {/* Title */}
                   <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-3 leading-snug">
                     {post.title}
                   </h2>
 
-                  {/* Source badge */}
                   <div className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-5"
                     style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}>
                     <ExternalLink size={11} />
                     See original release on {post.source}
                   </div>
 
-                  {/* Location dateline */}
                   <p className="text-xs font-mono text-slate-400 mb-3">{post.location}</p>
 
-                  {/* Label */}
                   {post.label && (
                     <p className="text-sm font-semibold text-slate-700 mb-3 italic">{post.label}</p>
                   )}
 
-                  {/* Body */}
                   <p className="text-sm text-slate-500 leading-relaxed mb-6">{post.body}</p>
 
-                  {/* Read more link */}
                   <Link href={post.relatedHref}
                     className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
                     style={{ color: '#E9384D' }}>
@@ -105,7 +85,6 @@ export default function PressReleasesPage() {
             ))}
           </div>
 
-          {/* Back to blog */}
           <div className="mt-12 text-center">
             <Link href="/resources/blog"
               className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"

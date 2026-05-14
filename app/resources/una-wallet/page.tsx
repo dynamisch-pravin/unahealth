@@ -1,9 +1,16 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Wallet, Share2, Smartphone, Bell } from 'lucide-react'
 import Link from 'next/link'
+
+export const metadata = createMetadata(
+  'UNA Wallet | Digital Credential Management for Healthcare',
+  'UNA Wallet is the mobile-first credential management app that lets healthcare professionals organize licenses, certifications, and compliance documents in one secure place.',
+  '/resources/una-wallet',
+)
 
 export default function UnaWalletPage() {
   return (

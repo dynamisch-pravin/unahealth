@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -27,6 +28,12 @@ const features = [
     bullets: ['Defensible competency records', 'Reduced onboarding risk', 'Compliance documentation', 'Analytics & reporting dashboard'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA Test | Clinical Competency Exams for Healthcare Organizations',
+  'UNA Test delivers validated clinical competency exams built by practicing clinicians — with higher completion rates than legacy platforms.',
+  '/resources/una-test',
+)
 
 export default function UnaTestPage() {
   return (

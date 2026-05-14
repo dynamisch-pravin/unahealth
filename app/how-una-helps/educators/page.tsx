@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -43,6 +44,12 @@ const features = [
     bullets: ['Real-time completion dashboards', 'Individual & team performance reports', 'Audit-ready data exports'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Educators | Clinical Training & Competency Assessment',
+  'UNA empowers healthcare educators with skills checklists, competency exams, and mandatory course tracking to prepare and develop clinical staff.',
+  '/how-una-helps/educators',
+)
 
 export default function EducatorsPage() {
   return (

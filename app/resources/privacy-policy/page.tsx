@@ -1,5 +1,12 @@
+import { createMetadata } from '@/lib/seo'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
+
+export const metadata = createMetadata(
+  'Privacy Policy | UNA Health',
+  "Read UNA Health's privacy policy to understand how we collect, use, and protect your personal information on our clinical credentialing platform.",
+  '/resources/privacy-policy',
+)
 
 export default function PrivacyPolicyPage() {
   return (

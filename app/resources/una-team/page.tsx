@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -36,6 +37,12 @@ const features = [
     bullets: ['Culture-fit identification', 'Turnover risk prediction', 'Talent investment insights'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA Team | Behavioral Assessments for Healthcare Hiring',
+  'UNA Team helps hospitals and staffing agencies measure cultural fit with behavioral assessments — so you hire clinicians who stay, perform, and thrive.',
+  '/resources/una-team',
+)
 
 export default function UnaTeamPage() {
   return (

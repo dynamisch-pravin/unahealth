@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -43,6 +44,12 @@ const features = [
     bullets: ['Fewer adverse events from competency gaps', 'Reduced liability and malpractice exposure', 'Improved patient satisfaction scores'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Finance Teams | Reduce Healthcare Staffing & Compliance Costs',
+  'UNA helps healthcare finance teams cut onboarding costs, reduce compliance overhead, and maximize ROI through automated credential management.',
+  '/how-una-helps/finance',
+)
 
 export default function FinancePage() {
   return (

@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
@@ -60,6 +61,12 @@ const partners = [
   { name: 'Medical Solutions',       src: '/partners/medical-solutions.png' },
   { name: 'Matchwell',               src: '/partners/matchwell.png' },
 ]
+
+export const metadata = createMetadata(
+  'OpenAPI Integrations | UNA Health',
+  'UNA integrates seamlessly with your existing ATS and compliance systems — Bullhorn, Credentially, and more — keeping your credential data automatically in sync.',
+  '/resources/integrations',
+)
 
 export default function IntegrationsPage() {
   return (

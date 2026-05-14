@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
@@ -36,6 +37,12 @@ const evpPillars = [
     body: 'Content is continuously monitored and updated to reflect the latest clinical standards — never stale, always current.',
   },
 ]
+
+export const metadata = createMetadata(
+  'Expert Validation Protocol | UNA Health',
+  "UNA's Expert Validation Protocol ensures every competency exam is written by practicing clinicians and validated with real-world scenarios healthcare organizations can trust.",
+  '/resources/expert-validation',
+)
 
 export default function ExpertValidationPage() {
   return (

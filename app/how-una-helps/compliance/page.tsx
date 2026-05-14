@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -43,6 +44,12 @@ const features = [
     bullets: ['HIPAA-compliant data storage', 'Enterprise-grade encryption', 'Access restricted to authorized users'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Compliance Teams | Automated Clinical Compliance Management',
+  'UNA helps compliance teams automate license tracking, regulatory monitoring, and credential management — keeping your clinical workforce audit-ready.',
+  '/how-una-helps/compliance',
+)
 
 export default function CompliancePage() {
   return (

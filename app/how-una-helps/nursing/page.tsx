@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -42,6 +43,12 @@ const features = [
     bullets: ['HIPAA-compliant data storage', 'Enterprise-grade encryption', 'Access restricted to authorized users'],
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Nursing & Patient Care | Mobile-First Credentialing for Nurses',
+  'UNA helps nurses and patient care professionals manage competency exams, skills checklists, and mandatory courses — all from their mobile device.',
+  '/how-una-helps/nursing',
+)
 
 export default function NursingPage() {
   return (

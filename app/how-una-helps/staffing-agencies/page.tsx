@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -25,6 +26,12 @@ const whyUna = [
     body: 'Simplicity and minimal design reduce cognitive load, making interfaces easier to navigate — preferred by 78% of millennials and 75% of baby boomers. Beat competitors to the best candidates.',
   },
 ]
+
+export const metadata = createMetadata(
+  'UNA for Staffing Agencies | Place More Healthcare Candidates Faster',
+  'UNA helps healthcare staffing agencies reduce onboarding drag, automate compliance, and make more placements with a mobile-first credentialing platform.',
+  '/how-una-helps/staffing-agencies',
+)
 
 export default function StaffingAgenciesPage() {
   return (

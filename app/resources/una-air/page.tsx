@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -11,6 +12,12 @@ const features = [
   { icon: BarChart3, title: 'Data-Driven Hiring Decisions',     body: 'The tool provides valuable data on candidate strengths and weaknesses, enabling more informed hiring decisions and targeted training investments.', bullets: ['Candidate strength/weakness data', 'Hiring decision analytics', 'Training investment optimization'] },
   { icon: RefreshCw, title: 'Consistency in Standards',         body: 'UNA Air ensures all candidates are evaluated and remediated against the same standardized benchmarks, maintaining consistent clinical competency standards across your organization.', bullets: ['Standardized evaluation criteria', 'Consistent clinical benchmarks', 'Organization-wide quality assurance'] },
 ]
+
+export const metadata = createMetadata(
+  'UNA Air | Fastest Mandatory Courses for Healthcare Professionals',
+  'UNA Air delivers the fastest mandatory compliance courses for healthcare professionals — complete CEUs, annual mandatories, and specialty courses from any device.',
+  '/resources/una-air',
+)
 
 export default function UnaAirPage() {
   return (

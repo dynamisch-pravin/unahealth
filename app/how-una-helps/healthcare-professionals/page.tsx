@@ -1,9 +1,16 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Wallet, Share2, ClipboardList, Lock, GraduationCap } from 'lucide-react'
+
+export const metadata = createMetadata(
+  'UNA for Healthcare Professionals | Manage Your Clinical Credentials',
+  'UNA gives healthcare professionals a single mobile wallet to manage licenses, certifications, and competency exams — share your credentials in seconds.',
+  '/how-una-helps/healthcare-professionals',
+)
 
 export default function HealthcareProfessionalsPage() {
   return (

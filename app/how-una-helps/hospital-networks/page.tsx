@@ -1,9 +1,16 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Search, FileCheck, Users, Zap, Layers, UserCircle } from 'lucide-react'
+
+export const metadata = createMetadata(
+  'UNA for Hospital Networks | Hire & Retain the Best Clinicians',
+  'UNA helps hospital networks identify top talent, eliminate compliance headaches, reduce turnover, and invest in staff development — all from one mobile-first platform.',
+  '/how-una-helps/hospital-networks',
+)
 
 export default function HospitalNetworksPage() {
   return (

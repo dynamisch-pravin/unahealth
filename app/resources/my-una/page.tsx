@@ -1,3 +1,4 @@
+import { createMetadata } from '@/lib/seo'
 import Image from 'next/image'
 import Link from 'next/link'
 import Stats from '@/components/Stats'
@@ -30,6 +31,12 @@ const features = [
     bullets: ['Access exams from any device', 'Complete checklists on-the-go', 'Apply to roles instantly'],
   },
 ]
+
+export const metadata = createMetadata(
+  'myUNA Candidate Portal | Mobile Credential Management for Clinicians',
+  'myUNA gives healthcare professionals a secure mobile portal to complete competency exams, manage credentials, and share their clinical packet with employers.',
+  '/resources/my-una',
+)
 
 export default function MyUnaPage() {
   return (

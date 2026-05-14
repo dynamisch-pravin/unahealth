@@ -111,7 +111,7 @@ export default function NursingPage() {
                   <CheckCircle size={16} style={{ color: '#E9384D' }} />
                 </div>
                 <div>
-                  <p className="text-sm font-extrabold text-brand-navy leading-none">170k+</p>
+                  <p className="text-sm font-extrabold text-brand-navy leading-none">400k+</p>
                   <p className="text-[10px] text-slate-400 mt-0.5 font-medium">Checklists completed</p>
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function NursingPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[
               { val: '50%', label: 'Less time spent on onboarding paperwork' },
-              { val: '170k+', label: 'Skills checklists completed' },
+              { val: '400k+', label: 'Skills checklists completed' },
               { val: 'Instant', label: 'Results for every competency exam' },
               { val: '100%', label: 'HIPAA-compliant data handling' },
             ].map(stat => (

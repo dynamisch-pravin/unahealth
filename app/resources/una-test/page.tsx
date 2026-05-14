@@ -9,7 +9,7 @@ const features = [
   {
     icon: Clock, title: 'Skills checklists — faster than ever before',
     body: 'Our mobile-first platform lets healthcare professionals complete competency exams, skills checklists, and annual mandatories from home, work, or anywhere in between. Our updated framework allows checklists to be completed in 50% less time.',
-    bullets: ['50% faster than legacy frameworks', 'Complete from any device, anywhere', '170k+ checklists completed'],
+    bullets: ['50% faster than legacy frameworks', 'Complete from any device, anywhere', '400k+ checklists completed'],
   },
   {
     icon: FlaskConical, title: 'Competency testing you can trust',
@@ -148,7 +148,7 @@ export default function UnaTestPage() {
                   className="w-full max-w-[300px] h-auto drop-shadow-xl rounded-3xl"
                 />
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-lg border border-slate-100 px-4 py-3">
-                  <p className="text-xl font-extrabold text-brand-blue">170k+</p>
+                  <p className="text-xl font-extrabold text-brand-blue">400k+</p>
                   <p className="text-[11px] text-slate-500 font-medium">Checklists completed</p>
                 </div>
               </div>

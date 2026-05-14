@@ -129,7 +129,7 @@ export default function EducatorsPage() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
             {[
               { val: '50%', label: 'Faster onboarding than legacy tools' },
-              { val: '170k+', label: 'Checklists completed to date' },
+              { val: '400k+', label: 'Checklists completed to date' },
               { val: 'Zero', label: 'Admin intervention required' },
               { val: '100%', label: 'Joint Commission compliant' },
             ].map(stat => (

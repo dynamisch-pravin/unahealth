@@ -21,23 +21,13 @@ export default function HospitalNetworksPage() {
                 How UNA Helps: Hospital Networks
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-extrabold text-brand-navy leading-[1.1] tracking-tight mb-5">
-                Hire the best —{' '}
+                Hire the best of the best —{' '}
                 <span className="text-brand-blue">and keep them</span>{' '}
-                at the top.
+                at the top of their game.
               </h1>
               <p className="text-base lg:text-lg text-slate-500 leading-relaxed mb-8 max-w-lg">
-                Identify the best talent, train them to meet expectations, and retain their top-level skills with UNA.
+                Struggling to finding the right new hires? Unsure of how to assess their knowledge gaps? Identify the best talent, train them to meet expectations, and retain their top-level skills with UNA!
               </p>
-              <ul className="space-y-3 mb-10">
-                {['Verified competency exams & skills checklists', 'Automated credential & compliance tracking', 'Seamless ATS integration'].map(b => (
-                  <li key={b} className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
-                      <CheckCircle size={13} className="text-brand-blue" />
-                    </div>
-                    <span className="text-sm text-slate-700 font-medium">{b}</span>
-                  </li>
-                ))}
-              </ul>
               <div className="flex flex-wrap gap-3">
                 <Link href="/about/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-sm shadow-md shadow-brand-blue/20 group transition-all"
@@ -93,7 +83,7 @@ export default function HospitalNetworksPage() {
                   Smarter Recruiting
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                  Focus on finding<br className="hidden sm:block" /> the right candidate.
+                  Focus on finding<br className="hidden sm:block" /> the right candidate
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-8">
                   UNA collects all credentials and test results all in one place, eliminating the paper
@@ -165,7 +155,7 @@ export default function HospitalNetworksPage() {
                   Compliance Made Simple
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                  Take the headache out<br className="hidden sm:block" /> of compliance.
+                  Take the headache out<br className="hidden sm:block" /> of compliance
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-8">
                   Ensure your clinicians are practice-ready by keeping their licenses and compliance
@@ -205,7 +195,7 @@ export default function HospitalNetworksPage() {
                   Behavioral Assessments
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                  Find talent that won&apos;t<br className="hidden sm:block" /> become turnover.
+                  Find talent that won&apos;t<br className="hidden sm:block" /> become turnover
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-8">
                   Measure candidates for the best fit with your company&apos;s culture with behavioral
@@ -227,7 +217,7 @@ export default function HospitalNetworksPage() {
                 <Link href="/resources/una-team"
                   className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
                   style={{ color: '#E9384D' }}>
-                  Learn more about the power of personality
+                  Learn more about power of personality
                   <ArrowRight size={13} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -277,9 +267,10 @@ export default function HospitalNetworksPage() {
                 Keep your staff sharp — automatically.
               </h2>
               <p className="leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.65)' }}>
-                UNA&apos;s Auto-Resend feature streamlines the competency completion process, automating
-                exam rescheduling for clinicians who don&apos;t pass their initial attempt. Eliminate the need
-                to manually wait on notifications and reclaim hours for your internal team.
+                UNA is a suite of comprehensive mobile-first solutions for hospital networks, staffing agencies,
+                and healthcare professionals. Better connect with candidates, improve applicant engagement,
+                optimize compliance workflows, and set a new higher standard for your career or the clinicians
+                in your organization.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {[
@@ -382,7 +373,7 @@ export default function HospitalNetworksPage() {
                   Expert Validation Protocol
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                  Content you can trust.
+                  Content you can trust...
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-4">
                   Testing offered by UNA is always kept up-to-date — written by subject matter experts
@@ -418,7 +409,7 @@ export default function HospitalNetworksPage() {
               <div className="relative">
                 <div className="absolute inset-6 rounded-3xl bg-brand-blue/5" />
                 <Image
-                  src="/hospital/hospital-training.jpg"
+                  src="/hospital/hospital-training.png"
                   alt="Expert clinical content validation"
                   width={520}
                   height={370}
@@ -439,7 +430,7 @@ export default function HospitalNetworksPage() {
               <div className="relative">
                 <div className="absolute inset-6 rounded-3xl bg-brand-blue/5" />
                 <Image
-                  src="/hospital/hospital-finish.jpg"
+                  src="/hospital/hospital-finish.png"
                   alt="UNA testing designed for high completion rates"
                   width={520}
                   height={370}
@@ -457,7 +448,7 @@ export default function HospitalNetworksPage() {
                   Unrivaled User Experience
                 </span>
                 <h2 className="mt-4 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                  ...that&apos;s made to be completed.
+                  ...that&apos;s made to be completed
                 </h2>
                 <p className="text-slate-500 leading-relaxed mb-8">
                   UNA testing is designed for unrivaled user experience — boasting higher completion rates

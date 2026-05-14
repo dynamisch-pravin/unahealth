@@ -132,11 +132,11 @@ export default function HealthcareProfessionalsPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="flex justify-center order-2 lg:order-1">
               <Image
-                src="/hcp/hcp-share.jpg"
+                src="/hcp/hcp-share-phones.png"
                 alt="Sharing credentials packet on mobile"
-                width={580}
-                height={360}
-                className="w-full max-w-[580px] h-auto rounded-2xl shadow-2xl object-cover"
+                width={480}
+                height={480}
+                className="w-full max-w-[480px] h-auto drop-shadow-2xl"
               />
             </div>
             <div className="order-1 lg:order-2">
@@ -168,49 +168,6 @@ export default function HealthcareProfessionalsPage() {
                 style={{ color: '#E9384D' }}>
                 See if your employer uses UNA <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Feature 3: Credential sharing phones ── */}
-      <section className="py-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#E9384D' }}>
-                Instant Delivery
-              </span>
-              <h2 className="mt-3 text-3xl font-bold text-brand-navy mb-5 leading-tight">
-                Your packet, delivered in seconds.
-              </h2>
-              <p className="text-slate-500 leading-relaxed mb-8">
-                Select exactly what to include in your credentials packet — tests, checklists, mandatories,
-                specialties, education, and work experience — then send it off with one tap.
-                UNA confirms delivery instantly.
-              </p>
-              <ul className="space-y-3">
-                {[
-                  'Select items to include — full control',
-                  'Send to multiple employers simultaneously',
-                  'Instant confirmation when packet is delivered',
-                  'Your career profile belongs to you, not your employer',
-                ].map(item => (
-                  <li key={item} className="flex items-center gap-3 text-slate-600">
-                    <CheckCircle size={16} className="flex-shrink-0" style={{ color: '#E9384D' }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/hcp/hcp-share-phones.png"
-                alt="Sharing credentials packet — step by step"
-                width={460}
-                height={460}
-                className="w-full max-w-[460px] h-auto drop-shadow-2xl rounded-3xl"
-              />
             </div>
           </div>
         </div>
@@ -321,16 +278,7 @@ export default function HealthcareProfessionalsPage() {
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="flex justify-center order-2 lg:order-1">
-              <Image
-                src="/hcp/hcp-shield.jpg"
-                alt="Private where it matters most — HIPAA security"
-                width={480}
-                height={380}
-                className="w-full max-w-[580px] h-auto rounded-2xl shadow-2xl object-cover"
-              />
-            </div>
-            <div className="order-1 lg:order-2">
+            <div className="order-1 lg:order-1">
               <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#E9384D' }}>
                 Your Privacy
               </span>
@@ -359,6 +307,15 @@ export default function HealthcareProfessionalsPage() {
                   ))}
                 </div>
               </div>
+            </div>
+            <div className="flex justify-center">
+              <Image
+                src="/hcp/hcp-shield.png"
+                alt="Private where it matters most — HIPAA security"
+                width={480}
+                height={480}
+                className="w-full max-w-[420px] h-auto drop-shadow-xl"
+              />
             </div>
           </div>
         </div>

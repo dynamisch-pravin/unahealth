@@ -42,7 +42,7 @@ export default function UnaWalletPage() {
                 that keeps everything in one place — accessible 24/7 from any device.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-md group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Your Free Wallet
@@ -118,7 +118,7 @@ export default function UnaWalletPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/about/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-bold group transition-colors"
                 style={{ color: '#E9384D' }}>
                 Create your free wallet <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
@@ -191,7 +191,7 @@ export default function UnaWalletPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/about/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-bold group transition-colors"
                 style={{ color: '#E9384D' }}>
                 See employer integrations <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />

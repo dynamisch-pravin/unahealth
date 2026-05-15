@@ -90,7 +90,7 @@ export default function NursingPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -215,7 +215,7 @@ export default function NursingPage() {
                   optimizing compliance workflows and setting a new higher standard.
                 </p>
               </div>
-              <Link href="/about/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg shrink-0 group"
                 style={{ backgroundColor: '#E9384D' }}>
                 Get Started

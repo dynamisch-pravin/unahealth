@@ -64,7 +64,7 @@ export default function UnaTestPage() {
                 and annual mandatories from home, work, or anywhere in between.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-md group bg-brand-blue hover:bg-brand-blue/90">
                   Learn More About UNA Test
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />

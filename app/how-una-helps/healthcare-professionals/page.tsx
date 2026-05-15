@@ -46,7 +46,7 @@ export default function HealthcareProfessionalsPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-sm shadow-md shadow-brand-blue/20 group transition-all"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -170,7 +170,7 @@ export default function HealthcareProfessionalsPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/about/contact"
+              <Link href="/contact"
                 className="inline-flex items-center gap-2 text-sm font-bold group transition-colors"
                 style={{ color: '#E9384D' }}>
                 See if your employer uses UNA <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
@@ -355,7 +355,7 @@ export default function HealthcareProfessionalsPage() {
             ))}
           </div>
           <div className="text-center">
-            <Link href="/about/contact"
+            <Link href="/contact"
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all text-sm shadow-lg group"
               style={{ backgroundColor: '#E9384D' }}>
               Sign up for free

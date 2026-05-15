@@ -91,7 +91,7 @@ export default function CompliancePage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -215,7 +215,7 @@ export default function CompliancePage() {
                   automating credentialing, mandatory education, and record-keeping so your
                   organization is always audit-ready and regulation-compliant.
                 </p>
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-full transition-all text-sm shadow-lg group"
                   style={{ backgroundColor: '#E9384D' }}>
                   Get Started

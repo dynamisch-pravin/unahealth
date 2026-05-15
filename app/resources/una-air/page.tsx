@@ -49,7 +49,7 @@ export default function UnaAirPage() {
                 process, while ensuring the highest standards of clinical competency.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-md group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Discover UNA Air

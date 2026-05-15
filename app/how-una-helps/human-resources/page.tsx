@@ -90,7 +90,7 @@ export default function HumanResourcesPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -213,7 +213,7 @@ export default function HumanResourcesPage() {
                   with candidates, improving engagement, optimizing compliance workflows, and setting a
                   new higher standard for your workforce.
                 </p>
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-full transition-all text-sm shadow-lg group"
                   style={{ backgroundColor: '#E9384D' }}>
                   Get Started

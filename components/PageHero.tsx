@@ -14,7 +14,7 @@ interface PageHeroProps {
   bgClass?: string
 }
 
-export default function PageHero({ eyebrow, headline, subheadline, ctaLabel, ctaHref = '/about/contact', bgClass = 'bg-brand-navy' }: PageHeroProps) {
+export default function PageHero({ eyebrow, headline, subheadline, ctaLabel, ctaHref = '/contact', bgClass = 'bg-brand-navy' }: PageHeroProps) {
   const heroRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {

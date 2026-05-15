@@ -336,7 +336,7 @@ export default function UNADashPage() {
             See how UNA&apos;s fast, mobile-first testing can streamline competency compliance for your organization.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/about/contact"
+            <Link href="/contact"
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all text-sm shadow-lg group"
               style={{ backgroundColor: '#E9384D' }}>
               Get Started

@@ -34,12 +34,12 @@ const resourcesOther: { label: string; href: string; children?: { label: string;
     { label: 'Developer Notes', href: '/resources/blog/developer-notes' },
     { label: 'Press Releases',  href: '/resources/blog/press-releases' },
   ]},
-  { label: 'FAQs',           href: '/resources/faqs' },
-  { label: 'Privacy Policy', href: '/resources/privacy-policy' },
+  { label: 'FAQs',           href: '/faqs' },
+  { label: 'Privacy Policy', href: '/privacy-policy' },
 ]
 const aboutLinks = [
-  { label: 'Company and Team', href: '/about/company-and-team', desc: 'Our story and leadership' },
-  { label: 'Contact',          href: '/about/contact',          desc: 'Get in touch with us' },
+  { label: 'Company and Team', href: '/company-and-team', desc: 'Our story and leadership' },
+  { label: 'Contact',          href: '/contact',          desc: 'Get in touch with us' },
 ]
 
 export default function Header() {
@@ -255,7 +255,7 @@ export default function Header() {
               className="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors rounded-xl hover:bg-slate-50">
               Sign In
             </Link>
-            <Link href="/about/contact"
+            <Link href="/contact"
               className="relative overflow-hidden px-5 py-2 text-sm font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-blue/25 active:scale-[0.98]"
               style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
               <span className="relative z-10">Get Started</span>
@@ -397,7 +397,7 @@ export default function Header() {
                 className="text-center px-4 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 Sign In
               </Link>
-              <Link href="/about/contact" onClick={closeMobile}
+              <Link href="/contact" onClick={closeMobile}
                 className="text-center px-4 py-2.5 text-sm font-bold text-white rounded-xl transition-colors"
                 style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
                 Get Started

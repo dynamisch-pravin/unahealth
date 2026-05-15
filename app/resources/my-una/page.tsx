@@ -77,7 +77,7 @@ export default function MyUnaPage() {
               </p>
 
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-md group"
                   style={{ backgroundColor: '#1AA896' }}>
                   Get Early Access
@@ -267,7 +267,7 @@ export default function MyUnaPage() {
           <p className="mb-8 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.6)' }}>
             myUNA is actively in development. Register your interest and our team will reach out as soon as it's available.
           </p>
-          <Link href="/about/contact"
+          <Link href="/contact"
             className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all text-sm shadow-lg group"
             style={{ backgroundColor: '#1AA896' }}>
             Get Early Access

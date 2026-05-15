@@ -86,13 +86,13 @@ export default function UnaTeamPage() {
               </p>
 
               <div className="flex flex-wrap gap-3 mb-8">
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-md group"
                   style={{ backgroundColor: '#EC4899' }}>
                   Get Early Access
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
                 </Link>
-                <Link href="/about/contact"
+                <Link href="/contact"
                   className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-full border border-slate-200 text-slate-600 text-sm hover:bg-slate-50 transition-all">
                   Contact Sales
                 </Link>
@@ -294,7 +294,7 @@ export default function UnaTeamPage() {
             UNA Team is actively in development. Register your interest and our team will reach out as soon as
             behavioral assessments are available for your organization.
           </p>
-          <Link href="/about/contact"
+          <Link href="/contact"
             className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all text-sm shadow-lg group"
             style={{ backgroundColor: '#EC4899' }}>
             Get Early Access

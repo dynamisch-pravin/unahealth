@@ -34,8 +34,8 @@ const otherResources = [
   { label: 'UNADash – Avg Exam Completion Times', href: '/resources/unadash' },
   { label: 'Expert Validation Protocol',           href: '/resources/expert-validation' },
   { label: 'OpenAPI Integrations',                 href: '/resources/integrations' },
-  { label: 'FAQs',                                 href: '/resources/faqs' },
-  { label: 'Privacy Policy',                       href: '/resources/privacy-policy' },
+  { label: 'FAQs',                                 href: '/faqs' },
+  { label: 'Privacy Policy',                       href: '/privacy-policy' },
 ]
 
 const social = [
@@ -101,7 +101,7 @@ export default function Footer() {
     <footer ref={footerRef} className="bg-brand-navy text-white">
 
       {/* CTA Banner */}
-      {pathname !== '/about/contact' && <div ref={ctaRef} className="border-b border-white/10">
+      {pathname !== '/contact' && <div ref={ctaRef} className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
@@ -109,7 +109,7 @@ export default function Footer() {
               <p className="text-slate-300 text-sm mt-1">Join over 750k clinicians and 6k recruiters using UNA.</p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
-              <Link href="/about/contact"
+              <Link href="/contact"
                 className="btn-magnetic px-5 py-2.5 bg-brand-blue text-white font-semibold rounded-xl text-sm hover:bg-brand-redDark transition-colors shadow-lg">
                 Get Started
               </Link>
@@ -165,8 +165,8 @@ export default function Footer() {
             <h3 className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-4">About UNA</h3>
             <ul className="space-y-2.5">
               {[
-                { label: 'Company and Team', href: '/about/company-and-team' },
-                { label: 'Contact',          href: '/about/contact' },
+                { label: 'Company and Team', href: '/company-and-team' },
+                { label: 'Contact',          href: '/contact' },
               ].map(l => (
                 <li key={l.label}>
                   <Link href={l.href} className="text-sm text-slate-400 hover:text-white transition-colors">{l.label}</Link>

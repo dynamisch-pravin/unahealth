@@ -133,7 +133,7 @@ export default function ContactSection() {
                   {loading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending...</> : <>Send Message <Send size={15} /></>}
                 </button>
                 <p className="text-xs text-slate-400 text-center">
-                  By submitting, you agree to our <a href="/resources/privacy-policy" className="text-brand-blue hover:underline">Privacy Policy</a>.
+                  By submitting, you agree to our <a href="/privacy-policy" className="text-brand-blue hover:underline">Privacy Policy</a>.
                 </p>
               </form>
             )}

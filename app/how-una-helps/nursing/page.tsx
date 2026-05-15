@@ -45,7 +45,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Nursing & Patient Care | Mobile-First Credentialing for Nurses',
+  'Nursing & Patient Care | UNA Health',
   'UNA helps nurses and patient care professionals manage competency exams, skills checklists, and mandatory courses — all from their mobile device.',
   '/how-una-helps/nursing',
 )

@@ -33,7 +33,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'myUNA Candidate Portal | Mobile Credential Management for Clinicians',
+  'myUNA | Mobile Credential Management for Clinicians',
   'myUNA gives healthcare professionals a secure mobile portal to complete competency exams, manage credentials, and share their clinical packet with employers.',
   '/resources/my-una',
 )

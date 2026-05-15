@@ -46,7 +46,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Compliance Teams | Automated Clinical Compliance Management',
+  'Compliance Teams | UNA Health',
   'UNA helps compliance teams automate license tracking, regulatory monitoring, and credential management — keeping your clinical workforce audit-ready.',
   '/how-una-helps/compliance',
 )

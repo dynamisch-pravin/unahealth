@@ -14,7 +14,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA Air | Fastest Mandatory Courses for Healthcare Professionals',
+  'UNA Air | Mandatory Courses for Healthcare Professionals',
   'UNA Air delivers the fastest mandatory compliance courses for healthcare professionals — complete CEUs, annual mandatories, and specialty courses from any device.',
   '/resources/una-air',
 )

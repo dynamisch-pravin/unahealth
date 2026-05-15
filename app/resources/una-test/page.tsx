@@ -30,7 +30,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA Test | Clinical Competency Exams for Healthcare Organizations',
+  'UNA Test | Clinical Competency Exams for Healthcare',
   'UNA Test delivers validated clinical competency exams built by practicing clinicians — with higher completion rates than legacy platforms.',
   '/resources/una-test',
 )

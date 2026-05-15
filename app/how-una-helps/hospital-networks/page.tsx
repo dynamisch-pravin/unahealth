@@ -7,8 +7,8 @@ import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Search, FileCheck, Users, Zap, Layers, UserCircle } from 'lucide-react'
 
 export const metadata = createMetadata(
-  'UNA for Hospital Networks | Hire & Retain the Best Clinicians',
-  'UNA helps hospital networks identify top talent, eliminate compliance headaches, reduce turnover, and invest in staff development — all from one mobile-first platform.',
+  'Hospital Networks | UNA Health',
+  'UNA helps hospital networks find top talent, eliminate compliance headaches, reduce turnover, and invest in staff development with one mobile-first platform.',
   '/how-una-helps/hospital-networks',
 )
 

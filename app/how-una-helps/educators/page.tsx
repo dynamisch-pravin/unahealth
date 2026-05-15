@@ -46,7 +46,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Educators | Clinical Training & Competency Assessment',
+  'UNA for Educators | Clinical Competency Assessment',
   'UNA empowers healthcare educators with skills checklists, competency exams, and mandatory course tracking to prepare and develop clinical staff.',
   '/how-una-helps/educators',
 )

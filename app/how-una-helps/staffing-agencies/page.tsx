@@ -28,7 +28,7 @@ const whyUna = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Staffing Agencies | Place More Healthcare Candidates Faster',
+  'Staffing Agencies | UNA Health',
   'UNA helps healthcare staffing agencies reduce onboarding drag, automate compliance, and make more placements with a mobile-first credentialing platform.',
   '/how-una-helps/staffing-agencies',
 )

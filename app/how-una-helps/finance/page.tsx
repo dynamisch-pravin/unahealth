@@ -46,7 +46,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Finance Teams | Reduce Healthcare Staffing & Compliance Costs',
+  'Finance Teams | UNA Health',
   'UNA helps healthcare finance teams cut onboarding costs, reduce compliance overhead, and maximize ROI through automated credential management.',
   '/how-una-helps/finance',
 )

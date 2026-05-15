@@ -7,7 +7,7 @@ import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Wallet, Share2, ClipboardList, Lock, GraduationCap } from 'lucide-react'
 
 export const metadata = createMetadata(
-  'UNA for Healthcare Professionals | Manage Your Clinical Credentials',
+  'Healthcare Professionals | UNA Health',
   'UNA gives healthcare professionals a single mobile wallet to manage licenses, certifications, and competency exams — share your credentials in seconds.',
   '/how-una-helps/healthcare-professionals',
 )

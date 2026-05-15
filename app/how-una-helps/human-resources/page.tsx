@@ -46,7 +46,7 @@ const features = [
 ]
 
 export const metadata = createMetadata(
-  'UNA for Human Resources | Streamline Clinical Onboarding & Retention',
+  'Human Resources | UNA Health',
   "UNA helps healthcare HR teams accelerate onboarding, automate compliance tracking, and reduce turnover with the industry's leading credentialing platform.",
   '/how-una-helps/human-resources',
 )

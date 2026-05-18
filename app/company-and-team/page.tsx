@@ -36,10 +36,10 @@ const team = [
 
   {
     name: 'Parag Tribhuwankar',
-    title: 'Chief Information Officer',
+    title: 'Chief Information Officer (CIO)',
     initials: 'PT',
     photo: '/team/parag.png',
-    bio: 'Parag is the Founder & CEO of Dynamisch, with over 15 years in IT and software. He orchestrates success through strategic foresight, consistent dedication, and meticulous execution — guiding the company to serve clients in Healthcare, Banking & Finance, ISVs, and Product-based companies. Known for flawless operations and deep technical acumen, he fosters a culture of innovation that positions Dynamisch at the forefront of the IT service industry.',
+    bio: 'Parag Tribhuwankar leads the company’s enterprise technology strategy, digital transformation, and operational excellence initiatives. He focuses on aligning business objectives with scalable and secure technology solutions that improve efficiency and organizational performance. With a strong emphasis on governance, process optimization, and cross-functional collaboration, he drives modernization initiatives across the organization. His leadership supports the development of resilient systems, streamlined operations, and technology-enabled business growth. Parag is committed to building sustainable digital ecosystems that enhance customer experience, strengthen operational stability, and support long-term strategic goals.',
     social: {
       phone: undefined,
       calendar: undefined,
@@ -49,10 +49,10 @@ const team = [
   },
     {
     name: 'Hiten Ahirrao',
-    title: 'Chief Technology Officer',
+    title: 'Chief Technology Officer (CTO)',
     initials: 'HA',
     photo: '/team/hiten.png',
-    bio: 'Hiten is the Chief Technology Officer of Dynamisch with over 14 years of experience, architecting scalable IT infrastructures that adapt to dynamic business expansion. A trailblazer in AI, machine learning, and cloud computing, he champions robust security implementations including advanced firewalls and intrusion detection systems. His collaborative leadership cultivates top talent and inspires teams to transform organizational vision into technological reality.',
+    bio: 'Hiten Ahirrao leads the company’s technology vision, engineering strategy, and innovation initiatives. He specializes in building scalable platforms, modernizing enterprise architectures, and driving AI-powered transformation across products and services. With experience across healthcare, enterprise, fintech, and cloud-native solutions, he focuses on creating high-performing engineering ecosystems and future-ready technology platforms. He actively drives initiatives around automation, DevOps, AI-assisted development, and engineering excellence. Hiten is passionate about solving complex business challenges through technology while fostering a culture of innovation, agility, ownership, and continuous learning within engineering teams.',
     social: {
       phone: undefined,
       calendar: undefined,

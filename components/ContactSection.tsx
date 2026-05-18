@@ -17,6 +17,7 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', help: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const leftRef    = useRef<HTMLDivElement>(null)
   const rightRef   = useRef<HTMLDivElement>(null)
@@ -32,10 +33,26 @@ export default function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    gsap.to(rightRef.current, { scale: 0.97, opacity: 0, duration: 0.25, ease: 'power2.in',
-      onComplete: () => { setSubmitted(true); gsap.fromTo(rightRef.current, { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)' }) } })
+    setSubmitError(null)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('server error')
+      gsap.to(rightRef.current, {
+        scale: 0.97, opacity: 0, duration: 0.25, ease: 'power2.in',
+        onComplete: () => {
+          setSubmitted(true)
+          gsap.fromTo(rightRef.current, { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: 'back.out(1.5)' })
+        },
+      })
+    } catch {
+      setSubmitError('Something went wrong. Please try again or email us at hello@unahealth.com')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -128,6 +145,9 @@ export default function ContactSection() {
                     placeholder="Tell us about your organization..."
                     className="w-full px-4 py-2.5 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue/20 focus:border-brand-blue transition-all placeholder-slate-300 resize-none" />
                 </div>
+                {submitError && (
+                  <p className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{submitError}</p>
+                )}
                 <button type="submit" disabled={loading}
                   className="btn-magnetic w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-blue hover:bg-brand-redDark text-white font-semibold rounded-xl transition-colors shadow-md text-sm disabled:opacity-70">
                   {loading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending...</> : <>Send Message <Send size={15} /></>}

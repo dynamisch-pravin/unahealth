@@ -159,9 +159,9 @@ export default function Footer() {
               href="https://natho.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex flex-col items-center gap-1.5 px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 transition-colors group w-fit"
+              className="mt-5 bg-white inline-flex flex-col items-center gap-1.5 px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 transition-colors group w-fit"
             >
-              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-400 transition-colors">
+              <span className="text-[7px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-400 transition-colors">
                 Proud member of
               </span>
               <Image
@@ -169,7 +169,7 @@ export default function Footer() {
                 alt="NATHO – National Association of Travel Healthcare Organizations"
                 width={110}
                 height={34}
-                className="h-6 w-auto object-contain brightness-0 invert opacity-55 group-hover:opacity-85 transition-opacity"
+                className="h-6 w-auto object-contain group-hover:opacity-85 transition-opacity"
               />
             </a>
           </div>

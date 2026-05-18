@@ -40,19 +40,19 @@ const otherResources = [
 
 const social = [
   {
-    href: '#', label: 'Facebook',
+    href: 'https://www.facebook.com/unahealth/', label: 'Facebook',
     svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
   },
   {
-    href: '#', label: 'Instagram',
+    href: 'https://www.instagram.com/unahealth/', label: 'Instagram',
     svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>,
   },
   {
-    href: '#', label: 'LinkedIn',
+    href: 'https://www.linkedin.com/company/myunaapp', label: 'LinkedIn',
     svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>,
   },
   {
-    href: '#', label: 'X (Twitter)',
+    href: 'https://x.com/unahealth', label: 'X (Twitter)',
     svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>,
   },
 ]
@@ -145,14 +145,33 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 mb-2">
               {social.map(({ svg, href, label }) => (
-                <a key={label} href={href} aria-label={label}
+                <a key={label} href={href} aria-label={label} target="_blank" rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg bg-white/10 hover:bg-brand-blue flex items-center justify-center transition-all duration-200 hover:scale-110 text-slate-300">
                   {svg}
                 </a>
               ))}
             </div>
+
+            {/* NATHO membership badge */}
+            {/* <a
+              href="https://natho.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex flex-col items-center gap-1.5 px-4 py-3 rounded-xl border border-white/10 hover:border-white/25 transition-colors group w-fit"
+            > */}
+              <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-400 transition-colors">
+                Proud member of
+              </span>
+              <Image
+                src="/natho-logo.png"
+                alt="NATHO – National Association of Travel Healthcare Organizations"
+                width={110}
+                height={34}
+                className="h-6 w-auto object-contain brightness-0 invert opacity-55 group-hover:opacity-85 transition-opacity"
+              />
+            {/* </a> */}
           </div>
 
           <Col title="Specialties"    links={specialties} />
@@ -179,7 +198,7 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-center">
           <p className="text-xs text-slate-500">
             Copyright &copy; {new Date().getFullYear()} UNA Health Inc. All rights reserved.
           </p>

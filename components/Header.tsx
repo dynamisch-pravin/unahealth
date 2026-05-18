@@ -251,7 +251,7 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-1">
-            <Link href="#"
+            <Link  href="https://admin.unatest.com/" target="_blank"
               className="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors rounded-xl hover:bg-slate-50">
               Sign In
             </Link>
@@ -393,7 +393,7 @@ export default function Header() {
 
             {/* Actions */}
             <div className="border-t border-slate-100 pt-3 mt-2 flex flex-col gap-2 pb-1">
-              <Link href="#" onClick={closeMobile}
+              <Link href="https://admin.unatest.com/" target="_blank" onClick={closeMobile}
                 className="text-center px-4 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 Sign In
               </Link>

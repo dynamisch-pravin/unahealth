@@ -3,37 +3,39 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
-import { ArrowRight, Calendar, Tag, LayoutGrid, Code2, Newspaper } from 'lucide-react'
+import { ArrowRight, Calendar, Tag, LayoutGrid, Code2, Newspaper, ExternalLink } from 'lucide-react'
 import { gsap } from '@/lib/gsap'
+import { allPosts } from '@/lib/blog-data'
 
 type Category = 'All' | 'Developer Notes' | 'Press Releases'
 
-const posts = [
-  {
-    slug: 'press-releases',
-    title: 'UNA Health Introduces UNA AIR: Revolutionizing Candidate Remediation in Healthcare',
-    date: 'May 29, 2025',
-    category: 'Press Releases' as Category,
-    excerpt:
-      'UNA Health announced the launch of UNA AIR (Automated Instant Remediation) — a cutting-edge solution designed to accelerate onboarding and elevate clinical readiness by delivering instant, personalized remediation content to clinicians.',
-  },
-  {
-    slug: 'press-releases',
-    title: 'UNA Health Sets the Standard for Integrated Healthcare Hiring Through Deep ATS & Staffing Platform Partnerships',
-    date: 'May 13, 2025',
-    category: 'Press Releases' as Category,
-    excerpt:
-      "UNA Health is reinforcing its role as the connective tissue across the healthcare hiring stack by expanding and deepening its integration partnerships with applicant tracking systems (ATS) and staffing platforms.",
-  },
-  {
-    slug: 'developer-notes',
-    title: 'UNA Development Updates: 11 April 25',
-    date: 'April 25, 2025',
-    category: 'Developer Notes' as Category,
-    excerpt:
-      'Admin Legacy App Fixes & Improvements — Dropdown Menu Enhancements, Profile Image Update, Checklist Delete Message, and more.',
-  },
-]
+type CardPost = {
+  slug: string
+  title: string
+  date: string
+  category: Category
+  source?: string
+  location?: string
+  label?: string
+  excerpt: string
+  sections?: { heading: string; body: string }[]
+  tickets?: string[]
+}
+
+const posts: CardPost[] = allPosts.map(p => ({
+  slug: p.slug,
+  title: p.title,
+  date: p.date,
+  category: (p.type === 'press-release' ? 'Press Releases' : 'Developer Notes') as Category,
+  source: p.type === 'press-release' ? p.source : undefined,
+  location: p.type === 'press-release' ? p.location : undefined,
+  label: p.type === 'press-release' && p.label ? p.label : undefined,
+  excerpt: p.type === 'press-release' ? p.body.slice(0, 240) + '…' : p.excerpt,
+  sections: p.type === 'developer-note' ? p.groups[0]?.sections.slice(0, 3) : undefined,
+  tickets: p.type === 'developer-note'
+    ? p.groups.flatMap(g => g.tickets).slice(0, 6).map(t => t.split(':')[0])
+    : undefined,
+}))
 
 const tabs: { label: string; value: Category; Icon: React.ElementType }[] = [
   { label: 'All Blog Posts',  value: 'All',             Icon: LayoutGrid },
@@ -56,7 +58,6 @@ export default function BlogPage() {
   const listRef         = useRef<HTMLDivElement>(null)
   const firstRender     = useRef(true)
 
-  // Slide pill to active tab
   useEffect(() => {
     const idx  = tabs.findIndex(t => t.value === active)
     const btn  = tabButtonRefs.current[idx]
@@ -70,7 +71,6 @@ export default function BlogPage() {
     gsap.to(pill, { x: btn.offsetLeft, width: btn.offsetWidth, duration: 0.35, ease: 'power3.inOut' })
   }, [active])
 
-  // Fade posts on tab change
   useEffect(() => {
     if (firstRender.current) { firstRender.current = false; return }
     if (!listRef.current) return
@@ -112,14 +112,11 @@ export default function BlogPage() {
           {/* Sliding pill tabs */}
           <div className="flex mb-10">
             <div className="relative inline-flex bg-slate-100 rounded-2xl p-1.5 shadow-inner">
-
-              {/* Sliding white pill */}
               <div
                 ref={pillRef}
                 className="absolute top-1.5 h-[calc(100%-12px)] bg-white rounded-xl shadow-md shadow-slate-200/70 pointer-events-none"
                 style={{ width: 0, willChange: 'transform, width' }}
               />
-
               {tabs.map(({ label, value, Icon }, i) => {
                 const isActive = active === value
                 return (
@@ -151,6 +148,7 @@ export default function BlogPage() {
                   key={`${post.slug}-${i}`}
                   className="bg-white rounded-2xl border border-slate-100 p-8 hover:shadow-md hover:border-red-100 transition-all"
                 >
+                  {/* Meta row */}
                   <div className="flex flex-wrap items-center gap-3 mb-4">
                     <span className="flex items-center gap-1.5 text-xs text-slate-400">
                       <Calendar size={12} />
@@ -165,11 +163,61 @@ export default function BlogPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-3 leading-snug">
+                  <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-4 leading-snug">
                     {post.title}
                   </h2>
 
-                  <p className="text-sm text-slate-500 leading-relaxed mb-6">{post.excerpt}</p>
+                  {/* Press release extras */}
+                  {post.source && (
+                    <div
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-3"
+                      style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}
+                    >
+                      <ExternalLink size={11} />
+                      See original release on {post.source}
+                    </div>
+                  )}
+                  {post.label && (
+                    <p className="text-sm font-semibold text-slate-700 mb-2 italic">{post.label}</p>
+                  )}
+                  {post.location && (
+                    <p className="text-xs font-mono text-slate-400 mb-3">{post.location}</p>
+                  )}
+
+                  <p className="text-sm text-slate-500 leading-relaxed mb-5">{post.excerpt}</p>
+
+                  {/* Developer notes: section bullets */}
+                  {post.sections && (
+                    <div className="space-y-2 mb-5">
+                      {post.sections.map(sec => (
+                        <div key={sec.heading} className="flex items-start gap-3">
+                          <div
+                            className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                            style={{ backgroundColor: '#E9384D' }}
+                          />
+                          <div>
+                            <p className="text-sm font-bold text-slate-700">{sec.heading}</p>
+                            <p className="text-sm text-slate-500 mt-0.5">{sec.body}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Developer notes: tickets */}
+                  {post.tickets && post.tickets.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {post.tickets.map(ticket => (
+                        <span
+                          key={ticket}
+                          className="text-xs font-mono px-2.5 py-1 rounded-lg"
+                          style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}
+                        >
+                          {ticket}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   <Link
                     href={`/resources/blog/${post.slug}`}

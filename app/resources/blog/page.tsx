@@ -11,10 +11,12 @@ type Category = 'All' | 'Developer Notes' | 'Press Releases'
 
 type CardPost = {
   slug: string
+  href: string
   title: string
   date: string
   category: Category
   source?: string
+  sourceHref?: string
   location?: string
   label?: string
   excerpt: string
@@ -24,10 +26,14 @@ type CardPost = {
 
 const posts: CardPost[] = allPosts.map(p => ({
   slug: p.slug,
+  href: p.type === 'press-release'
+    ? `/resources/blog/press-releases/${p.slug}`
+    : `/resources/blog/developer-notes/${p.slug}`,
   title: p.title,
   date: p.date,
   category: (p.type === 'press-release' ? 'Press Releases' : 'Developer Notes') as Category,
   source: p.type === 'press-release' ? p.source : undefined,
+  sourceHref: p.type === 'press-release' ? p.sourceHref : undefined,
   location: p.type === 'press-release' ? p.location : undefined,
   label: p.type === 'press-release' && p.label ? p.label : undefined,
   excerpt: p.type === 'press-release' ? p.body.slice(0, 240) + '…' : p.excerpt,
@@ -168,14 +174,17 @@ export default function BlogPage() {
                   </h2>
 
                   {/* Press release extras */}
-                  {post.source && (
-                    <div
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-3"
+                  {post.source && post.sourceHref && (
+                    <a
+                      href={post.sourceHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-3 hover:opacity-80 transition-opacity"
                       style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}
                     >
                       <ExternalLink size={11} />
                       See original release on {post.source}
-                    </div>
+                    </a>
                   )}
                   {post.label && (
                     <p className="text-sm font-semibold text-slate-700 mb-2 italic">{post.label}</p>
@@ -220,7 +229,7 @@ export default function BlogPage() {
                   )}
 
                   <Link
-                    href={`/resources/blog/${post.slug}`}
+                    href={post.href}
                     className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
                     style={{ color: '#E9384D' }}
                   >

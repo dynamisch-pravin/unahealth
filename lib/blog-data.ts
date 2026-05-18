@@ -47,12 +47,12 @@ export type BlogPost = PressReleasePost | DeveloperNotePost
 export const allPosts: BlogPost[] = [
   {
     type: 'press-release',
-    slug: 'una-health-introduces-una-air-revolutionizing-candidate-remediation-in-healthcare',
+    slug: 'una-health-introduces-una-air',
     title: 'UNA Health Introduces UNA AIR: Revolutionizing Candidate Remediation in Healthcare',
     date: 'May 29, 2025',
     categories: ['Blog', 'Press Releases'],
     source: 'PRNewswire',
-    sourceHref: '#',
+    sourceHref: 'https://www.prnewswire.com/news-releases/una-health-introduces-una-air-revolutionizing-candidate-remediation-in-healthcare-302467723.html',
     location: 'GREENSBORO, N.C., May 29, 2025 /PRNewswire/',
     label: 'A New Tool for Closing Knowledge Gaps, Improving Onboarding, and Elevating Care',
     body: "UNA Health, the nation's fastest-growing healthcare competency testing platform, announced the launch of UNA AIR (Automated Instant Remediation) — a solution designed to accelerate onboarding and elevate clinical readiness by delivering instant, personalized remediation to healthcare professionals. UNA AIR identifies knowledge gaps during clinical testing and delivers targeted \"content snacks\" — bite-sized educational refreshers — improving retake success rates and accelerating time-to-placement. The platform automates exam scheduling and remediation cycles, allowing candidates to retest with zero manual intervention and reducing administrative burden on healthcare organizations.",
@@ -78,7 +78,7 @@ export const allPosts: BlogPost[] = [
     date: 'May 13, 2025',
     categories: ['Blog', 'Press Releases'],
     source: 'PRNewswire',
-    sourceHref: '#',
+    sourceHref: 'https://www.prnewswire.com/news-releases/una-health-sets-the-standard-for-integrated-healthcare-hiring-through-deep-ats--staffing-platform-partnerships-302452984.html',
     location: 'GREENSBORO, N.C., May 13, 2025 /PRNewswire/',
     label: null,
     body: "UNA Health, the nation's fastest-growing healthcare competency testing platform, is reinforcing its role as the technology standard for connected hiring by expanding and deepening its integration partnerships with applicant tracking systems (ATS) and staffing platforms across the ecosystem. With a relentless commitment to interoperability, UNA is investing heavily in building and scaling connections that unify the experience for staffing firms, travel nurse companies, healthcare facilities, and workforce platforms — resulting in faster fill times, better compliance, and industry-leading transparency.",

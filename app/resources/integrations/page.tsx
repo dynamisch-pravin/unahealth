@@ -218,40 +218,50 @@ export default function IntegrationsPage() {
 
       {/* ── Integration partners ── */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#E9384D' }}>
-              Integration Partners
-            </span>
-            <h2 className="mt-3 text-3xl font-bold text-brand-navy">
-              Our integration partners.
-            </h2>
-            <p className="mt-3 text-slate-500 max-w-xl mx-auto">
-              UNA is proud to offer connections with leading platforms to drive a unified and
-              data-rich experience for healthcare staffing.
-            </p>
-          </div>
+        <div className="text-center mb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: '#E9384D' }}>
+            Integration Partners
+          </span>
+          <h2 className="mt-3 text-3xl font-bold text-brand-navy">
+            Our integration partners.
+          </h2>
+          <p className="mt-3 text-slate-500 max-w-xl mx-auto">
+            UNA is proud to offer connections with leading platforms to drive a unified and
+            data-rich experience for healthcare staffing.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {partners.map(partner => (
-              <div key={partner.name}
-                className="flex items-center justify-center p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-red-100 hover:shadow-sm transition-all h-24">
-                <Image
-                  src={partner.src}
-                  alt={partner.name}
-                  width={140}
-                  height={50}
-                  className="object-contain max-h-10 w-auto"
-                />
+        <div className="relative overflow-hidden">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to right, white 0%, transparent 100%)' }} />
+          <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+            style={{ background: 'linear-gradient(to left, white 0%, transparent 100%)' }} />
+
+          <div className="flex gap-5 animate-marquee hover:[animation-play-state:paused]" style={{ width: 'max-content' }}>
+            {[...partners, ...partners].map((partner, i) => (
+              <div
+                key={`${partner.name}-${i}`}
+                className="group h-20 w-44 flex-shrink-0 bg-white rounded-xl border border-slate-100 hover:border-brand-blue/20 hover:shadow-md flex items-center justify-center px-5 transition-all duration-300"
+              >
+                <div className="relative w-full h-10">
+                  <Image
+                    src={partner.src}
+                    alt={partner.name}
+                    fill
+                    className="object-contain grayscale opacity-55 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    sizes="176px"
+                  />
+                </div>
               </div>
             ))}
           </div>
-
-          <p className="mt-8 text-center text-sm text-slate-400">
-            UNA is working with additional industry-leading platforms to further enhance the connected
-            hiring experience.
-          </p>
         </div>
+
+        <p className="mt-8 text-center text-sm text-slate-400 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          UNA is working with additional industry-leading platforms to further enhance the connected
+          hiring experience.
+        </p>
       </section>
 
       {/* ── CTA strip ── */}

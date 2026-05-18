@@ -170,7 +170,7 @@ export default function PressReleasesPage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12">
             <Link href="/resources/blog"
               className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
               style={{ color: '#E9384D' }}>

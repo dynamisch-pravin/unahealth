@@ -5,70 +5,9 @@ import ContactSection from '@/components/ContactSection'
 import BlogCategoryHeader from '@/components/BlogCategoryHeader'
 import PostMeta from '@/components/PostMeta'
 import { ArrowRight, ExternalLink } from 'lucide-react'
+import { allPosts, type PressReleasePost } from '@/lib/blog-data'
 
-type Post = {
-  title: string
-  date: string
-  categories: string[]
-  source: string
-  sourceHref: string
-  location: string
-  label: string | null
-  body: string
-  image?: string
-  imageAlt?: string
-  quote?: string
-  quoteAuthor?: string
-  bulletsLabel?: string
-  bullets?: string[]
-  secondBulletsLabel?: string
-  secondBullets?: string[]
-  relatedHref: string
-  relatedLabel: string
-}
-
-const posts: Post[] = [
-  {
-    title: 'UNA Health Introduces UNA AIR: Revolutionizing Candidate Remediation in Healthcare',
-    date: 'May 29, 2025',
-    categories: ['Blog', 'Press Releases'],
-    source: 'PRNewswire',
-    sourceHref: '#',
-    location: 'GREENSBORO, N.C., May 29, 2025 /PRNewswire/',
-    label: 'A New Tool for Closing Knowledge Gaps, Improving Onboarding, and Elevating Care',
-    body: "UNA Health, the nation's fastest-growing healthcare competency testing platform, announced the launch of UNA AIR (Automated Instant Remediation) — a solution designed to accelerate onboarding and elevate clinical readiness by delivering instant, personalized remediation to healthcare professionals. UNA AIR identifies knowledge gaps during clinical testing and delivers targeted \"content snacks\" — bite-sized educational refreshers — improving retake success rates and accelerating time-to-placement. The platform automates exam scheduling and remediation cycles, allowing candidates to retest with zero manual intervention and reducing administrative burden on healthcare organizations.",
-    quote: "UNA AIR is designed to drastically improve the onboarding process while ensuring the highest standards of clinical competency. By providing instant remediation, we empower candidates to address their knowledge gaps directly — resulting in a more confident, capable, and compliant healthcare workforce.",
-    quoteAuthor: "Ron Gonzalez, CEO of UNA Health",
-    image: '/pressrealase/UNA_Health_launch_UNA_AIR.jpg',
-    imageAlt: 'UNA AIR remediation interface on tablet',
-    bulletsLabel: "Initial Launch — 10 exams available June 2:",
-    bullets: ['RN Pharmacology', 'CNA', 'Long Term Care RN', 'Behavioral Health RN', 'Medical Surgical RN', 'LPN/LVN', 'Operating Room RN', 'Medical Assistant', 'Clinic RN', 'Dysrhythmia General'],
-    secondBulletsLabel: "Expanding within 30 days:",
-    secondBullets: ['MRI Tech', 'Corrections RN', 'ER PEDS RN', 'PICU RN', 'CVICU RN', 'PEDS RN', 'Respiratory Tech', 'Physical Therapist', 'Behavioral Health Tech'],
-    relatedHref: '/resources/una-air',
-    relatedLabel: 'Learn about UNA Air',
-  },
-  {
-    title: 'UNA Health Sets the Standard for Integrated Healthcare Hiring Through Deep ATS & Staffing Platform Partnerships',
-    date: 'May 13, 2025',
-    categories: ['Blog', 'Press Releases'],
-    source: 'PRNewswire',
-    sourceHref: '#',
-    location: 'GREENSBORO, N.C., May 13, 2025 /PRNewswire/',
-    label: null,
-    body: "UNA Health, the nation's fastest-growing healthcare competency testing platform, is reinforcing its role as the technology standard for connected hiring by expanding and deepening its integration partnerships with applicant tracking systems (ATS) and staffing platforms across the ecosystem. With a relentless commitment to interoperability, UNA is investing heavily in building and scaling connections that unify the experience for staffing firms, travel nurse companies, healthcare facilities, and workforce platforms — resulting in faster fill times, better compliance, and industry-leading transparency.",
-    quote: "Our goal is to be the connective tissue across the healthcare hiring stack. When we connect directly into our partners' systems, we unlock compounding value: richer insights, smoother workflows, and the ability to benchmark performance nationwide.",
-    quoteAuthor: "Ron Gonzalez, CEO at UNA Health",
-    image: '/pressrealase/UNA_Health_Partnerships.jpg',
-    imageAlt: 'ATS integration partners: Credentially, Nexus by LaborEdge, Bullhorn, NextCrew, Ceipal',
-    bulletsLabel: "Current Integration Partners:",
-    bullets: ['Credentially', 'LaborEdge – Nexus', 'Bullhorn', 'NextCrew', 'Ceipal'],
-    secondBulletsLabel: "Integrations In Progress:",
-    secondBullets: ['ActivateStaff', 'JobDiva', 'VARS Health', 'WorkDay'],
-    relatedHref: '/resources/integrations',
-    relatedLabel: 'View Integration Partners',
-  },
-]
+const posts = allPosts.filter((p): p is PressReleasePost => p.type === 'press-release')
 
 export const metadata = createMetadata(
   'Press Releases | UNA Health',
@@ -84,25 +23,29 @@ export default function PressReleasesPage() {
         description="Archive of all press releases made by UNA Health, Inc."
       />
 
-      {/* ── Posts list ── */}
       <section className="py-16 bg-slate-50 min-h-[400px]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-8">
-            {posts.map((post, i) => (
-              <article key={i}
+            {posts.map(post => (
+              <article key={post.slug}
                 className="bg-white rounded-2xl border border-slate-100 overflow-hidden hover:shadow-md hover:border-red-100 transition-all">
                 <div className="p-8 sm:p-10">
                   <PostMeta date={post.date} categories={post.categories} />
 
-                  <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-3 leading-snug">
+                  <h2 className="text-xl sm:text-2xl font-bold text-brand-navy mb-3 mt-3 leading-snug">
                     {post.title}
                   </h2>
 
-                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-5"
-                    style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}>
+                  <a
+                    href={post.sourceHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full mb-5 hover:opacity-80 transition-opacity"
+                    style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}
+                  >
                     <ExternalLink size={11} />
                     See original release on {post.source}
-                  </div>
+                  </a>
 
                   <p className="text-xs font-mono text-slate-400 mb-3">{post.location}</p>
 
@@ -133,38 +76,76 @@ export default function PressReleasesPage() {
 
                   {post.bulletsLabel && post.bullets && (
                     <div className="mb-4">
-                      <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">{post.bulletsLabel}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-sm text-slate-600 leading-relaxed mb-2">{post.bulletsLabel}</p>
+                      <ul className="list-disc list-inside space-y-1 mb-4">
                         {post.bullets.map(b => (
-                          <span key={b} className="text-xs font-medium px-2.5 py-1 rounded-lg"
-                            style={{ backgroundColor: 'rgba(233,56,77,0.07)', color: '#C42038' }}>
-                            {b}
-                          </span>
+                          <li key={b} className="text-sm text-slate-600">{b}</li>
                         ))}
-                      </div>
+                      </ul>
+                      {post.bulletsNote && (
+                        <p className="text-sm text-slate-600 leading-relaxed">{post.bulletsNote}</p>
+                      )}
                     </div>
                   )}
 
                   {post.secondBulletsLabel && post.secondBullets && (
                     <div className="mb-6">
-                      <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">{post.secondBulletsLabel}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-sm text-slate-600 leading-relaxed mb-2">{post.secondBulletsLabel}</p>
+                      <ul className="list-disc list-inside space-y-1 mb-4">
                         {post.secondBullets.map(b => (
-                          <span key={b} className="text-xs font-medium px-2.5 py-1 rounded-lg"
-                            style={{ backgroundColor: 'rgba(15,43,91,0.06)', color: '#0F2B5B' }}>
-                            {b}
-                          </span>
+                          <li key={b} className="text-sm text-slate-600">{b}</li>
                         ))}
-                      </div>
+                      </ul>
+                      {post.secondBulletsNote && (
+                        <p className="text-sm text-slate-600 leading-relaxed">{post.secondBulletsNote}</p>
+                      )}
                     </div>
                   )}
 
+                  {post.availabilityBold && (
+                    <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                      <strong className="font-bold text-slate-800">{post.availabilityBold}</strong>
+                      {post.availabilityText}
+                    </p>
+                  )}
+
                   <Link href={post.relatedHref}
-                    className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
+                    className="inline-flex items-center gap-2 text-sm font-bold transition-colors group mb-8"
                     style={{ color: '#E9384D' }}>
                     {post.relatedLabel}
                     <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
                   </Link>
+
+                  {post.aboutBody && (
+                    <div className="border-t border-slate-100 pt-8 mb-6">
+                      <h3 className="text-sm font-bold text-slate-800 mb-3">About UNA Health</h3>
+                      <p className="text-sm text-slate-600 leading-relaxed mb-4">{post.aboutBody}</p>
+                      <p className="text-sm text-slate-500">
+                        For more information, visit{' '}
+                        <Link href="/" className="underline underline-offset-2 hover:text-brand-navy transition-colors" style={{ color: '#E9384D' }}>
+                          www.unahealth.com
+                        </Link>
+                        .
+                      </p>
+                    </div>
+                  )}
+
+                  {post.sourceCredit && (
+                    <p className="text-xs font-semibold text-slate-400 pt-4 border-t border-slate-100">
+                      {post.sourceCredit}
+                    </p>
+                  )}
+
+                  <div className="mt-8 pt-6 border-t border-slate-100">
+                    <Link
+                      href={`/resources/blog/press-releases/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
+                      style={{ color: '#E9384D' }}
+                    >
+                      Read more
+                      <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
+                    </Link>
+                  </div>
                 </div>
               </article>
             ))}

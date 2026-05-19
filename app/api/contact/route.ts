@@ -15,7 +15,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
+  if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_FROM_EMAIL) {
+    console.error('Missing env vars: SENDGRID_API_KEY or SENDGRID_FROM_EMAIL')
+    return NextResponse.json({ error: 'Server misconfiguration' }, { status: 500 })
+  }
+
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
   try {
     await sgMail.send({
@@ -61,9 +66,10 @@ export async function POST(req: Request) {
         </div>
       `,
     })
-  } catch (err) {
-    console.error('SendGrid error:', err)
-    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
+  } catch (err: unknown) {
+    const body = (err as { response?: { body?: unknown } })?.response?.body
+    console.error('SendGrid error:', body ?? err)
+    return NextResponse.json({ error: 'Failed to send email', detail: body }, { status: 500 })
   }
 
   return NextResponse.json({ success: true })

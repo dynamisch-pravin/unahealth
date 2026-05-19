@@ -46,6 +46,7 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', help: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -53,9 +54,20 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    setSubmitError(null)
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error('server error')
+      setSubmitted(true)
+    } catch {
+      setSubmitError('Something went wrong. Please try again or email us at hello@unahealth.com')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -202,6 +214,10 @@ export default function ContactPage() {
                         placeholder="Tell us about your organization..."
                         className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all placeholder-slate-300 resize-none" />
                     </div>
+
+                    {submitError && (
+                      <p className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{submitError}</p>
+                    )}
 
                     <button type="submit" disabled={loading}
                       className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-red hover:bg-brand-redDark text-white font-bold rounded-xl transition-colors shadow-md text-sm disabled:opacity-70">

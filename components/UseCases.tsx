@@ -119,19 +119,18 @@ export default function UseCases() {
   const CIcon = c.icon
 
   return (
-    <section id="use-cases" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden bg-white">
+    <section id="use-cases" ref={sectionRef} className="pt-24 md:pt-32 pb-24 md:pb-32 relative bg-white">
 
-      {/* Subtle dot grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.35]"
-        style={{ backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+      {/* Decorative elements in their own clipped wrapper so sticky children still work */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.35]"
+          style={{ backgroundImage: 'radial-gradient(circle, #cbd5e1 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full blur-3xl"
+          style={{ background: 'radial-gradient(ellipse, rgba(233,56,77,0.07) 0%, transparent 70%)' }} />
+      </div>
 
-      {/* Top glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(233,56,77,0.07) 0%, transparent 70%)' }} />
-
+      {/* Heading */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Heading */}
         <div ref={headingRef} className="text-center mb-14">
           <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full border text-brand-blue border-brand-blue/30 bg-brand-blue/5 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-blue inline-block" />
@@ -144,9 +143,11 @@ export default function UseCases() {
             Whether you run a hospital network, a staffing agency, or you&apos;re a nurse building your career — UNA is designed for you.
           </p>
         </div>
+      </div>
 
-        {/* Tabs — sliding pill */}
-        <div ref={tabsRef} className="flex justify-center mb-14">
+      {/* Sticky tabs bar */}
+      <div ref={tabsRef} className="sticky top-16 z-20 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-center">
           <div ref={tabBarRef} className="relative inline-flex bg-slate-100 rounded-2xl p-1.5 shadow-inner">
 
             {/* Sliding white pill */}
@@ -173,8 +174,10 @@ export default function UseCases() {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Content */}
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10">
         <div ref={contentRef} className="grid lg:grid-cols-[1fr_380px] gap-8 items-start">
 
           {/* ── LEFT: Case study ── */}
@@ -226,8 +229,8 @@ export default function UseCases() {
             </ol>
           </div>
 
-          {/* ── RIGHT: Result + Stat + CTA ── */}
-          <div className="flex flex-col gap-5 lg:sticky lg:top-28">
+          {/* ── RIGHT: Result + CTA — sticky below header + tabs ── */}
+          <div className="flex flex-col gap-5 lg:sticky lg:top-[148px]">
 
             {/* Result card */}
             <div className="rounded-2xl p-7 text-white relative overflow-hidden"
@@ -243,22 +246,6 @@ export default function UseCases() {
                 <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.80)' }}>{c.result}</p>
               </div>
             </div>
-
-            {/* Stat card */}
-            {/* <div className="rounded-2xl p-7 bg-white border border-slate-100 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
-              <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-3">Key Metric</p>
-              <p className="text-5xl font-extrabold text-brand-blue leading-none mb-2">{c.stat}</p>
-              <p className="text-sm text-slate-500">{c.statSub}</p>
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                <div className="flex gap-1.5">
-                  {[...Array(5)].map((_, i) => (
-                    <div key={i} className="h-1.5 flex-1 rounded-full"
-                      style={{ backgroundColor: i < 4 ? '#E9384D' : '#E2E8F0' }} />
-                  ))}
-                </div>
-                <p className="text-[10px] text-slate-400 mt-1.5">Performance vs. legacy tools</p>
-              </div>
-            </div> */}
 
             {/* CTA */}
             <Link href={c.href}

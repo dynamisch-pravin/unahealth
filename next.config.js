@@ -56,10 +56,16 @@ const nextConfig = {
       // blog
       { source: '/blog',                             destination: '/resources/blog',                         permanent: true },
       { source: '/blog/',                            destination: '/resources/blog/',                        permanent: true },
-      { source: '/blog/developer-notes',             destination: '/resources/blog/developer-notes',         permanent: true },
-      { source: '/blog/developer-notes/',            destination: '/resources/blog/developer-notes/',        permanent: true },
-      { source: '/blog/press-releases',              destination: '/resources/blog/press-releases',          permanent: true },
-      { source: '/blog/press-releases/',             destination: '/resources/blog/press-releases/',         permanent: true },
+      { source: '/blog/developer-notes',             destination: '/resources/blog?tab=developer-notes',     permanent: true },
+      { source: '/blog/developer-notes/',            destination: '/resources/blog/?tab=developer-notes',    permanent: true },
+      { source: '/blog/press-releases',              destination: '/resources/blog?tab=press-releases',      permanent: true },
+      { source: '/blog/press-releases/',             destination: '/resources/blog/?tab=press-releases',     permanent: true },
+
+      // blog category index → main blog with tab active
+      { source: '/resources/blog/developer-notes',  destination: '/resources/blog?tab=developer-notes',     permanent: false },
+      { source: '/resources/blog/developer-notes/', destination: '/resources/blog/?tab=developer-notes',    permanent: false },
+      { source: '/resources/blog/press-releases',   destination: '/resources/blog?tab=press-releases',      permanent: false },
+      { source: '/resources/blog/press-releases/',  destination: '/resources/blog/?tab=press-releases',     permanent: false },
 
       // legacy pages → home
       { source: '/una-fast-ceus',                    destination: '/',                                       permanent: true },

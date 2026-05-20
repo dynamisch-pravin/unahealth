@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, Suspense } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 import ContactSection from '@/components/ContactSection'
 import { ArrowRight, Calendar, Tag, LayoutGrid, Code2, Newspaper, ExternalLink } from 'lucide-react'
 import { gsap } from '@/lib/gsap'
@@ -55,14 +56,27 @@ const categoryColor: Record<Category, { text: string; border: string; bg: string
   'Press Releases':  { text: '#E9384D', border: 'rgba(233,56,77,0.25)',  bg: 'rgba(233,56,77,0.05)'  },
 }
 
-export default function BlogPage() {
-  const [active, setActive] = useState<Category>('All')
+const tabFromParam: Record<string, Category> = {
+  'developer-notes': 'Developer Notes',
+  'press-releases':  'Press Releases',
+}
+
+function BlogContent() {
+  const searchParams = useSearchParams()
+  const [active, setActive] = useState<Category>(
+    tabFromParam[searchParams.get('tab') ?? ''] ?? 'All'
+  )
 
   const tabButtonRefs   = useRef<(HTMLButtonElement | null)[]>([])
   const pillRef         = useRef<HTMLDivElement>(null)
   const pillInitialized = useRef(false)
   const listRef         = useRef<HTMLDivElement>(null)
   const firstRender     = useRef(true)
+
+  useEffect(() => {
+    const next = tabFromParam[searchParams.get('tab') ?? ''] ?? 'All'
+    setActive(next)
+  }, [searchParams])
 
   useEffect(() => {
     const idx  = tabs.findIndex(t => t.value === active)
@@ -245,5 +259,13 @@ export default function BlogPage() {
 
       <ContactSection />
     </>
+  )
+}
+
+export default function BlogPage() {
+  return (
+    <Suspense>
+      <BlogContent />
+    </Suspense>
   )
 }

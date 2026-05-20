@@ -31,8 +31,8 @@ const resourcesOther: { label: string; href: string; children?: { label: string;
   { label: 'Expert Validation',    href: '/resources/expert-validation' },
   { label: 'OpenAPI Integrations', href: '/resources/integrations' },
   { label: 'Blog', href: '/resources/blog', children: [
-    { label: 'Developer Notes', href: '/resources/blog/developer-notes' },
-    { label: 'Press Releases',  href: '/resources/blog/press-releases' },
+    { label: 'Developer Notes', href: '/resources/blog/?tab=developer-notes' },
+    { label: 'Press Releases',  href: '/resources/blog/?tab=press-releases' },
   ]},
   { label: 'FAQs',           href: '/faqs' },
   { label: 'Privacy Policy', href: '/privacy-policy' },

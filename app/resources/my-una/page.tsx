@@ -256,12 +256,10 @@ export default function MyUnaPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* myUNA logo inline */}
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="relative w-9 h-9 flex-shrink-0">
+            <div className="relative w-[100px] h-9 flex-shrink-0">
               <Image src="/products/myuna-logo.png" alt="myUNA" fill className="object-contain" />
             </div>
-            <span className="text-xl font-bold text-white">
-              my<span style={{ color: '#4DD9C0' }}>Ü</span>NA
-            </span>
+            
           </div>
           <h2 className="text-3xl font-bold text-white mb-4">Be the first to know when myUNA launches.</h2>
           <p className="mb-8 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.6)' }}>

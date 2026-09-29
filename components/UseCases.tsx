@@ -148,11 +148,11 @@ export default function UseCases() {
       {/* Sticky tabs bar */}
       <div ref={tabsRef} className="sticky top-16 z-20 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-center">
-          <div ref={tabBarRef} className="relative inline-flex bg-slate-100 rounded-2xl p-1.5 shadow-inner">
+          <div ref={tabBarRef} className="relative grid grid-cols-2 sm:inline-flex w-full sm:w-auto gap-1.5 sm:gap-0 bg-slate-100 rounded-2xl p-1.5 shadow-inner">
 
-            {/* Sliding white pill */}
+            {/* Sliding white pill — single-row layout only, from sm: up */}
             <div ref={pillRef}
-              className="absolute top-1.5 h-[calc(100%-12px)] bg-white rounded-xl shadow-md shadow-slate-200/70 pointer-events-none"
+              className="hidden sm:block absolute top-1.5 h-[calc(100%-12px)] bg-white rounded-xl shadow-md shadow-slate-200/70 pointer-events-none"
               style={{ width: 0, willChange: 'transform, width' }}
             />
 
@@ -164,10 +164,12 @@ export default function UseCases() {
                   key={item.id}
                   ref={el => { tabButtonRefs.current[i] = el }}
                   onClick={() => setActive(i)}
-                  className={`tab-btn relative z-10 flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors duration-200 ${
-                    isActive ? 'text-brand-navy' : 'text-slate-500 hover:text-slate-700'
+                  className={`tab-btn relative z-10 flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition-colors duration-200 ${
+                    isActive
+                      ? 'text-brand-navy bg-white sm:bg-transparent shadow-sm sm:shadow-none'
+                      : 'text-slate-500 hover:text-slate-700'
                   }`}>
-                  <Icon size={14} className={`transition-colors duration-200 ${isActive ? 'text-brand-blue' : 'text-slate-400'}`} />
+                  <Icon size={14} className={`hidden sm:inline-block transition-colors duration-200 ${isActive ? 'text-brand-blue' : 'text-slate-400'}`} />
                   {item.label}
                 </button>
               )

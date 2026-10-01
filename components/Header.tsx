@@ -42,6 +42,9 @@ const aboutLinks = [
   { label: 'Contact',          href: '/contact',          desc: 'Get in touch with us' },
 ]
 
+const productHrefs = resourcesProducts.map(p => p.href)
+const resourceOtherHrefs = resourcesOther.flatMap(o => [o.href, ...(o.children?.map(c => c.href) ?? [])])
+
 export default function Header() {
   const pathname = usePathname()
   const [dropdown, setDropdown]           = useState<string | null>(null)
@@ -52,6 +55,7 @@ export default function Header() {
   const hoverTimer  = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + '/')
+  const isActiveAny = (hrefs: string[]) => hrefs.some(isActive)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -149,72 +153,85 @@ export default function Header() {
               </div>
             </div>
 
+            {/* Products & Services */}
+            <div className="relative cursor-pointer" onMouseEnter={() => openDropdown('products')} onMouseLeave={closeDropdown}>
+              <button style={{ cursor: 'pointer' }} className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-colors duration-200 cursor-pointer ${
+                dropdown === 'products' || isActiveAny(productHrefs)
+                  ? 'text-brand-navy font-semibold'
+                  : 'text-slate-500 hover:text-slate-900'
+              }`}>
+                Products & Services
+                <ChevronDown size={12} className={`transition-transform duration-200 ${dropdown === 'products' ? 'rotate-180' : ''}`} />
+                {isActiveAny(productHrefs) && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue" />}
+              </button>
+
+              <div className={`absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-[340px] bg-white rounded-2xl shadow-xl border border-slate-100 z-50 transition-all duration-200 origin-top ${
+                dropdown === 'products' ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
+              }`} onMouseEnter={keepOpen} onMouseLeave={closeDropdown}>
+                <div className="p-4">
+                  <div className="space-y-0.5">
+                    {resourcesProducts.map(item => (
+                      <Link key={item.href} href={item.href} onClick={() => setDropdown(null)}
+                        className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-50 transition-colors group">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }} />
+                          <div>
+                            <p className={`text-sm font-semibold leading-tight group-hover:text-brand-blue transition-colors ${isActive(item.href) ? 'text-brand-blue' : 'text-slate-800'}`}>{item.label}</p>
+                            <p className="text-xs text-slate-400">{item.desc}</p>
+                          </div>
+                        </div>
+                        {item.badge && (
+                          <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ml-2 ${
+                            item.badge === 'New' ? 'bg-brand-blue text-white' : 'bg-slate-100 text-slate-500'
+                          }`}>{item.badge}</span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Resources */}
             <div className="relative cursor-pointer" onMouseEnter={() => openDropdown('resources')} onMouseLeave={closeDropdown}>
               <button style={{ cursor: 'pointer' }} className={`relative flex items-center gap-1 px-3.5 py-2 text-sm rounded-xl transition-colors duration-200 cursor-pointer ${
-                dropdown === 'resources' || isActive('/resources')
+                dropdown === 'resources' || isActiveAny(resourceOtherHrefs)
                   ? 'text-brand-navy font-semibold'
                   : 'text-slate-500 hover:text-slate-900'
               }`}>
                 Resources
                 <ChevronDown size={12} className={`transition-transform duration-200 ${dropdown === 'resources' ? 'rotate-180' : ''}`} />
-                {isActive('/resources') && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue" />}
+                {isActiveAny(resourceOtherHrefs) && <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue" />}
               </button>
 
-              <div className={`absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-[560px] bg-white rounded-2xl shadow-xl border border-slate-100 z-50 transition-all duration-200 origin-top ${
+              <div className={`absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 z-50 transition-all duration-200 origin-top ${
                 dropdown === 'resources' ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
               }`} onMouseEnter={keepOpen} onMouseLeave={closeDropdown}>
-                <div className="p-4 grid grid-cols-[1fr_auto_165px] gap-4">
-                  <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pb-2">Products & Services</p>
-                    <div className="space-y-0.5">
-                      {resourcesProducts.map(item => (
-                        <Link key={item.href} href={item.href} onClick={() => setDropdown(null)}
-                          className="flex items-center justify-between px-3 py-2 rounded-xl hover:bg-slate-50 transition-colors group">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: item.color }} />
-                            <div>
-                              <p className={`text-sm font-semibold leading-tight group-hover:text-brand-blue transition-colors ${isActive(item.href) ? 'text-brand-blue' : 'text-slate-800'}`}>{item.label}</p>
-                              <p className="text-xs text-slate-400">{item.desc}</p>
-                            </div>
-                          </div>
-                          {item.badge && (
-                            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full flex-shrink-0 ml-2 ${
-                              item.badge === 'New' ? 'bg-brand-blue text-white' : 'bg-slate-100 text-slate-500'
-                            }`}>{item.badge}</span>
-                          )}
+                <div className="p-3">
+                  <div className="space-y-0.5">
+                    {resourcesOther.map(item => (
+                      <div key={item.label}>
+                        <Link href={item.href} onClick={() => setDropdown(null)}
+                          className={`flex items-center justify-between px-3 py-2 text-sm rounded-lg transition-colors ${
+                            isActive(item.href) ? 'text-brand-blue font-semibold' : 'text-slate-600 hover:text-brand-blue hover:bg-slate-50'
+                          }`}>
+                          {item.label}
+                          {item.children && <ChevronDown size={10} className="-rotate-90 text-slate-300" />}
                         </Link>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="w-px bg-slate-100 my-1" />
-                  <div>
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 pb-2">More</p>
-                    <div className="space-y-0.5">
-                      {resourcesOther.map(item => (
-                        <div key={item.label}>
-                          <Link href={item.href} onClick={() => setDropdown(null)}
-                            className={`flex items-center justify-between px-2 py-1.5 text-sm rounded-lg transition-colors ${
-                              isActive(item.href) ? 'text-brand-blue font-semibold' : 'text-slate-600 hover:text-brand-blue hover:bg-slate-50'
-                            }`}>
-                            {item.label}
-                            {item.children && <ChevronDown size={10} className="-rotate-90 text-slate-300" />}
-                          </Link>
-                          {item.children && (
-                            <div className="ml-2 pl-2.5 border-l border-slate-100 space-y-0.5 mt-0.5 mb-1">
-                              {item.children.map(child => (
-                                <Link key={child.href} href={child.href} onClick={() => setDropdown(null)}
-                                  className={`block px-2 py-1 text-xs rounded-lg transition-colors ${
-                                    isActive(child.href) ? 'text-brand-blue font-semibold' : 'text-slate-500 hover:text-brand-blue hover:bg-slate-50'
-                                  }`}>
-                                  {child.label}
-                                </Link>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                        {item.children && (
+                          <div className="ml-3 pl-2.5 border-l border-slate-100 space-y-0.5 mt-0.5 mb-1">
+                            {item.children.map(child => (
+                              <Link key={child.href} href={child.href} onClick={() => setDropdown(null)}
+                                className={`block px-2 py-1 text-xs rounded-lg transition-colors ${
+                                  isActive(child.href) ? 'text-brand-blue font-semibold' : 'text-slate-500 hover:text-brand-blue hover:bg-slate-50'
+                                }`}>
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -319,15 +336,14 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Resources */}
-            <button onClick={() => setMobileSection(s => s === 'resources' ? null : 'resources')}
+            {/* Products & Services */}
+            <button onClick={() => setMobileSection(s => s === 'products' ? null : 'products')}
               className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer">
-              Resources
-              <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'resources' ? 'rotate-180' : ''}`} />
+              Products & Services
+              <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'products' ? 'rotate-180' : ''}`} />
             </button>
-            <div className={`overflow-hidden transition-all duration-200 ${mobileSection === 'resources' ? 'max-h-[600px]' : 'max-h-0'}`}>
+            <div className={`overflow-hidden transition-all duration-200 ${mobileSection === 'products' ? 'max-h-[500px]' : 'max-h-0'}`}>
               <div className="px-2 pb-2 space-y-0.5">
-                <p className="px-3 pt-1 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Products & Services</p>
                 {resourcesProducts.map(item => (
                   <Link key={item.href} href={item.href} onClick={closeMobile}
                     className={`flex items-center justify-between px-3 py-2 rounded-xl text-sm transition-colors ${
@@ -344,7 +360,17 @@ export default function Header() {
                     )}
                   </Link>
                 ))}
-                <p className="px-3 pt-3 pb-1 text-[10px] font-bold text-slate-400 uppercase tracking-widest">More Resources</p>
+              </div>
+            </div>
+
+            {/* Resources */}
+            <button onClick={() => setMobileSection(s => s === 'resources' ? null : 'resources')}
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50 rounded-xl transition-colors cursor-pointer">
+              Resources
+              <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileSection === 'resources' ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`overflow-hidden transition-all duration-200 ${mobileSection === 'resources' ? 'max-h-[600px]' : 'max-h-0'}`}>
+              <div className="px-2 pb-2 space-y-0.5">
                 {resourcesOther.map(item => (
                   <div key={item.label}>
                     <Link href={item.href} onClick={closeMobile}

@@ -1,6 +1,5 @@
 import sgMail from '@sendgrid/mail'
 import { NextResponse } from 'next/server'
-import { createCopperPerson } from '@/lib/copper'
 
 const helpLabels: Record<string, string> = {
   sales:    'Sales',
@@ -71,13 +70,6 @@ export async function POST(req: Request) {
     const body = (err as { response?: { body?: unknown } })?.response?.body
     console.error('SendGrid error:', body ?? err)
     return NextResponse.json({ error: 'Failed to send email', detail: body }, { status: 500 })
-  }
-
-  // Best-effort CRM sync — never blocks the response or the email above.
-  try {
-    await createCopperPerson({ name, email, phone, topic: helpLabels[help] ?? help, message })
-  } catch (err: unknown) {
-    console.error('Copper sync failed:', err)
   }
 
   return NextResponse.json({ success: true })

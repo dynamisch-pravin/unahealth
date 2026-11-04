@@ -5,6 +5,7 @@ import ContactSection from '@/components/ContactSection'
 import Stats from '@/components/Stats'
 import ParallaxSection from '@/components/ParallaxSection'
 import { CheckCircle, ArrowRight, ShieldAlert, AlertTriangle, XCircle } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 const redFlags = [
   "Your testing provider claims their content is \"nationally validated\", but can't clearly articulate their validation methodology.",
@@ -74,7 +75,7 @@ export default function ExpertValidationPage() {
                 and validated with real, true-to-life experience.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/contact"
+                <Link href={SIGNUP_URL}
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started

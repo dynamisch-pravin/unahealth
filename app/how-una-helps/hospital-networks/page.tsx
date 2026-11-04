@@ -5,6 +5,7 @@ import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Search, FileCheck, Users, Zap, Layers, UserCircle } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 export const metadata = createMetadata(
   'Hospital Networks | UNA Health',
@@ -36,7 +37,7 @@ export default function HospitalNetworksPage() {
                 Struggling to finding the right new hires? Unsure of how to assess their knowledge gaps? Identify the best talent, train them to meet expectations, and retain their top-level skills with UNA!
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/contact"
+                <Link href={SIGNUP_URL}
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-sm shadow-md shadow-brand-blue/20 group transition-all"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started with UNA

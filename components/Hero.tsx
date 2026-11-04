@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, ArrowRight, CheckCircle, Building2, Users, UserCircle } from 'lucide-react'
 import { gsap } from '@/lib/gsap'
+import { SIGNUP_URL } from '@/lib/links'
 
 const slides = [
   {
@@ -179,7 +180,7 @@ export default function Hero() {
                 {slide.cta}
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
-              <Link href="/contact"
+              <Link href={SIGNUP_URL}
                 className="inline-flex items-center gap-2 text-slate-600 font-semibold px-6 py-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all text-sm">
                 Get Started
               </Link>

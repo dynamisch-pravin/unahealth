@@ -5,6 +5,7 @@ import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import Partners from '@/components/Partners'
 import { CheckCircle, ArrowRight, Zap, Monitor, Layers, Users, Video, UserCheck, TrendingUp } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 const whyUna = [
   {
@@ -56,7 +57,7 @@ export default function StaffingAgenciesPage() {
                 UNA&apos;s mobile-first design improves candidate engagement and compliance. Reduce on-boarding drag and make more placements with UNA!
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/contact"
+                <Link href={SIGNUP_URL}
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-sm shadow-md shadow-brand-blue/20 group transition-all"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started with UNA

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, X, Building2, Users, UserCircle, Stethoscope, GraduationCap, ShieldCheck, DollarSign, Briefcase } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 const howUnaHelps = [
   { label: 'Hospital Networks',        href: '/how-una-helps/hospital-networks',        desc: 'Competency testing for your org',  icon: Building2 },
@@ -268,11 +269,11 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center gap-1">
-            <Link  href="https://admin.unatest.com/" target="_blank"
+            <Link  href="https://admin-v2.unatest.com/" target="_blank"
               className="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors rounded-xl hover:bg-slate-50">
               Sign In
             </Link>
-            <Link href="/contact"
+            <Link href={SIGNUP_URL}
               className="relative overflow-hidden px-5 py-2 text-sm font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-blue/25 active:scale-[0.98]"
               style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
               <span className="relative z-10">Get Started</span>
@@ -419,11 +420,11 @@ export default function Header() {
 
             {/* Actions */}
             <div className="border-t border-slate-100 pt-3 mt-2 flex flex-col gap-2 pb-1">
-              <Link href="https://admin.unatest.com/" target="_blank" onClick={closeMobile}
+              <Link href="https://admin-v2.unatest.com/" target="_blank" onClick={closeMobile}
                 className="text-center px-4 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 Sign In
               </Link>
-              <Link href="/contact" onClick={closeMobile}
+              <Link href={SIGNUP_URL} onClick={closeMobile}
                 className="text-center px-4 py-2.5 text-sm font-bold text-white rounded-xl transition-colors"
                 style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
                 Get Started

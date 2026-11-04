@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
 import { Clock, Search, ArrowRight, ClipboardList, BookOpen, GraduationCap } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 const tests = [
   { name: 'Medical Lab Scientist/Technologist', time: '00:31:17' },
@@ -336,7 +337,7 @@ export default function UNADashPage() {
             See how UNA&apos;s fast, mobile-first testing can streamline competency compliance for your organization.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/contact"
+            <Link href={SIGNUP_URL}
               className="inline-flex items-center gap-2 text-white font-bold px-8 py-3.5 rounded-full transition-all text-sm shadow-lg group"
               style={{ backgroundColor: '#E9384D' }}>
               Get Started

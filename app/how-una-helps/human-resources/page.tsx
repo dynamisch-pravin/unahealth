@@ -5,6 +5,7 @@ import Stats from '@/components/Stats'
 import ContactSection from '@/components/ContactSection'
 import ParallaxSection from '@/components/ParallaxSection'
 import { CheckCircle, ArrowRight, Search, Zap, Smartphone, ShieldCheck, TrendingUp, Database } from 'lucide-react'
+import { SIGNUP_URL } from '@/lib/links'
 
 const features = [
   {
@@ -90,7 +91,7 @@ export default function HumanResourcesPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href="/contact"
+                <Link href={SIGNUP_URL}
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -213,7 +214,7 @@ export default function HumanResourcesPage() {
                   with candidates, improving engagement, optimizing compliance workflows, and setting a
                   new higher standard for your workforce.
                 </p>
-                <Link href="/contact"
+                <Link href={SIGNUP_URL}
                   className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-full transition-all text-sm shadow-lg group"
                   style={{ backgroundColor: '#E9384D' }}>
                   Get Started

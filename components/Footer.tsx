@@ -114,7 +114,7 @@ export default function Footer() {
               <p className="text-slate-300 text-sm mt-1">Join over 750k clinicians and 6k recruiters using UNA.</p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
-              <Link href={SIGNUP_URL}
+              <Link href={SIGNUP_URL} target="_blank"
                 className="btn-magnetic px-5 py-2.5 bg-brand-blue text-white font-semibold rounded-xl text-sm hover:bg-brand-redDark transition-colors shadow-lg">
                 Get Started
               </Link>

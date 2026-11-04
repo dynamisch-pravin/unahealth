@@ -92,7 +92,7 @@ export default function FinancePage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href={SIGNUP_URL}
+                <Link href={SIGNUP_URL} target="_blank"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
@@ -274,7 +274,7 @@ export default function FinancePage() {
                   teams control costs, reduce compliance risk, and allocate resources toward what
                   matters most — delivering excellent patient care.
                 </p>
-                <Link href={SIGNUP_URL}
+                <Link href={SIGNUP_URL} target="_blank"
                   className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-full transition-all text-sm shadow-lg group"
                   style={{ backgroundColor: '#E9384D' }}>
                   Get Started

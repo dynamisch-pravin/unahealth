@@ -180,7 +180,7 @@ export default function Hero() {
                 {slide.cta}
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
-              <Link href={SIGNUP_URL}
+              <Link href={SIGNUP_URL} target="_blank"
                 className="inline-flex items-center gap-2 text-slate-600 font-semibold px-6 py-3 rounded-xl border border-slate-200 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all text-sm">
                 Get Started
               </Link>

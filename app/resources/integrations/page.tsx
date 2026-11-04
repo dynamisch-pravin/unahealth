@@ -90,7 +90,7 @@ export default function IntegrationsPage() {
                 administration — built on open, standards-based APIs.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href={SIGNUP_URL}
+                <Link href={SIGNUP_URL} target="_blank"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full transition-all text-sm shadow-lg group"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started

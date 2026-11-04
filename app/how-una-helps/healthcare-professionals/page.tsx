@@ -47,7 +47,7 @@ export default function HealthcareProfessionalsPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <Link href={SIGNUP_URL}
+                <Link href={SIGNUP_URL} target="_blank"
                   className="inline-flex items-center gap-2 text-white font-bold px-7 py-3.5 rounded-full text-sm shadow-md shadow-brand-blue/20 group transition-all"
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started

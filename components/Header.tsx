@@ -273,7 +273,7 @@ export default function Header() {
               className="px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors rounded-xl hover:bg-slate-50">
               Sign In
             </Link>
-            <Link href={SIGNUP_URL}
+            <Link href={SIGNUP_URL} target="_blank"
               className="relative overflow-hidden px-5 py-2 text-sm font-semibold text-white rounded-full transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:shadow-brand-blue/25 active:scale-[0.98]"
               style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
               <span className="relative z-10">Get Started</span>
@@ -424,7 +424,7 @@ export default function Header() {
                 className="text-center px-4 py-2.5 text-sm font-semibold text-slate-700 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">
                 Sign In
               </Link>
-              <Link href={SIGNUP_URL} onClick={closeMobile}
+              <Link href={SIGNUP_URL} target="_blank" onClick={closeMobile}
                 className="text-center px-4 py-2.5 text-sm font-bold text-white rounded-xl transition-colors"
                 style={{ background: 'linear-gradient(135deg, #E9384D 0%, #C42038 100%)' }}>
                 Get Started

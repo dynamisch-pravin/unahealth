@@ -1,8 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Script from 'next/script'
 import { Send, CheckCircle, MapPin, Mail, Phone, Building2, Linkedin } from 'lucide-react'
+
+// NEW: types for the Google reCAPTCHA script
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void) => void
+      render: (el: HTMLElement, opts: { sitekey: string }) => number
+      getResponse: (widgetId?: number) => string
+      reset: (widgetId?: number) => void
+    }
+  }
+}
+
+// NEW: change this if your route folder has a different name (e.g. app/api/contact/route.ts → '/api/contact')
+const CONTACT_API_URL = '/api/contact'
+
+// NEW: set NEXT_PUBLIC_DISABLE_CAPTCHA=true in .env.local to test without the captcha
+const CAPTCHA_ENABLED = process.env.NEXT_PUBLIC_DISABLE_CAPTCHA !== 'true'
 
 const helpOptions = [
   { value: '',        label: 'How can we help?' },
@@ -25,50 +44,74 @@ const socials = [
     href: 'https://www.facebook.com/unahealth/',
     svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>,
   },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/unahealth_inc/',
-    svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>,
-  },
+  // {
+  //   label: 'Instagram',
+  //   href: 'https://www.instagram.com/unahealthinc',
+  //   svg: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>,
+  // },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/unahealthinc',
+    href: 'https://www.linkedin.com/company/myunaapp',
     svg: <Linkedin size={18} />,
   },
-  {
-    label: 'X (Twitter)',
-    href: 'https://x.com/unahealth_inc',
-    svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>,
-  },
-   {
-    href: 'https://www.youtube.com/@unahealth_inc', label: 'YouTube',
-    svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.376.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.376-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>,
-  },
+  // {
+  //   label: 'X (Twitter)',
+  //   href: 'https://twitter.com/unahealthinc',
+  //   svg: <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>,
+  // },
 ]
 
+const emptyForm = { name: '', email: '', phone: '', help: '', message: '' }
+
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', help: '', message: '' })
+  const [form, setForm] = useState(emptyForm)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [error, setError] = useState('')                  // NEW
+  const [captchaReady, setCaptchaReady] = useState(false) // NEW
+  const captchaRef = useRef<HTMLDivElement>(null)         // NEW
+  const widgetId = useRef<number | undefined>(undefined)  // NEW
+
+  // NEW: draw the captcha whenever the form is on screen
+  // (also works after "Send another message" and client-side navigation)
+  useEffect(() => {
+    if (!CAPTCHA_ENABLED || submitted || !captchaReady || !captchaRef.current || !window.grecaptcha) return
+    if (captchaRef.current.childElementCount > 0) return
+    widgetId.current = window.grecaptcha.render(captchaRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_COPPER_SITE_KEY ?? '',
+    })
+  }, [submitted, captchaReady])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value })
 
+  // CHANGED: actually sends the form to the API route with the captcha token
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
+
+    let token: string | undefined
+    if (CAPTCHA_ENABLED) {
+      token = window.grecaptcha?.getResponse(widgetId.current)
+      if (!token) {
+        setError('Please tick “I’m not a robot” before sending.')
+        return
+      }
+    }
+
     setLoading(true)
-    setSubmitError(null)
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, token }),
       })
-      if (!res.ok) throw new Error('server error')
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error || 'Your message could not be sent. Please try again.')
       setSubmitted(true)
-    } catch {
-      setSubmitError('Something went wrong. Please try again or email us at hello@unahealth.com')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Your message could not be sent. Please try again.')
+      window.grecaptcha?.reset(widgetId.current)
     } finally {
       setLoading(false)
     }
@@ -76,6 +119,15 @@ export default function ContactPage() {
 
   return (
     <>
+      {/* NEW: load reCAPTCHA once; we render the widget ourselves */}
+      {CAPTCHA_ENABLED && (
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+          onReady={() => window.grecaptcha?.ready(() => setCaptchaReady(true))}
+        />
+      )}
+
       {/* Hero */}
       <section className="relative bg-brand-navy overflow-hidden pt-36 pb-24">
         {/* Background decoration */}
@@ -149,7 +201,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right — form */}
-            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 lg:p-10 h-full">
+            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 lg:p-10">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center text-center py-12">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-5">
@@ -159,7 +211,7 @@ export default function ContactPage() {
                   <p className="text-slate-500 text-sm max-w-xs">
                     Thanks! A member of our team will be in touch within one business day.
                   </p>
-                  <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', help: '', message: '' }) }}
+                  <button onClick={() => { setSubmitted(false); setError(''); setForm(emptyForm) }}
                     className="mt-6 text-sm font-semibold text-brand-red hover:underline">
                     Send another message
                   </button>
@@ -219,8 +271,14 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all placeholder-slate-300 resize-none" />
                     </div>
 
-                    {submitError && (
-                      <p className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{submitError}</p>
+                    {/* NEW: reCAPTCHA checkbox */}
+                    {CAPTCHA_ENABLED && <div ref={captchaRef} className="min-h-[78px]" />}
+
+                    {/* NEW: error message */}
+                    {error && (
+                      <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+                        {error}
+                      </p>
                     )}
 
                     <button type="submit" disabled={loading}

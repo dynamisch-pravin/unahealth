@@ -1,6 +1,9 @@
-const COPPER_PEOPLE_URL = 'https://api.copper.com/developer_api/v1/people'
+// lib/copper.ts
+// Creates a LEAD in Copper (shows up under Contacts → Leads).
 
-type CopperPersonInput = {
+const COPPER_LEADS_URL = 'https://api.copper.com/developer_api/v1/leads'
+
+type CopperLeadInput = {
   name: string
   email: string
   phone?: string
@@ -8,7 +11,7 @@ type CopperPersonInput = {
   message?: string
 }
 
-export async function createCopperPerson({ name, email, phone, topic, message }: CopperPersonInput) {
+export async function createCopperLead({ name, email, phone, topic, message }: CopperLeadInput) {
   const apiKey = process.env.COPPER_API_KEY
   const userEmail = process.env.COPPER_USER_EMAIL
   const messageFieldId = process.env.COPPER_MESSAGE_FIELD_ID
@@ -19,7 +22,8 @@ export async function createCopperPerson({ name, email, phone, topic, message }:
 
   const payload: Record<string, unknown> = {
     name,
-    emails: [{ email, category: 'work' }],
+    // Leads take a single email object (People use an "emails" array)
+    email: { email, category: 'work' },
   }
 
   if (phone) {
@@ -27,6 +31,7 @@ export async function createCopperPerson({ name, email, phone, topic, message }:
   }
 
   if (messageFieldId) {
+    // This custom field must be enabled for Leads in Copper's settings
     payload.custom_fields = [
       {
         custom_field_definition_id: Number(messageFieldId),
@@ -35,7 +40,7 @@ export async function createCopperPerson({ name, email, phone, topic, message }:
     ]
   }
 
-  const res = await fetch(COPPER_PEOPLE_URL, {
+  const res = await fetch(COPPER_LEADS_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

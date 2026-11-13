@@ -6,6 +6,10 @@ const COPPER_API = 'https://api.copper.com/developer_api/v1'
 // The name of the custom field on Leads in Copper (must match exactly, ignoring case)
 const HELP_FIELD_NAME = 'How can we help?'
 
+// Hidden value: every lead from the website gets this Source (not shown on the form)
+const SOURCE_FIELD_NAME = 'Source'
+const DEFAULT_SOURCE = 'Website enquiry'
+
 type CopperLeadInput = {
   name: string
   email: string
@@ -38,40 +42,38 @@ function copperHeaders() {
 
 const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '')
 
-// Finds the "How can we help?" field and works out the value Copper expects.
-// Dropdown fields need the option's ID, not its text.
-async function buildHelpField(topic: string) {
-  const res = await fetch(`${COPPER_API}/custom_field_definitions`, { headers: copperHeaders() })
+async function getJson<T>(path: string): Promise<T | null> {
+  const res = await fetch(`${COPPER_API}${path}`, { headers: copperHeaders() })
   if (!res.ok) {
-    console.warn('Could not load Copper custom fields:', res.status, await res.text())
+    console.warn(`Copper GET ${path} failed:`, res.status, await res.text())
     return null
   }
+  return res.json()
+}
 
-  const fields: CustomFieldDefinition[] = await res.json()
+// Finds a Lead custom field by name and works out the value Copper expects.
+// Dropdown fields need the option's ID, not its text.
+function buildCustomField(fields: CustomFieldDefinition[], fieldName: string, value: string) {
   const field = fields.find(
-    f => normalize(f.name) === normalize(HELP_FIELD_NAME) &&
+    f => normalize(f.name) === normalize(fieldName) &&
          (!f.available_on || f.available_on.includes('lead')),
   )
-
-  if (!field) {
-    console.warn(`Copper: no Lead custom field named "${HELP_FIELD_NAME}" was found.`)
-    return null
-  }
+  if (!field) return null
 
   // Text fields take the text directly
   if (!field.options?.length) {
-    return { custom_field_definition_id: field.id, value: topic }
+    return { custom_field_definition_id: field.id, value }
   }
 
   // Dropdown / multi-select: match the option by name (exact first, then partial)
-  const t = normalize(topic)
+  const v = normalize(value)
   const option =
-    field.options.find(o => normalize(o.name) === t) ??
-    field.options.find(o => normalize(o.name).includes(t) || t.includes(normalize(o.name)))
+    field.options.find(o => normalize(o.name) === v) ??
+    field.options.find(o => normalize(o.name).includes(v) || v.includes(normalize(o.name)))
 
   if (!option) {
     console.warn(
-      `Copper: "${topic}" doesn't match any option of "${field.name}". Options are:`,
+      `Copper: "${value}" doesn't match any option of "${field.name}". Options are:`,
       field.options.map(o => o.name),
     )
     return null
@@ -79,6 +81,13 @@ async function buildHelpField(topic: string) {
 
   const isMulti = field.data_type.toLowerCase().includes('multi')
   return { custom_field_definition_id: field.id, value: isMulti ? [option.id] : option.id }
+}
+
+// Copper's built-in "Source" field on leads uses customer_source_id
+async function findCustomerSourceId(sourceName: string): Promise<number | null> {
+  const sources = await getJson<{ id: number; name: string }[]>('/customer_sources')
+  const match = sources?.find(s => normalize(s.name) === normalize(sourceName))
+  return match?.id ?? null
 }
 
 export async function createCopperLead({ name, email, phone, topic, message }: CopperLeadInput) {
@@ -98,10 +107,23 @@ export async function createCopperLead({ name, email, phone, topic, message }: C
   }
 
   const customFields: { custom_field_definition_id: number; value: unknown }[] = []
+  const fieldDefs = (await getJson<CustomFieldDefinition[]>('/custom_field_definitions')) ?? []
 
   // "How can we help?" field
-  const helpField = await buildHelpField(topic)
+  const helpField = buildCustomField(fieldDefs, HELP_FIELD_NAME, topic)
   if (helpField) customFields.push(helpField)
+  else console.warn(`Copper: could not set "${HELP_FIELD_NAME}".`)
+
+  // Hidden "Source" = Website enquiry
+  // Tries Copper's built-in Source first, then a custom field named "Source".
+  const sourceId = await findCustomerSourceId(DEFAULT_SOURCE)
+  if (sourceId) {
+    payload.customer_source_id = sourceId
+  } else {
+    const sourceField = buildCustomField(fieldDefs, SOURCE_FIELD_NAME, DEFAULT_SOURCE)
+    if (sourceField) customFields.push(sourceField)
+    else console.warn(`Copper: could not set Source to "${DEFAULT_SOURCE}".`)
+  }
 
   // Optional message custom field (remove COPPER_MESSAGE_FIELD_ID from .env.local if not needed)
   if (messageFieldId) {

@@ -10,6 +10,10 @@ const HELP_FIELD_NAME = 'How can we help?'
 const SOURCE_FIELD_NAME = 'Source'
 const DEFAULT_SOURCE = 'Website enquiry'
 
+// Hidden value: every lead from the website is assigned to this Copper user ("Owned By").
+// Use the name exactly as Copper shows it, or the user's Copper login email.
+const DEFAULT_OWNER = 'Rutuja D'
+
 type CopperLeadInput = {
   name: string
   email: string
@@ -90,6 +94,31 @@ async function findCustomerSourceId(sourceName: string): Promise<number | null> 
   return match?.id ?? null
 }
 
+// Copper's "Owned By" on leads uses assignee_id (a Copper user ID)
+async function findUserId(nameOrEmail: string): Promise<number | null> {
+  const res = await fetch(`${COPPER_API}/users/search`, {
+    method: 'POST',
+    headers: copperHeaders(),
+    body: JSON.stringify({ page_size: 200 }),
+  })
+  if (!res.ok) {
+    console.warn('Copper users search failed:', res.status, await res.text())
+    return null
+  }
+  const users: { id: number; name: string; email: string }[] = await res.json()
+  const target = normalize(nameOrEmail)
+  const match =
+    users.find(u => normalize(u.email ?? '') === target) ??
+    users.find(u => normalize(u.name ?? '') === target) ??
+    users.find(u => normalize(u.name ?? '').startsWith(target))
+
+  if (!match) {
+    console.warn(`Copper: no user matching "${nameOrEmail}". Users are:`, users.map(u => u.name))
+    return null
+  }
+  return match.id
+}
+
 export async function createCopperLead({ name, email, phone, topic, message }: CopperLeadInput) {
   const headers = copperHeaders()
   const messageFieldId = process.env.COPPER_MESSAGE_FIELD_ID
@@ -129,6 +158,10 @@ export async function createCopperLead({ name, email, phone, topic, message }: C
   if (messageFieldId) {
     customFields.push({ custom_field_definition_id: Number(messageFieldId), value: message || '—' })
   }
+
+  // Hidden "Owned By" = Rutuja D
+  const ownerId = await findUserId(DEFAULT_OWNER)
+  if (ownerId) payload.assignee_id = ownerId
 
   if (customFields.length) payload.custom_fields = customFields
 

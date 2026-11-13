@@ -20,22 +20,27 @@ export async function createCopperLead({ name, email, phone, topic, message }: C
     throw new Error('Missing env vars: COPPER_API_KEY or COPPER_USER_EMAIL')
   }
 
+  const description = `${message || '—'}`
+
   const payload: Record<string, unknown> = {
     name,
     // Leads take a single email object (People use an "emails" array)
     email: { email, category: 'work' },
+    // "details" is the lead's Description field in Copper
+    details: description,
   }
 
   if (phone) {
     payload.phone_numbers = [{ number: phone, category: 'mobile' }]
   }
 
+  // Optional: also copy it into a custom field if you still use one.
+  // Remove COPPER_MESSAGE_FIELD_ID from .env.local if you only want the Description.
   if (messageFieldId) {
-    // This custom field must be enabled for Leads in Copper's settings
     payload.custom_fields = [
       {
         custom_field_definition_id: Number(messageFieldId),
-        value: `Topic: ${topic}\n\n${message || '—'}`,
+        value: description,
       },
     ]
   }

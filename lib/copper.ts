@@ -14,6 +14,9 @@ const DEFAULT_SOURCE = 'Website enquiry'
 // Use the name exactly as Copper shows it, or the user's Copper login email.
 const DEFAULT_OWNER = 'Rutuja D'
 
+// Hidden: a follow-up task is created on every new lead, due today
+const DEFAULT_TASK_NAME = 'Newly Lead created from website'
+
 type CopperLeadInput = {
   name: string
   email: string
@@ -119,6 +122,27 @@ async function findUserId(nameOrEmail: string): Promise<number | null> {
   return match.id
 }
 
+// Creates a task linked to the lead (shows in the lead's Tasks column)
+async function createLeadTask(leadId: number, assigneeId: number | null) {
+  const task: Record<string, unknown> = {
+    name: DEFAULT_TASK_NAME,
+    related_resource: { id: leadId, type: 'lead' },
+    due_date: Math.floor(Date.now() / 1000), // today (Copper uses Unix seconds)
+    priority: 'None',
+    status: 'Open',
+  }
+  if (assigneeId) task.assignee_id = assigneeId
+
+  const res = await fetch(`${COPPER_API}/tasks`, {
+    method: 'POST',
+    headers: copperHeaders(),
+    body: JSON.stringify(task),
+  })
+  if (!res.ok) {
+    console.warn('Copper task creation failed:', res.status, await res.text())
+  }
+}
+
 export async function createCopperLead({ name, email, phone, topic, message }: CopperLeadInput) {
   const headers = copperHeaders()
   const messageFieldId = process.env.COPPER_MESSAGE_FIELD_ID
@@ -176,5 +200,10 @@ export async function createCopperLead({ name, email, phone, topic, message }: C
     throw new Error(`Copper API error ${res.status}: ${body}`)
   }
 
-  return res.json()
+  const lead = await res.json()
+
+  // Follow-up task, assigned to the same owner. A task failure won't undo the lead.
+  await createLeadTask(lead.id, ownerId)
+
+  return lead
 }

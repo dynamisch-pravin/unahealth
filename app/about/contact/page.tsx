@@ -1,8 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Script from 'next/script'
 import { Send, CheckCircle, MapPin, Mail, Phone, Building2, Linkedin } from 'lucide-react'
+
+// NEW: types for the Google reCAPTCHA script
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void) => void
+      render: (el: HTMLElement, opts: { sitekey: string }) => number
+      getResponse: (widgetId?: number) => string
+      reset: (widgetId?: number) => void
+    }
+  }
+}
+
+// NEW: change this if your route folder has a different name (e.g. app/api/contact/route.ts → '/api/contact')
+const CONTACT_API_URL = '/api/contact'
+
+// NEW: set NEXT_PUBLIC_DISABLE_CAPTCHA=true in .env.local to test without the captcha
+const CAPTCHA_ENABLED = process.env.NEXT_PUBLIC_DISABLE_CAPTCHA !== 'true'
 
 const helpOptions = [
   { value: '',        label: 'How can we help?' },
@@ -42,24 +61,73 @@ const socials = [
   // },
 ]
 
+const emptyForm = { name: '', email: '', phone: '', help: '', message: '' }
+
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', help: '', message: '' })
+  const [form, setForm] = useState(emptyForm)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')                  // NEW
+  const [captchaReady, setCaptchaReady] = useState(false) // NEW
+  const captchaRef = useRef<HTMLDivElement>(null)         // NEW
+  const widgetId = useRef<number | undefined>(undefined)  // NEW
+
+  // NEW: draw the captcha whenever the form is on screen
+  // (also works after "Send another message" and client-side navigation)
+  useEffect(() => {
+    if (!CAPTCHA_ENABLED || submitted || !captchaReady || !captchaRef.current || !window.grecaptcha) return
+    if (captchaRef.current.childElementCount > 0) return
+    widgetId.current = window.grecaptcha.render(captchaRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_COPPER_SITE_KEY ?? '',
+    })
+  }, [submitted, captchaReady])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value })
 
+  // CHANGED: actually sends the form to the API route with the captcha token
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
+
+    let token: string | undefined
+    if (CAPTCHA_ENABLED) {
+      token = window.grecaptcha?.getResponse(widgetId.current)
+      if (!token) {
+        setError('Please tick “I’m not a robot” before sending.')
+        return
+      }
+    }
+
     setLoading(true)
-    await new Promise(r => setTimeout(r, 1200))
-    setLoading(false)
-    setSubmitted(true)
+    try {
+      const res = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, token }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error || 'Your message could not be sent. Please try again.')
+      setSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Your message could not be sent. Please try again.')
+      window.grecaptcha?.reset(widgetId.current)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <>
+      {/* NEW: load reCAPTCHA once; we render the widget ourselves */}
+      {CAPTCHA_ENABLED && (
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+          onReady={() => window.grecaptcha?.ready(() => setCaptchaReady(true))}
+        />
+      )}
+
       {/* Hero */}
       <section className="relative bg-brand-navy overflow-hidden pt-36 pb-24">
         {/* Background decoration */}
@@ -143,7 +211,7 @@ export default function ContactPage() {
                   <p className="text-slate-500 text-sm max-w-xs">
                     Thanks! A member of our team will be in touch within one business day.
                   </p>
-                  <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', help: '', message: '' }) }}
+                  <button onClick={() => { setSubmitted(false); setError(''); setForm(emptyForm) }}
                     className="mt-6 text-sm font-semibold text-brand-red hover:underline">
                     Send another message
                   </button>
@@ -202,6 +270,16 @@ export default function ContactPage() {
                         placeholder="Tell us about your organization..."
                         className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all placeholder-slate-300 resize-none" />
                     </div>
+
+                    {/* NEW: reCAPTCHA checkbox */}
+                    {CAPTCHA_ENABLED && <div ref={captchaRef} className="min-h-[78px]" />}
+
+                    {/* NEW: error message */}
+                    {error && (
+                      <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+                        {error}
+                      </p>
+                    )}
 
                     <button type="submit" disabled={loading}
                       className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-red hover:bg-brand-redDark text-white font-bold rounded-xl transition-colors shadow-md text-sm disabled:opacity-70">

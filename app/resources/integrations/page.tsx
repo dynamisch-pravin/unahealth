@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ContactSection from '@/components/ContactSection'
 import Stats from '@/components/Stats'
-import { ArrowRight, Code2, Zap, Globe, Database, RefreshCw, Layers, ExternalLink } from 'lucide-react'
+import { ArrowRight, Code2, Zap, Globe, Database, RefreshCw, Layers } from 'lucide-react'
 
 const apis = [
   {
@@ -18,8 +18,6 @@ const apis = [
       'Sync candidate data in real time',
       'Trigger automated content delivery',
     ],
-    docLabel: 'View the UNA HCP API documentation',
-    docHref: '#',
     accentColor: '#E9384D',
   },
   {
@@ -34,8 +32,6 @@ const apis = [
       'Compliance reporting endpoints',
       'Enterprise-grade data access',
     ],
-    docLabel: 'View the UNA Core API documentation',
-    docHref: '#',
     accentColor: '#0F2B5B',
   },
 ]
@@ -48,18 +44,13 @@ const integrationTypes = [
 ]
 
 const partners = [
-  { name: 'Cascade',                 src: '/partners/cascade.png' },
-  { name: 'Advantis Medical',        src: '/partners/advantis-medical.png' },
-  { name: 'ADEX',                    src: '/partners/adex.png' },
-  { name: 'Equiliem',                src: '/partners/equiliem.png' },
-  { name: 'Excite Health Partners',  src: '/partners/excite-health-partners.png' },
-  { name: 'Krucial',                 src: '/partners/krucial.png' },
-  { name: 'Health Carousel',         src: '/partners/health-carousel.png' },
-  { name: 'Express Healthcare',      src: '/partners/express-healthcare.png' },
-  { name: 'GHR Healthcare',          src: '/partners/ghr-healthcare.png' },
-  { name: 'Journey Healthcare',      src: '/partners/journey-healthcare.png' },
-  { name: 'Medical Solutions',       src: '/partners/medical-solutions.png' },
-  { name: 'Matchwell',               src: '/partners/matchwell.png' },
+  { name: 'Credentially',  src: '/partners/credentially.png',  href: 'https://www.credentially.io/en-us' },
+  { name: 'Nexus',         src: '/partners/nexus.png',         href: 'https://www.laboredge.com/products/ats/nexus-ats' },
+  { name: 'Bullhorn',      src: '/partners/bullhorn.png',      href: 'https://www.bullhorn.com/' },
+  { name: 'NextCrew',      src: '/partners/nextcrew.png',      href: 'https://www.nextcrew.com/integrations/compliance/unahealth' },
+  { name: 'Vars Health',   src: '/partners/vars-health.png',   href: 'https://www.varshealth.com/', dim: true },
+  { name: 'Workday',       src: '/partners/workday.png',       href: 'https://www.workday.com/' },
+  { name: 'Dynamisch',     src: '/partners/dynamisch.png',     href: 'https://dynamisch.co/' },
 ]
 
 export const metadata = createMetadata(
@@ -103,10 +94,6 @@ export default function IntegrationsPage() {
                   style={{ background: 'linear-gradient(135deg,#E9384D,#C42038)' }}>
                   Get Started
                   <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-                </Link>
-                <Link href="#apis"
-                  className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 rounded-full border border-slate-200 text-slate-600 hover:border-slate-300 hover:bg-slate-50 text-sm transition-all">
-                  View API Docs
                 </Link>
               </div>
             </div>
@@ -195,7 +182,7 @@ export default function IntegrationsPage() {
                   </p>
                   <h3 className="text-2xl font-bold text-brand-navy mb-4">{api.name}</h3>
                   <p className="text-slate-500 leading-relaxed mb-6">{api.description}</p>
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-3">
                     {api.capabilities.map(cap => (
                       <li key={cap} className="flex items-center gap-3 text-sm text-slate-600">
                         <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: api.accentColor }} />
@@ -203,12 +190,6 @@ export default function IntegrationsPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href={api.docHref}
-                    className="inline-flex items-center gap-2 text-sm font-bold transition-colors group"
-                    style={{ color: api.accentColor }}>
-                    {api.docLabel}
-                    <ExternalLink size={13} className="transition-transform group-hover:translate-x-0.5" />
-                  </a>
                 </div>
               )
             })}
@@ -231,29 +212,33 @@ export default function IntegrationsPage() {
           </p>
         </div>
 
-        <div className="relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to right, white 0%, transparent 100%)' }} />
-          <div className="absolute right-0 top-0 bottom-0 w-28 z-10 pointer-events-none"
+          <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 z-10 pointer-events-none"
             style={{ background: 'linear-gradient(to left, white 0%, transparent 100%)' }} />
 
           <div className="flex gap-5 animate-marquee hover:[animation-play-state:paused]" style={{ width: 'max-content' }}>
             {[...partners, ...partners].map((partner, i) => (
-              <div
+              <a
                 key={`${partner.name}-${i}`}
-                className="group h-20 w-44 flex-shrink-0 bg-white rounded-xl border border-slate-100 hover:border-brand-blue/20 hover:shadow-md flex items-center justify-center px-5 transition-all duration-300"
+                href={partner.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={partner.name}
+                className="group h-20 w-44 flex-shrink-0 bg-white rounded-xl border border-slate-100 hover:border-brand-blue/20 hover:shadow-md flex items-center justify-center px-5 transition-all duration-300 cursor-pointer"
               >
                 <div className="relative w-full h-10">
                   <Image
                     src={partner.src}
                     alt={partner.name}
                     fill
-                    className="object-contain grayscale opacity-55 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    className={`object-contain grayscale contrast-125 opacity-75 group-hover:grayscale-0 group-hover:contrast-100 group-hover:opacity-100 transition-all duration-300 ${partner.dim ? 'brightness-50' : ''} group-hover:brightness-100`}
                     sizes="176px"
                   />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

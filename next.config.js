@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Self-contained server build in .next/standalone (for AWS / any Node host: `node server.js`)
+  output: 'standalone',
   trailingSlash: true,
   images: {
     domains: ['img.youtube.com'],

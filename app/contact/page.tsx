@@ -1,8 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Script from 'next/script'
 import { Send, CheckCircle, MapPin, Mail, Phone, Building2, Linkedin } from 'lucide-react'
+
+// NEW: types for the Google reCAPTCHA script
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (cb: () => void) => void
+      render: (el: HTMLElement, opts: { sitekey: string }) => number
+      getResponse: (widgetId?: number) => string
+      reset: (widgetId?: number) => void
+    }
+  }
+}
+
+// NEW: change this if your route folder has a different name (e.g. app/api/contact/route.ts → '/api/contact')
+const CONTACT_API_URL = '/api/contact'
+
+// NEW: set NEXT_PUBLIC_DISABLE_CAPTCHA=true in .env.local to test without the captcha
+const CAPTCHA_ENABLED = process.env.NEXT_PUBLIC_DISABLE_CAPTCHA !== 'true'
 
 const helpOptions = [
   { value: '',        label: 'How can we help?' },
@@ -46,29 +65,57 @@ const socials = [
   },
 ]
 
+const emptyForm = { name: '', email: '', phone: '', help: '', message: '' }
+
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', help: '', message: '' })
+  const [form, setForm] = useState(emptyForm)
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [error, setError] = useState('')                  // NEW
+  const [captchaReady, setCaptchaReady] = useState(false) // NEW
+  const captchaRef = useRef<HTMLDivElement>(null)         // NEW
+  const widgetId = useRef<number | undefined>(undefined)  // NEW
+
+  // NEW: draw the captcha whenever the form is on screen
+  // (also works after "Send another message" and client-side navigation)
+  useEffect(() => {
+    if (!CAPTCHA_ENABLED || submitted || !captchaReady || !captchaRef.current || !window.grecaptcha) return
+    if (captchaRef.current.childElementCount > 0) return
+    widgetId.current = window.grecaptcha.render(captchaRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_COPPER_SITE_KEY ?? '',
+    })
+  }, [submitted, captchaReady])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value })
 
+  // CHANGED: actually sends the form to the API route with the captcha token
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setError('')
+
+    let token: string | undefined
+    if (CAPTCHA_ENABLED) {
+      token = window.grecaptcha?.getResponse(widgetId.current)
+      if (!token) {
+        setError('Please tick “I’m not a robot” before sending.')
+        return
+      }
+    }
+
     setLoading(true)
-    setSubmitError(null)
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(CONTACT_API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, token }),
       })
-      if (!res.ok) throw new Error('server error')
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error || 'Your message could not be sent. Please try again.')
       setSubmitted(true)
-    } catch {
-      setSubmitError('Something went wrong. Please try again or email us at hello@unahealth.com')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Your message could not be sent. Please try again.')
+      window.grecaptcha?.reset(widgetId.current)
     } finally {
       setLoading(false)
     }
@@ -76,6 +123,15 @@ export default function ContactPage() {
 
   return (
     <>
+      {/* NEW: load reCAPTCHA once; we render the widget ourselves */}
+      {CAPTCHA_ENABLED && (
+        <Script
+          src="https://www.google.com/recaptcha/api.js?render=explicit"
+          strategy="afterInteractive"
+          onReady={() => window.grecaptcha?.ready(() => setCaptchaReady(true))}
+        />
+      )}
+
       {/* Hero */}
       <section className="relative bg-brand-navy overflow-hidden pt-36 pb-24">
         {/* Background decoration */}
@@ -149,7 +205,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right — form */}
-            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 lg:p-10 h-full">
+            <div className="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 lg:p-10">
               {submitted ? (
                 <div className="flex flex-col items-center justify-center text-center py-12">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-5">
@@ -159,7 +215,7 @@ export default function ContactPage() {
                   <p className="text-slate-500 text-sm max-w-xs">
                     Thanks! A member of our team will be in touch within one business day.
                   </p>
-                  <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', help: '', message: '' }) }}
+                  <button onClick={() => { setSubmitted(false); setError(''); setForm(emptyForm) }}
                     className="mt-6 text-sm font-semibold text-brand-red hover:underline">
                     Send another message
                   </button>
@@ -219,8 +275,14 @@ export default function ContactPage() {
                         className="w-full px-4 py-3 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all placeholder-slate-300 resize-none" />
                     </div>
 
-                    {submitError && (
-                      <p className="text-xs text-red-500 bg-red-50 border border-red-100 rounded-xl px-4 py-3">{submitError}</p>
+                    {/* NEW: reCAPTCHA checkbox */}
+                    {CAPTCHA_ENABLED && <div ref={captchaRef} className="min-h-[78px]" />}
+
+                    {/* NEW: error message */}
+                    {error && (
+                      <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-xl px-4 py-3">
+                        {error}
+                      </p>
                     )}
 
                     <button type="submit" disabled={loading}

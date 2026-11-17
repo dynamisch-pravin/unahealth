@@ -178,9 +178,14 @@ export async function createCopperLead({ name, email, phone, topic, message }: C
     else console.warn(`Copper: could not set Source to "${DEFAULT_SOURCE}".`)
   }
 
-  // Optional message custom field (remove COPPER_MESSAGE_FIELD_ID from .env.local if not needed)
+  // Optional message custom field (remove COPPER_MESSAGE_FIELD_ID from .env.local if not needed).
+  // Only sent if the ID exists in this Copper account — an ID from another account can make Copper reject the lead.
   if (messageFieldId) {
-    customFields.push({ custom_field_definition_id: Number(messageFieldId), value: message || '—' })
+    if (fieldDefs.some(f => String(f.id) === messageFieldId.trim())) {
+      customFields.push({ custom_field_definition_id: Number(messageFieldId), value: message || '—' })
+    } else {
+      console.warn(`Copper: COPPER_MESSAGE_FIELD_ID=${messageFieldId} is not a custom field in this Copper account — skipped.`)
+    }
   }
 
   // Hidden "Owned By" = Rutuja D

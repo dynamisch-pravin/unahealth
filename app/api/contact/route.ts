@@ -118,12 +118,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Failed to send email', detail: body }, { status: 500 })
   }
 
-  // Best-effort CRM sync — never blocks the response or the email above.
+  // Best-effort CRM sync — the email above has already gone out, so the visitor still sees success.
+  // `crm` in the response shows whether Copper worked (check the Network tab); the reason is in the server log.
+  let crm: 'ok' | 'failed' = 'ok'
   try {
-    await createCopperLead({ name, email, phone, topic, message })
+    const lead = await createCopperLead({ name, email, phone, topic, message })
+    console.log('Copper lead created:', lead?.id)
   } catch (err: unknown) {
-    console.error('Copper sync failed:', err)
+    crm = 'failed'
+    console.error('Copper sync failed:', err instanceof Error ? err.message : err)
   }
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ success: true, crm })
 }

@@ -51,7 +51,7 @@ const socials = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/company/myunaapp',
+    href: 'https://www.linkedin.com/company/unahealthinc',
     svg: <Linkedin size={18} />,
   },
   {
